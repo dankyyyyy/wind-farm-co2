@@ -47,12 +47,12 @@ class DetailsMenu extends StatelessWidget {
   //the collapsed sliding panel
   Widget _slidingCollapsed() {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.blueGrey,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0)),
       ),
-      child: Center(
+      child: const Center(
         child: Text(
           "this is the collapsed details menu - Brief Details",
           style: TextStyle(color: Colors.white),
