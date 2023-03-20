@@ -3,10 +3,12 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'main.dart';
 
 class DetailsMenu extends StatelessWidget {
+  const DetailsMenu({super.key});
+
   @override
   Widget build(BuildContext context) {
     //This makes the corners round and friendly
-    BorderRadiusGeometry radius = const BorderRadius.only(
+    const BorderRadius.only(
       topLeft: Radius.circular(24.0),
       topRight: Radius.circular(24.0),
     );

@@ -9,14 +9,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.4"
-  ansicolor:
-    dependency: transitive
-    description:
-      name: ansicolor
-      sha256: "78bc93b397e4c1eb2d8b47b4bee7c68831b68326dae2c43573ac10e4e192052a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
   async:
     dependency: transitive
     description:
@@ -81,14 +73,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
-  console_log_handler:
-    dependency: transitive
-    description:
-      name: console_log_handler
-      sha256: "3529d45b47487f48850322fa123cc382316f3d5708a33d75cc8f1a73f56a8b0b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.6"
   crypto:
     dependency: transitive
     description:
@@ -219,16 +203,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
-  latlong:
-    dependency: "direct main"
-    description:
-      name: latlong
-      sha256: "2b185c6c09793ba35b720ff97ea801f3d5731cfb2e8bb387b12cc6de1eb2fb72"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.1"
   latlong2:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: latlong2
       sha256: "408993a0e3f46e79ce1f129e4cb0386eef6d48dfa6394939ecacfbd7049154ec"
@@ -251,14 +227,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
-  logging:
-    dependency: transitive
-    description:
-      name: logging
-      sha256: "239402c239e2a390cf745af3a496fb985dc8f0b31b3f5fe0d460e42289d33ad7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.11.4"
   matcher:
     dependency: transitive
     description:
@@ -536,14 +504,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
-  validate:
-    dependency: transitive
-    description:
-      name: validate
-      sha256: e454e9357766615ecedd8dc8ffd1e5a80d54f53d5bf878fee9d5143cb0f57f4d
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.7.0"
   vector_math:
     dependency: transitive
     description:
