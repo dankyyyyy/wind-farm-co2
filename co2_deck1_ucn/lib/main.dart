@@ -10,7 +10,16 @@ import 'package:latlong2/latlong.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 //import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart'; MUST IMPLEMENT FOR BETTER PERFORMANCE!!
 
-void main() => runApp(DetailsMenu());
+void main() => runApp(Program());
+
+class Program extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DetailsMenu(),
+    );
+  }
+}
 
 class WF_Map extends StatelessWidget {
   //Map widget
