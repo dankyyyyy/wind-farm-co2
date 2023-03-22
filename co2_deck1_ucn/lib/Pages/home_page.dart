@@ -34,8 +34,4 @@ class _homePageState extends State<homePage> {
       ),
     );
   }
-
-  void togglePanelVisibility() => panelController.isPanelShown
-      ? panelController.hide()
-      : panelController.show();
 }

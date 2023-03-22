@@ -24,7 +24,7 @@ class DetailsMenu extends StatelessWidget {
               'WF Name',
               style: TextStyle(),
             ),
-          )
+          ),
         ],
       );
 
