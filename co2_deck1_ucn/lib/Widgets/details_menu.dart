@@ -30,6 +30,8 @@ class DetailsMenu extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
           ),
+          const SizedBox(height: 24),
+          buildQuickDetails(),
           const SizedBox(height: 18),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -119,4 +121,15 @@ class DetailsMenu extends StatelessWidget {
   void togglePanelVisibility() => panelController.isPanelShown
       ? panelController.hide()
       : panelController.show();
+
+  buildQuickDetails() => Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text('27 x MHI Vestas V174-9.5MW WTG'),
+          Text('19km from shore'),
+          Text('72t of CO2'),
+        ],
+      ));
 }
