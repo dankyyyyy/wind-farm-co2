@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -26,7 +24,10 @@ class DetailsMenu extends StatelessWidget {
           const Center(
             child: Text(
               'Arcadis Ost 1',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 40,
+                  fontFamily: 'BebasNeue',
+                  fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 18),
@@ -79,8 +80,6 @@ class DetailsMenu extends StatelessWidget {
                   "Fleet",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(width: 5,),
-                Icon(Icons.agriculture),
               ],
             ),
           ),
