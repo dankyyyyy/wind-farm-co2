@@ -14,8 +14,11 @@ class WF_Map extends StatelessWidget {
     return Scaffold(
       body: FlutterMap(
         options: MapOptions(
+          minZoom: 5.5,
+          maxZoom: 18.0,
           center: LatLng(56.188, 11.617),
-          zoom: 8.0,
+          interactiveFlags: InteractiveFlag.pinchZoom | InteractiveFlag.drag,
+          zoom: 10.0,
         ),
         layers: [
           TileLayerOptions(

@@ -88,6 +88,7 @@ class DetailsMenu extends StatelessWidget {
         ],
       );
 
+//Additional options & methods
   Widget buildInfographics() => Container(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
