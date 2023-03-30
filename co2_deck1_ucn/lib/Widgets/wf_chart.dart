@@ -6,7 +6,7 @@ class WindFarmChart extends StatelessWidget {
 
   final Color farmColor = const Color.fromRGBO(113, 216, 150, 1);
   final Color vesselsColor = const Color.fromRGBO(252, 129, 129, 1);
-  final Color helicopterColor = const Color.fromRGBO(249, 206, 85, 1);
+  // final Color helicopterColor = const Color.fromRGBO(249, 206, 85, 1);
 
   // final Color farmColor = const Color.fromRGBO(134, 234, 232, 1);
   // final Color vesselsColor = const Color.fromRGBO(60, 103, 150, 1);
@@ -39,13 +39,6 @@ class WindFarmChart extends StatelessWidget {
           borderRadius: helicopters == 0
               ? const BorderRadius.vertical(top: Radius.circular(5))
               : BorderRadius.zero,
-        ),
-        BarChartRodData(
-          fromY: farm + vessels,
-          toY: farm + vessels + helicopters,
-          color: helicopterColor,
-          width: 25,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(5)),
         ),
       ],
     );
