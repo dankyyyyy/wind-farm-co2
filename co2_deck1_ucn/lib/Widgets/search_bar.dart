@@ -27,6 +27,3 @@ class _SearchBarState extends State<SearchBar> {
         ));
   }
 }
-//   @override
-//   Widget build(BuildContext context) {}
-// }

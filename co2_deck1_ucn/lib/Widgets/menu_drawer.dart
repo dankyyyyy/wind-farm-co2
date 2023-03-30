@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import '../Pages/about_page.dart';
+import '../Pages/comparison_page.dart';
 import '../Pages/glossary_page.dart';
 import '../Pages/home_page.dart';
 import '../Pages/settings_page.dart';
+import '../Resources/images.dart';
 import '../Resources/menu_icons.dart';
 
 class MenuDrawer extends StatelessWidget {
@@ -20,7 +22,7 @@ class MenuDrawer extends StatelessWidget {
             alignment: Alignment.center,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/deck1_logo2.png'),
+                image: AssetImage(Images.logo),
                 fit: BoxFit.scaleDown,
               ),
             ),
@@ -60,6 +62,25 @@ class MenuDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const GlossaryPage()));
+            },
+          ),
+          ListTile(
+            leading: const CircleAvatar(
+                backgroundImage: AssetImage(MenuIcons.compare),
+                backgroundColor: Colors.transparent,
+                radius: 14),
+            title: const Text('Compare Plants',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Lato',
+                )),
+            onTap: () {
+              // TBA
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ComparisonPage()));
             },
           ),
           ListTile(

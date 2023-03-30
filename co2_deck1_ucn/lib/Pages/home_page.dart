@@ -1,7 +1,6 @@
 import 'package:co2_deck1_ucn/Widgets/menu_button.dart';
 import 'package:co2_deck1_ucn/Widgets/menu_drawer.dart';
-import 'package:co2_deck1_ucn/Widgets/details_menu.dart';
-import 'package:co2_deck1_ucn/Widgets/search_bar.dart';
+import 'package:co2_deck1_ucn/Widgets/plant_info/ao1_details.dart';
 import 'package:co2_deck1_ucn/Widgets/wf_map.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -30,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         parallaxEnabled: true,
         parallaxOffset: 0.5,
         body: WF_Map(),
-        panelBuilder: (controller) => DetailsMenu(
+        panelBuilder: (controller) => AO1Details(
           scrollController: controller,
           panelController: panelController,
         ),

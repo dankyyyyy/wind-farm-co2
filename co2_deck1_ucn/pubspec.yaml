@@ -76,8 +76,11 @@ flutter:
       - assets/images/plant_details/watch_plant.png
       - assets/images/plant_details/watched_plant.png
 
+      - assets/images/plant_details/AO1/AO1_logo.png
+
       - assets/images/menu_icons/classic/home.png
       - assets/images/menu_icons/classic/glossary.png
+      - assets/images/menu_icons/classic/compare_plants.png
       - assets/images/menu_icons/classic/settings.png
       - assets/images/menu_icons/classic/about.png
 

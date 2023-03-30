@@ -1,13 +1,16 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import 'wf_chart.dart';
+import '../../Resources/images.dart';
+import '../wf_chart.dart';
 
-class DetailsMenu extends StatelessWidget {
+class AO1Details extends StatelessWidget {
   final ScrollController scrollController;
   final PanelController panelController;
 
-  const DetailsMenu({
+  const AO1Details({
     Key? key,
     required this.scrollController,
     required this.panelController,
@@ -63,10 +66,27 @@ class DetailsMenu extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 40),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(25, 5, 30, 5),
-            child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed massa eget elit lacinia mattis. Maecenas eleifend, odio vel interdum scelerisque, turpis diam commodo ipsum, eget ultricies justo quam non ipsum. Etiam fringilla dolor in sem consectetur, ut sollicitudin neque varius. Morbi egestas lacinia urna. Curabitur eu commodo magna, non fermentum augue. Sed malesuada enim iaculis, porta nibh sit amet, gravida felis. Aliquam sed lacinia nisi. Etiam gravida egestas purus ut pretium. Duis vel pellentesque neque, et luctus velit. Nunc malesuada diam vitae nibh placerat lobortis. Fusce dictum commodo dui. Curabitur semper arcu ac viverra posuere."),
+          const Divider(
+            color: Colors.blueGrey,
+            indent: 30,
+            endIndent: 30,
+            thickness: 1,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(25, 5, 30, 5),
+            child: Column(
+              children: const [
+                Image(image: AssetImage(Images.AO1_logo)),
+                Text(
+                  "Arcadis Ost 1 is a 257 MW offshore wind farm developed by Parkwind Ost GmbH. The wind farm will be located in the Baltic Sea, northeast of the island of Rügen in Germany.\n",
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Scheduled for completion in late 2023, the project is committed to the highest standards and will be using state of the art construction methods for the installation of some of the world’s biggest wind turbines.",
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
           Container(
             decoration: BoxDecoration(
@@ -75,7 +95,7 @@ class DetailsMenu extends StatelessWidget {
             margin: const EdgeInsets.fromLTRB(100, 5, 100, 5),
             padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
             alignment: Alignment.center,
-            child: Row(
+            /*child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(
@@ -83,7 +103,7 @@ class DetailsMenu extends StatelessWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
               ],
-            ),
+            ),*/
           ),
         ],
       );
