@@ -1,12 +1,23 @@
+import 'package:co2_deck1_ucn/models/wind_farm.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-//import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart'; MUST IMPLEMENT FOR BETTER PERFORMANCE!!
+//import 'package:flutter_map_List<WindFarm> getWindFarmsList, marker_cluster/flutter_map_marker_cluster.dart'; MUST IList<WindFarm> getWindFarmsList, MPLEMENT FOR BETTER PERFORMANCE!!
 
 // ignore: camel_case_types
-class WF_Map extends StatelessWidget {
-  WF_Map({super.key});
+class WF_Map extends StatefulWidget {
+  final List<WindFarm> windfarms;
+
+  const WF_Map(this.windfarms, {super.key});
+
+  @override
+  State<WF_Map> createState() => _WF_MapState();
+}
+
+// ignore: camel_case_types
+class _WF_MapState extends State<WF_Map> {
+  List<Marker> createdMarkers = [];
 
   //Map widget
   @override
@@ -14,11 +25,11 @@ class WF_Map extends StatelessWidget {
     return Scaffold(
       body: FlutterMap(
         options: MapOptions(
-          minZoom: 5.5,
+          minZoom: 0.5,
           maxZoom: 18.0,
-          center: LatLng(56.188, 11.617),
+          center: LatLng(56.5, 9.5),
           interactiveFlags: InteractiveFlag.pinchZoom | InteractiveFlag.drag,
-          zoom: 10.0,
+          zoom: 6,
         ),
         layers: [
           TileLayerOptions(
@@ -26,32 +37,43 @@ class WF_Map extends StatelessWidget {
             subdomains: ['a', 'b', 'c'],
           ),
           MarkerLayerOptions(
-            markers: markers,
+            markers: createdMarkers,
           )
         ],
       ),
     );
   }
 
-  //Windfarm Markers
-  final List<Marker> markers = [
-    //should it be 'final' or something else?
-    Marker(
-      width: 80.0,
-      height: 80.0,
-      point: LatLng(54.8, 13.68),
-      builder: (ctx) => Column(
-        children: [
-          const Text('Arcadis Ost 1'),
-          IconButton(
-            icon: const Icon(Icons.location_on),
-            color: Colors.red,
-            iconSize: 45.0,
-            onPressed:
-                () {}, //I don't have the slightest idea how to call this damn method
-          ),
-        ],
-      ),
-    ),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    createMarkers();
+  }
+
+  void createMarkers() {
+    List<Marker> markers = [];
+    for (var wf in widget.windfarms) {
+      markers.add(Marker(
+        width: 80.0,
+        height: 80.0,
+        point: wf.latLng,
+        builder: (ctx) => Column(
+          children: [
+            Text(wf.name),
+            IconButton(
+              icon: const Icon(Icons.location_on),
+              color: Colors.red,
+              iconSize: 45.0,
+              onPressed:
+                  () {}, //I don't have the slightest idea how to call this damn method
+            ),
+          ],
+        ),
+      ));
+    }
+    print("markers created!");
+    setState(() {
+      createdMarkers = markers;
+    });
+  }
 }

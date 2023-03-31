@@ -2,6 +2,7 @@ import 'package:co2_deck1_ucn/Widgets/menu_button.dart';
 import 'package:co2_deck1_ucn/Widgets/menu_drawer.dart';
 import 'package:co2_deck1_ucn/Widgets/wf_details/ao1_details.dart';
 import 'package:co2_deck1_ucn/Widgets/wf_map.dart';
+import 'package:co2_deck1_ucn/providers/data_access.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -20,6 +21,8 @@ class _HomePageState extends State<HomePage> {
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.1;
     final panelHeightOpen = MediaQuery.of(context).size.height * 0.8;
 
+    WindfarmDataAccess dataAccess = WindfarmDataAccess();
+
     return Scaffold(
       drawer: const MenuDrawer(),
       body: SlidingUpPanel(
@@ -28,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         maxHeight: panelHeightOpen,
         parallaxEnabled: true,
         parallaxOffset: 0.5,
-        body: WF_Map(),
+        body: WF_Map(dataAccess.getWindFarmsList),
         panelBuilder: (controller) => AO1Details(
           scrollController: controller,
           panelController: panelController,

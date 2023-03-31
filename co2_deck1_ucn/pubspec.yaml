@@ -88,6 +88,7 @@ flutter:
       - assets/images/menu_icons/classic/compare_plants.png
       - assets/images/menu_icons/classic/settings.png
       - assets/images/menu_icons/classic/about.png
+      - assets/data/windfarms.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
