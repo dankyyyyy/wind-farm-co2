@@ -1,16 +1,14 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../../Resources/images.dart';
 import '../wf_chart.dart';
 
-class AO1Details extends StatelessWidget {
+class KriegersFlakDetails extends StatelessWidget {
   final ScrollController scrollController;
   final PanelController panelController;
 
-  const AO1Details({
+  const KriegersFlakDetails({
     Key? key,
     required this.scrollController,
     required this.panelController,
@@ -26,7 +24,7 @@ class AO1Details extends StatelessWidget {
           const SizedBox(height: 18),
           const Center(
             child: Text(
-              'Arcadis Ost 1',
+              'Kriegers Flak',
               style: TextStyle(
                   fontSize: 40,
                   fontFamily: 'BebasNeue',
@@ -76,13 +74,13 @@ class AO1Details extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(25, 5, 30, 5),
             child: Column(
               children: const [
-                Image(image: AssetImage(Images.AO1_logo)),
+                Image(image: AssetImage(Images.vattenfall_logo)),
                 Text(
-                  "Arcadis Ost 1 is a 257 MW offshore wind farm developed by Parkwind Ost GmbH. The wind farm will be located in the Baltic Sea, northeast of the island of Rügen in Germany.\n",
+                  "Kriegers Flak is located in the Baltic Sea, 15-40 kilometres off the Danish coast. The offshore wind farm covers the annual energy consumption of approximately 600,000 households.\n",
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  "Scheduled for completion in late 2023, the project is committed to the highest standards and will be using state of the art construction methods for the installation of some of the world’s biggest wind turbines.",
+                  "In May 2020, Vattenfall put the first foundation in place at Kriegers Flak, and the first wind turbine was installed at the beginning of 2021. Despite the logistical challenges that the Covid-19 pandemic brought, all 72 turbines were installed on schedule by summer 2021.",
                   textAlign: TextAlign.center,
                 ),
               ],

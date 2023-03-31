@@ -76,9 +76,12 @@ flutter:
       - assets/images/wf_details/watch_plant.png
       - assets/images/wf_details/watched_plant.png
 
-      - assets/images/wf_details/wf/arcadis_ost1/AO1_logo.png
-      - assets/images/wf_details/wf/butendiek/butendiek_logo.png
-      - assets/images/wf_details/wf/meerwind_sud_ost/meerwind_logo.png
+      - assets/images/wf_details/wf/ao1_logo.png
+      - assets/images/wf_details/wf/butendiek_logo.png
+      - assets/images/wf_details/wf/meerwind_logo.png
+      - assets/images/wf_details/wf/rwe_logo.png
+      - assets/images/wf_details/wf/rwe_logo2.png
+      - assets/images/wf_details/wf/vattenfall_logo.png
 
       - assets/images/menu_icons/classic/home.png
       - assets/images/menu_icons/classic/glossary.png

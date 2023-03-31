@@ -1,6 +1,6 @@
 import 'package:co2_deck1_ucn/Widgets/menu_button.dart';
 import 'package:co2_deck1_ucn/Widgets/menu_drawer.dart';
-import 'package:co2_deck1_ucn/Widgets/plant_info/ao1_details.dart';
+import 'package:co2_deck1_ucn/Widgets/wf_details/ao1_details.dart';
 import 'package:co2_deck1_ucn/Widgets/wf_map.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';

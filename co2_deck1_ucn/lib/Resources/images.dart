@@ -8,6 +8,7 @@ class Images {
   static const String star_filled =
       'assets/images/wf_details/wf/watched_plant.png';
 
-  static const String AO1_logo =
-      'assets/images/wf_details/wf/arcadis_ost1/AO1_logo.png';
+  static const String ao1_logo = 'assets/images/wf_details/wf/ao1_logo.png';
+  static const String vattenfall_logo =
+      'assets/images/wf_details/wf/vattenfall_logo.png';
 }

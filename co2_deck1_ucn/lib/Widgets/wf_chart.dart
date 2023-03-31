@@ -4,13 +4,8 @@ import 'package:flutter/material.dart';
 class WindFarmChart extends StatelessWidget {
   const WindFarmChart({super.key});
 
-  final Color farmColor = const Color.fromRGBO(113, 216, 150, 1);
-  final Color vesselsColor = const Color.fromRGBO(252, 129, 129, 1);
-  // final Color helicopterColor = const Color.fromRGBO(249, 206, 85, 1);
-
-  // final Color farmColor = const Color.fromRGBO(134, 234, 232, 1);
-  // final Color vesselsColor = const Color.fromRGBO(60, 103, 150, 1);
-  // final Color helicopterColor = const Color.fromRGBO(131, 148, 222, 1);
+  final Color farmColor = const Color.fromRGBO(15, 158, 227, 1);
+  final Color vesselsColor = const Color.fromRGBO(62, 201, 247, 1);
 
   BarChartGroupData generateGroupData(
     int x,
