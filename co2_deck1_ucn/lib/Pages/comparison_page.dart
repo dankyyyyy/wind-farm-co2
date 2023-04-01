@@ -5,10 +5,10 @@ class ComparisonPage extends StatefulWidget {
   const ComparisonPage({super.key});
 
   @override
-  _ComparisonPageState createState() => _ComparisonPageState();
+  ComparisonPageState createState() => ComparisonPageState();
 }
 
-class _ComparisonPageState extends State<ComparisonPage> {
+class ComparisonPageState extends State<ComparisonPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

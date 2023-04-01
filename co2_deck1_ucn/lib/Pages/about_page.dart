@@ -7,10 +7,10 @@ class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
 
   @override
-  _AboutPageState createState() => _AboutPageState();
+  AboutPageState createState() => AboutPageState();
 }
 
-class _AboutPageState extends State<AboutPage> {
+class AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class _AboutPageState extends State<AboutPage> {
             child: Column(
               children: const [
                 Image(
-                  image: AssetImage(Images.logo_notext),
+                  image: AssetImage(Images.logoNotext),
                   fit: BoxFit.fitHeight,
                 ),
                 SizedBox(height: 30),

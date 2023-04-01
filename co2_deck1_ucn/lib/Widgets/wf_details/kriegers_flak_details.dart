@@ -74,7 +74,7 @@ class KriegersFlakDetails extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(25, 5, 30, 5),
             child: Column(
               children: const [
-                Image(image: AssetImage(Images.vattenfall_logo)),
+                Image(image: AssetImage(Images.vattenfallLogo)),
                 Text(
                   "Kriegers Flak is located in the Baltic Sea, 15-40 kilometres off the Danish coast. The offshore wind farm covers the annual energy consumption of approximately 600,000 households.\n",
                   textAlign: TextAlign.center,

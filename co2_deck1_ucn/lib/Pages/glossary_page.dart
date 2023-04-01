@@ -6,10 +6,10 @@ class GlossaryPage extends StatefulWidget {
   const GlossaryPage({super.key});
 
   @override
-  _GlossaryPageState createState() => _GlossaryPageState();
+  GlossaryPageState createState() => GlossaryPageState();
 }
 
-class _GlossaryPageState extends State<GlossaryPage> {
+class GlossaryPageState extends State<GlossaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:flutter/material.dart';
 //import 'package:http/http.dart' as http;
 import "package:co2_deck1_ucn/models/wind_farm.dart";
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:latlong2/latlong.dart';
 
@@ -39,7 +38,9 @@ class WindfarmDataAccess {
     }
     windFarms = farms;
     getTotals();
-    print("farms length: " + windFarms.length.toString());
+    if (kDebugMode) {
+      print("farms length: ${windFarms.length.toString()}");
+    }
     return;
   }
 

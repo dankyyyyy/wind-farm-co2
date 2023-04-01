@@ -1,14 +1,12 @@
-// ignore_for_file: constant_identifier_names
-
 class Images {
   static const String logo = 'assets/images/deck1_logo2.png';
-  static const String logo_notext = 'assets/images/deck1_logo.png';
-  static const String star_empty =
+  static const String logoNotext = 'assets/images/deck1_logo.png';
+  static const String starEmpty =
       'assets/images/wf_details/wf/watch_plant.png';
-  static const String star_filled =
+  static const String starFilled =
       'assets/images/wf_details/wf/watched_plant.png';
 
-  static const String ao1_logo = 'assets/images/wf_details/wf/ao1_logo.png';
-  static const String vattenfall_logo =
+  static const String ao1Logo = 'assets/images/wf_details/wf/ao1_logo.png';
+  static const String vattenfallLogo =
       'assets/images/wf_details/wf/vattenfall_logo.png';
 }

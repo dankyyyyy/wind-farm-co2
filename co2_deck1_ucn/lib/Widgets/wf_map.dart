@@ -1,7 +1,9 @@
 import 'package:co2_deck1_ucn/models/wind_farm.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:latlong2/latlong.dart';
 //import 'package:flutter_map_List<WindFarm> getWindFarmsList, marker_cluster/flutter_map_marker_cluster.dart'; MUST IList<WindFarm> getWindFarmsList, MPLEMENT FOR BETTER PERFORMANCE!!
 
@@ -31,14 +33,18 @@ class _WF_MapState extends State<WF_Map> {
           interactiveFlags: InteractiveFlag.pinchZoom | InteractiveFlag.drag,
           zoom: 6,
         ),
-        layers: [
-          TileLayerOptions(
+        children: [
+          TileLayer(
             urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            subdomains: ['a', 'b', 'c'],
+            subdomains: const ['a', 'b', 'c'],
           ),
-          MarkerLayerOptions(
+          MarkerClusterLayerWidget(
+              options: MarkerClusterLayerOptions(
             markers: createdMarkers,
-          )
+            builder: (context, markers) {
+              return Container();
+            },
+          )),
         ],
       ),
     );
@@ -71,7 +77,9 @@ class _WF_MapState extends State<WF_Map> {
         ),
       ));
     }
-    print("markers created!");
+    if (kDebugMode) {
+      print("markers created!");
+    }
     setState(() {
       createdMarkers = markers;
     });

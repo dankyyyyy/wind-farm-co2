@@ -102,7 +102,7 @@ class AO1Details extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(25, 5, 30, 5),
             child: Column(
               children: const [
-                Image(image: AssetImage(Images.ao1_logo)),
+                Image(image: AssetImage(Images.ao1Logo)),
                 Text(
                   "Arcadis Ost 1 is a 257 MW offshore wind farm developed by Parkwind Ost GmbH. The wind farm will be located in the Baltic Sea, northeast of the island of Rügen in Germany.\n",
                   textAlign: TextAlign.center,
