@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/theme_provider.dart';
 //import 'package:flutter_map_List<WindFarm> getWindFarmsList, marker_cluster/flutter_map_marker_cluster.dart'; MUST IList<WindFarm> getWindFarmsList, MPLEMENT FOR BETTER PERFORMANCE!!
 
 // ignore: camel_case_types
@@ -24,6 +27,8 @@ class _WF_MapState extends State<WF_Map> {
   //Map widget
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+
     return Scaffold(
       body: FlutterMap(
         options: MapOptions(
@@ -35,7 +40,9 @@ class _WF_MapState extends State<WF_Map> {
         ),
         children: [
           TileLayer(
-            urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            urlTemplate: themeProvider.getTheme().brightness == Brightness.dark
+                ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+                : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             subdomains: const ['a', 'b', 'c'],
           ),
           MarkerClusterLayerWidget(

@@ -1,4 +1,4 @@
-import 'package:co2_deck1_ucn/Widgets/menu_drawer.dart';
+import 'package:co2_deck1_ucn/Widgets/system/menu_drawer.dart';
 import 'package:flutter/material.dart';
 
 class ComparisonPage extends StatefulWidget {
@@ -14,7 +14,6 @@ class ComparisonPageState extends State<ComparisonPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Compare Plants'),
-        backgroundColor: Colors.black,
         leading: Builder(
           builder: (context) => IconButton(
               icon: const Icon(Icons.menu),

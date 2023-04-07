@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Widgets/menu_drawer.dart';
+import '../Widgets/system/menu_drawer.dart';
 
 class GlossaryPage extends StatefulWidget {
   const GlossaryPage({super.key});
@@ -15,7 +15,6 @@ class GlossaryPageState extends State<GlossaryPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Glossary'),
-        backgroundColor: Colors.black,
         leading: Builder(
           builder: (context) => IconButton(
               icon: const Icon(Icons.menu),

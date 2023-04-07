@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../../Resources/images.dart';
+import '../../resources/images.dart';
 import '../wf_chart.dart';
 
 class KriegersFlakDetails extends StatelessWidget {
