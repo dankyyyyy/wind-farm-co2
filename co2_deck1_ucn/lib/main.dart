@@ -1,4 +1,4 @@
-import 'package:co2_deck1_ucn/pages/home_page.dart';
+import 'package:co2_deck1_ucn/pages/menu_drawer_pages/home_page.dart';
 import 'package:co2_deck1_ucn/providers/selected_tile_provider.dart';
 import 'package:co2_deck1_ucn/providers/theme_provider.dart';
 import 'package:co2_deck1_ucn/utils/themes.dart';

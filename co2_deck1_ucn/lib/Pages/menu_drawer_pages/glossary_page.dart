@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Widgets/system/menu_drawer.dart';
+import '../../Widgets/system/menu_drawer.dart';
 
 class GlossaryPage extends StatefulWidget {
   const GlossaryPage({super.key});

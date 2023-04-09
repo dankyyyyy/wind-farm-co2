@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 final ThemeData lightTheme = ThemeData(
     appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFF1F2937), foregroundColor: Colors.white),
+    navigationBarTheme: NavigationBarThemeData(
+        height: 65,
+        backgroundColor: Colors.white,
+        indicatorColor: Colors.blue.shade100,
+        labelTextStyle: MaterialStateProperty.all(
+          const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+        )),
     textTheme: const TextTheme(
         bodySmall:
             TextStyle(fontFamily: 'Leto', fontSize: 16, color: Colors.black),
@@ -29,6 +36,13 @@ final ThemeData lightTheme = ThemeData(
 final ThemeData darkTheme = ThemeData(
     appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFF1F2937), foregroundColor: Colors.white),
+    navigationBarTheme: NavigationBarThemeData(
+      height: 65,
+      backgroundColor: const Color.fromRGBO(46, 46, 46, 1),
+      indicatorColor: Colors.blue.shade100,
+      labelTextStyle: MaterialStateProperty.all(
+          const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+    ),
     textTheme: const TextTheme(
         bodySmall:
             TextStyle(fontFamily: 'Leto', fontSize: 16, color: Colors.white),
@@ -36,7 +50,7 @@ final ThemeData darkTheme = ThemeData(
             TextStyle(fontFamily: 'Leto', fontSize: 20, color: Colors.white),
         displayMedium: TextStyle(
             fontFamily: 'BebasNeue',
-            fontSize: 45,
+            fontSize: 50,
             fontWeight: FontWeight.bold,
             color: Colors.white)),
     colorScheme: const ColorScheme(

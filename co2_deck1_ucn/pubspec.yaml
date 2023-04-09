@@ -68,6 +68,10 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
+  # splash screens
+      - assets/images/splash_screens/splash_screen.png
+      - assets/images/splash_screens/splash_screen_dark.png
+
   # light mode
   # company logos
       - assets/images/logos/deck1_logo.png

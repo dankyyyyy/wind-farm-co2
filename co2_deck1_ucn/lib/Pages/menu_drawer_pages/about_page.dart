@@ -2,8 +2,8 @@ import 'package:co2_deck1_ucn/Widgets/system/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../Resources/images.dart';
-import '../providers/theme_provider.dart';
+import '../../Resources/images.dart';
+import '../../providers/theme_provider.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
@@ -28,6 +28,7 @@ class AboutPageState extends State<AboutPage> {
         ),
         drawer: const MenuDrawer(),
         body: Column(children: [
+          
           Padding(
               padding: const EdgeInsets.fromLTRB(40, 20, 30, 5),
               child: Column(children: [

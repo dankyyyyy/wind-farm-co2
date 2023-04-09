@@ -1,7 +1,7 @@
 import 'package:co2_deck1_ucn/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../Widgets/system/menu_drawer.dart';
+import '../../Widgets/system/menu_drawer.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});

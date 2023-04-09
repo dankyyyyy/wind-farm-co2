@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../pages/about_page.dart';
-import '../../pages/comparison_page.dart';
-import '../../pages/glossary_page.dart';
-import '../../pages/home_page.dart';
-import '../../pages/settings_page.dart';
+import '../../pages/menu_drawer_pages/about_page.dart';
+import '../../pages/menu_drawer_pages/comparison_page.dart';
+import '../../pages/menu_drawer_pages/glossary_page.dart';
+import '../../pages/menu_drawer_pages/home_page.dart';
+import '../../pages/menu_drawer_pages/settings_page.dart';
 import '../../Resources/images.dart';
 import '../../Resources/menu_icons.dart';
 import '../../providers/selected_tile_provider.dart';
