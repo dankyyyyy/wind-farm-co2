@@ -17,7 +17,7 @@ class NavBarStats extends StatelessWidget {
     return ListView(padding: EdgeInsets.zero, children: <Widget>[
       panelUtils.buildHeader(context),
       const SizedBox(height: 5),
-      buildQuickDetails(),
+      panelUtils.buildQuickDetails(),
       const SizedBox(height: 18),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Container(
@@ -89,14 +89,4 @@ class NavBarStats extends StatelessWidget {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const <Widget>[]));
-
-  buildQuickDetails() => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
-            Text('27 x MHI Vestas V174-9.5MW WTG'),
-            Text('19km from shore'),
-            Text('72t of CO2'),
-          ]));
 }

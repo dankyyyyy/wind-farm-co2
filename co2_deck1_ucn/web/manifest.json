@@ -1,0 +1,28 @@
+{
+    "name": "DECK1 CO2",
+    "short_name": "CO2",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#0175C2",
+    "description": "A new Flutter project.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "splash_screen": {
+        "src": "./splash_screen.png",
+        "sizes": "1080x1920",
+        "type": "image/png"
+    }
+}

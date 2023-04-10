@@ -6,7 +6,7 @@ class PanelUtils {
   PanelController panelController = PanelController();
 
   Widget buildHeader(BuildContext context) => SizedBox(
-      height: 200,
+      height: 120,
       child: ListView(
           padding: EdgeInsets.zero,
           controller: scrollController,
@@ -31,6 +31,16 @@ class PanelUtils {
                 borderRadius: BorderRadius.circular(10),
                 color: const Color.fromARGB(255, 124, 123, 123),
               ))));
+
+  buildQuickDetails() => Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const <Widget>[
+            Text('27 x MHI Vestas V174-9.5MW WTG'),
+            Text('19km from shore'),
+            Text('72t of CO2'),
+          ]));
 
   void showPanel() {
     panelController.show();

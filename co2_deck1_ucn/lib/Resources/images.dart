@@ -11,6 +11,7 @@ class Images {
       'assets/images/wf_details/wf/watched_plant.png';
 
   static const String ao1Logo = 'assets/images/wf_details/wf/ao1_logo.png';
+  static const String ao1LogoDark = 'assets/images/wf_details/wf/ao1_logo_dark.png';
   static const String vattenfallLogo =
       'assets/images/wf_details/wf/vattenfall_logo.png';
 }

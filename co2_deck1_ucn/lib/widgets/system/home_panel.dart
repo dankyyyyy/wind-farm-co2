@@ -26,7 +26,7 @@ class HomePanelState extends State<HomePanel> {
   Widget build(BuildContext context) {
     // size settings for the sliding up panel
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.095;
-    final panelHeightOpen = MediaQuery.of(context).size.height * 0.8;
+    final panelHeightOpen = MediaQuery.of(context).size.height * 0.7;
 
     // providers
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
@@ -72,17 +72,18 @@ class HomePanelState extends State<HomePanel> {
                     _buildNavigationDestination(
                       icon:
                           themeProvider.getTheme().brightness == Brightness.dark
-                              ? const AssetImage(MenuIcons.darkHome)
-                              : const AssetImage(MenuIcons.home),
-                      selectedIcon: const AssetImage(MenuIcons.activeHome),
+                              ? const AssetImage(MenuIcons.darkCompare)
+                              : const AssetImage(MenuIcons.compare),
+                      selectedIcon: const AssetImage(MenuIcons.activeCompare),
                       label: 'Stats',
                     ),
                     _buildNavigationDestination(
                       icon:
                           themeProvider.getTheme().brightness == Brightness.dark
-                              ? const AssetImage(MenuIcons.darkHome)
-                              : const AssetImage(MenuIcons.home),
-                      selectedIcon: const AssetImage(MenuIcons.activeHome),
+                              ? const AssetImage(MenuIcons.darkComparisons)
+                              : const AssetImage(MenuIcons.comparisons),
+                      selectedIcon:
+                          const AssetImage(MenuIcons.activeComparisons),
                       label: 'Comparisons',
                     ),
                     _buildNavigationDestination(
@@ -117,18 +118,20 @@ class HomePanelState extends State<HomePanel> {
     return NavigationDestination(
       icon: Container(
           height: 30,
+          width: 30,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.fitWidth,
                 image: icon,
               ))),
       selectedIcon: Container(
           height: 30,
+          width: 30,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.fitWidth,
                 image: selectedIcon,
               ))),
       label: label,

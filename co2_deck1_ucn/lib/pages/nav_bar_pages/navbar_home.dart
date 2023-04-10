@@ -10,7 +10,14 @@ class NavBarHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: EdgeInsets.zero,
-      children: <Widget>[panelUtils.buildHeader(context), const Text("TBA: Home", textAlign: TextAlign.center,)],
+      children: <Widget>[
+        panelUtils.buildHeader(context),
+        panelUtils.buildQuickDetails(),
+        Text(
+          "TBA: Home",
+          textAlign: TextAlign.center,
+        )
+      ],
     );
   }
 }
