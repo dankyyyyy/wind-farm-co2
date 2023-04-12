@@ -1,15 +1,78 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class WindFarmChart extends StatelessWidget {
-  const WindFarmChart({super.key});
+import '../models/wind_farm.dart';
 
-  final Color farmColor = const Color.fromRGBO(15, 158, 227, 1);
+class WindFarmChart extends StatelessWidget {
+  final WindFarm? windFarm;
+  final DateTime startDate;
+  const WindFarmChart(this.windFarm, this.startDate, {super.key});
+
+  final Color heliColor = const Color.fromRGBO(15, 158, 227, 1);
   final Color vesselsColor = const Color.fromRGBO(62, 201, 247, 1);
+
+  @override
+  Widget build(BuildContext context) {
+    return BarChart(
+      BarChartData(
+        alignment: BarChartAlignment.spaceEvenly,
+        titlesData: FlTitlesData(
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              reservedSize: 40,
+              getTitlesWidget: leftTitles,
+            ),
+          ),
+          rightTitles: AxisTitles(),
+          topTitles: AxisTitles(),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              getTitlesWidget: bottomTitles,
+              reservedSize: 20,
+            ),
+          ),
+        ),
+        barTouchData: BarTouchData(enabled: false),
+        borderData: FlBorderData(show: false),
+        gridData: FlGridData(
+          show: true,
+          checkToShowHorizontalLine: (value) => value % 5 == 0,
+          drawHorizontalLine: true,
+          getDrawingHorizontalLine: (value) => FlLine(
+            color: Colors.grey[350],
+            strokeWidth: 1,
+            dashArray: [12, 8],
+          ),
+          drawVerticalLine: false,
+        ),
+        barGroups: generateData(),
+        groupsSpace: 10,
+        maxY: 60,
+      ),
+    );
+  }
+
+  List<BarChartGroupData> generateData() {
+    List<BarChartGroupData> barChartData = List.empty(growable: true);
+    for (var i = 0; i < 7; i++) {
+      barChartData.add(generateGroupData(
+          i,
+          windFarm!.analytics!
+              .singleWhere(
+                  (element) => element.date == startDate.add(Duration(days: i)))
+              .vesselsTotal,
+          windFarm!.analytics!
+              .singleWhere(
+                  (element) => element.date == startDate.add(Duration(days: i)))
+              .helicoptersTotal));
+    }
+    return barChartData;
+  }
 
   BarChartGroupData generateGroupData(
     int x,
-    double farm,
     double vessels,
     double helicopters,
   ) {
@@ -19,21 +82,19 @@ class WindFarmChart extends StatelessWidget {
       barRods: [
         BarChartRodData(
           fromY: 0,
-          toY: farm,
-          color: farmColor,
-          width: 25,
-          borderRadius: helicopters == 0 && vessels == 0
-              ? const BorderRadius.vertical(top: Radius.circular(5))
-              : BorderRadius.zero,
-        ),
-        BarChartRodData(
-          fromY: farm,
-          toY: farm + vessels,
+          toY: vessels,
           color: vesselsColor,
           width: 25,
           borderRadius: helicopters == 0
               ? const BorderRadius.vertical(top: Radius.circular(5))
               : BorderRadius.zero,
+        ),
+        BarChartRodData(
+          fromY: vessels,
+          toY: vessels + helicopters,
+          color: heliColor,
+          width: 25,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(5)),
         ),
       ],
     );
@@ -88,57 +149,6 @@ class WindFarmChart extends StatelessWidget {
       child: Text(
         meta.formattedValue,
         style: style,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BarChart(
-      BarChartData(
-        alignment: BarChartAlignment.spaceEvenly,
-        titlesData: FlTitlesData(
-          leftTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              reservedSize: 40,
-              getTitlesWidget: leftTitles,
-            ),
-          ),
-          rightTitles: AxisTitles(),
-          topTitles: AxisTitles(),
-          bottomTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              getTitlesWidget: bottomTitles,
-              reservedSize: 20,
-            ),
-          ),
-        ),
-        barTouchData: BarTouchData(enabled: false),
-        borderData: FlBorderData(show: false),
-        gridData: FlGridData(
-          show: true,
-          checkToShowHorizontalLine: (value) => value % 5 == 0,
-          drawHorizontalLine: true,
-          getDrawingHorizontalLine: (value) => FlLine(
-            color: Colors.grey[350],
-            strokeWidth: 1,
-            dashArray: [12, 8],
-          ),
-          drawVerticalLine: false,
-        ),
-        barGroups: [
-          generateGroupData(0, 16, 13, 12),
-          generateGroupData(1, 15, 15, 17),
-          generateGroupData(2, 13, 15, 8),
-          generateGroupData(3, 10, 0, 31),
-          generateGroupData(4, 7, 12, 8),
-          generateGroupData(5, 12, 9, 18),
-          generateGroupData(6, 9, 25, 0),
-        ],
-        groupsSpace: 10,
-        maxY: 60,
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/wind_farm.dart';
 import '../services/data_access.dart';
@@ -47,34 +48,38 @@ class DataAccessProvider extends ChangeNotifier {
     return result;
   }
 
-  /*
-  List<WindFarm> get items {
-    return [..._items];
-  }
-  void addWindFarm(WindFarm windfarm) {
-    _items.add(windfarm);
+  Future<void> getAnalytics(String id, String startDate, String endDate) async {
+    isLoading = true;
+    if (_isLoadingDone.isCompleted == false) {
+      getAnalytics(id, startDate, endDate);
+    }
+    if (windFarms == null) {
+      getWindFarms();
+    }
+    var analytics = await getWindFarmAnalytics(id, startDate, endDate);
+    print("analytics: ${analytics == null ? "0" : analytics.length.toString()}");
+    windFarms
+        ?.singleWhere((element) => element.id == id)
+        .analytics
+        ?.addAll(analytics!);
+    isLoading = false;
     notifyListeners();
   }
-  Future<void> getWindFarms() async {
-    final url = Uri.parse("https://api.deck1.com/sites");
-    final response =
-        await http.get(url, headers: {"x-d1-apikey": "f5Bii7gYwvDZ"});
-    //String data = await rootBundle.loadString("assets/data/windfarms.json");
-    final extractedData = json.decode(response.body);
-    List<WindFarm> windfarms = [];
-    print(extractedData);
-    /*for (int i = 0; i < extractedData.length; i++) {
-      //if (!farms.any((farm) => farm.id == extractedData[i]["siteId"]["\$oid"])) {
-      windfarms.add(
-        WindFarm(
-          extractedData[i]?["_id"]?["\$oid"],
-          extractedData[i]["name"],
-          LatLng(extractedData[i]?["point"]?["coordinates"][0],
-              extractedData[i]?["point"]?["coordinates"][1]),
-        ),
-      );
-    }*/
-    _items = windfarms;
+
+  Future<double> getYTD(String id) async {
+    isLoading = true;
+    if (!_isLoadingDone.isCompleted) {
+      getYTD(id);
+    }
+    if (windFarms == null) {
+      getWindFarms();
+    }
+    String startDate = DateFormat("yyyy-MM-dd").format(DateTime(
+        DateTime.now().year - 1, DateTime.now().month, DateTime.now().day));
+    String endDate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+    double analytics = await getYTDAnalytics(id, startDate, endDate);
+    isLoading = false;
     notifyListeners();
-  }*/
+    return analytics;
+  }
 }
