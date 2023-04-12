@@ -1,5 +1,6 @@
 import 'package:co2_deck1_ucn/pages/menu_drawer_pages/home_page.dart';
-import 'package:co2_deck1_ucn/providers/selected_tile_provider.dart';
+import 'package:co2_deck1_ucn/providers/data_access_provider.dart';
+import 'package:co2_deck1_ucn/providers/selection_provider.dart';
 import 'package:co2_deck1_ucn/providers/theme_provider.dart';
 import 'package:co2_deck1_ucn/utils/themes.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,10 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<ThemeProvider>(
         create: (_) => ThemeProvider(theme == 0 ? lightTheme : darkTheme)),
-    ChangeNotifierProvider<SelectedTile>(create: (_) => SelectedTile()),
+    ChangeNotifierProvider<SelectionProvider>(
+        create: (_) => SelectionProvider()),
+    ChangeNotifierProvider<DataAccessProvider>(
+        create: (_) => DataAccessProvider()),
   ], child: const Program()));
 }
 
@@ -27,6 +31,30 @@ class Program extends StatelessWidget {
     return MaterialApp(
         title: 'DECK1 CO2',
         theme: themeProvider.getTheme(),
-        home: const HomePage());
+        debugShowCheckedModeBanner: false,
+        home: const WindFarmProvider());
+  }
+}
+
+class WindFarmProvider extends StatefulWidget {
+  const WindFarmProvider({super.key});
+
+  @override
+  State<WindFarmProvider> createState() => _WindFarmProviderState();
+}
+
+class _WindFarmProviderState extends State<WindFarmProvider> {
+  @override
+  void initState() {
+    Future.delayed(Duration.zero).then((value) async {
+      final wfmodel = Provider.of<DataAccessProvider>(context, listen: false);
+      wfmodel.getWindFarms();
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const HomePage();
   }
 }

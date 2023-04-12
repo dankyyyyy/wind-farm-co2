@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class SelectedTile extends ChangeNotifier {
+class SelectionProvider extends ChangeNotifier {
   int _selectedTile = 0;
 
   int get selectedTile => _selectedTile;

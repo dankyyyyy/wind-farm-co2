@@ -39,7 +39,9 @@ dependencies:
   flutter_map_marker_cluster: ^1.1.0
   fl_chart: ^0.61.0
   shared_preferences: ^2.1.0
+  intl: ^0.18.0
   provider: ^6.0.5
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -70,7 +72,7 @@ flutter:
   assets:
   # web
       - web/manifest.json
-      
+
   # splash screens
       - assets/images/splash_screens/splash_screen.png
       - assets/images/splash_screens/splash_screen_dark.png
@@ -86,6 +88,7 @@ flutter:
       - assets/images/menu_icons/classic/settings.png
       - assets/images/menu_icons/classic/about.png
       - assets/images/menu_icons/classic/comparisons.png
+      - assets/images/menu_icons/classic/map_marker.png
 
   # miscellaneous
       - assets/images/wf_details/notification_bell.png
@@ -104,6 +107,7 @@ flutter:
       - assets/images/menu_icons/darkmode/settings.png
       - assets/images/menu_icons/darkmode/about.png
       - assets/images/menu_icons/darkmode/comparisons.png
+      - assets/images/menu_icons/darkmode/map_marker.png
 
 # WF logos
       - assets/images/wf_details/wf/ao1_logo.png
@@ -121,9 +125,7 @@ flutter:
       - assets/images/menu_icons/active/settings.png
       - assets/images/menu_icons/active/about.png
       - assets/images/menu_icons/active/comparisons.png
-
-# JSON files      
-      - assets/data/windfarms.json
+      - assets/images/menu_icons/active/map_marker.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

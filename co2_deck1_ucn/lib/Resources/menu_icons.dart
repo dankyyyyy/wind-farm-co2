@@ -10,6 +10,8 @@ class MenuIcons {
   static const String about = 'assets/images/menu_icons/classic/about.png';
   static const String comparisons =
       'assets/images/menu_icons/classic/comparisons.png';
+  static const String mapMarker =
+      'assets/images/menu_icons/classic/map_marker.png';
 
   /* Dark mode */
   static const String darkHome = 'assets/images/menu_icons/darkmode/home.png';
@@ -22,6 +24,9 @@ class MenuIcons {
   static const String darkAbout = 'assets/images/menu_icons/darkmode/about.png';
   static const String darkComparisons =
       'assets/images/menu_icons/darkmode/comparisons.png';
+  static const String darkMapMarker =
+      'assets/images/menu_icons/darkmode/map_marker.png';
+
   /* Active */
   static const String activeHome = 'assets/images/menu_icons/active/home.png';
   static const String activeGlossary =
@@ -33,4 +38,6 @@ class MenuIcons {
   static const String activeAbout = 'assets/images/menu_icons/active/about.png';
   static const String activeComparisons =
       'assets/images/menu_icons/active/comparisons.png';
+  static const String activeMapMarker =
+      'assets/images/menu_icons/active/map_marker.png';
 }

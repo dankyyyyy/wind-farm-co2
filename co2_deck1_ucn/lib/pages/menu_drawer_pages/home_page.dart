@@ -1,7 +1,7 @@
 import 'package:co2_deck1_ucn/Widgets/system/menu_drawer.dart';
 import 'package:flutter/material.dart';
-import '../../Widgets/wf_map.dart';
-import '../../providers/data_access.dart';
+import 'package:provider/provider.dart';
+import '../../providers/data_access_provider.dart';
 import '../../widgets/system/home_panel.dart';
 import '../../Widgets/system/menu_button.dart';
 
@@ -17,14 +17,15 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // data source
-    WindfarmDataAccess dataAccess = WindfarmDataAccess();
-
+    final windfarmData = Provider.of<DataAccessProvider>(context);
     return Scaffold(
         body: Stack(
           children: [
-            WF_Map(dataAccess.getWindFarmsList),
-            const HomePanel(),
+            windfarmData.isLoading
+                ? const CircularProgressIndicator(
+                    color: Colors.blue,
+                  )
+                : const HomePanel(),
           ],
         ),
         drawer: const MenuDrawer(),

@@ -7,7 +7,7 @@ import '../../pages/menu_drawer_pages/home_page.dart';
 import '../../pages/menu_drawer_pages/settings_page.dart';
 import '../../Resources/images.dart';
 import '../../Resources/menu_icons.dart';
-import '../../providers/selected_tile_provider.dart';
+import '../../providers/selection_provider.dart';
 import '../../providers/theme_provider.dart';
 
 class MenuDrawer extends StatelessWidget {
@@ -16,7 +16,7 @@ class MenuDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-    final selectedTileProvider = context.watch<SelectedTile>();
+    final selectionProvider = context.watch<SelectionProvider>();
     return Drawer(
         child: Builder(
             builder: (context) => ListView(padding: EdgeInsets.zero, children: [
@@ -35,15 +35,15 @@ class MenuDrawer extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                      selected: selectedTileProvider.selectedTile == 0,
-                      selectedTileColor: selectedTileProvider.selectedTile == 0
+                      selected: selectionProvider.selectedTile == 0,
+                      selectedTileColor: selectionProvider.selectedTile == 0
                           ? (themeProvider.getTheme().brightness ==
                                   Brightness.dark
                               ? const Color.fromARGB(255, 85, 98, 105)
                               : const Color.fromARGB(255, 188, 200, 207))
                           : null,
                       leading: CircleAvatar(
-                        backgroundImage: selectedTileProvider.selectedTile == 0
+                        backgroundImage: selectionProvider.selectedTile == 0
                             ? const AssetImage(MenuIcons.activeHome)
                             : (themeProvider.getTheme().brightness ==
                                     Brightness.dark
@@ -58,28 +58,27 @@ class MenuDrawer extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       onTap: () {
-                        context.read<SelectedTile>().selectedTile = 0;
+                        context.read<SelectionProvider>().selectedTile = 0;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const HomePage()));
                       }),
                   ListTile(
-                      selected: selectedTileProvider.selectedTile == 1,
-                      selectedTileColor: selectedTileProvider.selectedTile == 1
+                      selected: selectionProvider.selectedTile == 1,
+                      selectedTileColor: selectionProvider.selectedTile == 1
                           ? (themeProvider.getTheme().brightness ==
                                   Brightness.dark
                               ? const Color.fromARGB(255, 85, 98, 105)
                               : const Color.fromARGB(255, 188, 200, 207))
                           : null,
                       leading: CircleAvatar(
-                          backgroundImage:
-                              selectedTileProvider.selectedTile == 1
-                                  ? const AssetImage(MenuIcons.activeGlossary)
-                                  : (themeProvider.getTheme().brightness ==
-                                          Brightness.dark
-                                      ? const AssetImage(MenuIcons.darkGlossary)
-                                      : const AssetImage(MenuIcons.glossary)),
+                          backgroundImage: selectionProvider.selectedTile == 1
+                              ? const AssetImage(MenuIcons.activeGlossary)
+                              : (themeProvider.getTheme().brightness ==
+                                      Brightness.dark
+                                  ? const AssetImage(MenuIcons.darkGlossary)
+                                  : const AssetImage(MenuIcons.glossary)),
                           backgroundColor: Colors.transparent,
                           radius: 14),
                       title: Text(
@@ -88,28 +87,27 @@ class MenuDrawer extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       onTap: () {
-                        context.read<SelectedTile>().selectedTile = 1;
+                        context.read<SelectionProvider>().selectedTile = 1;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const GlossaryPage()));
                       }),
                   ListTile(
-                      selected: selectedTileProvider.selectedTile == 2,
-                      selectedTileColor: selectedTileProvider.selectedTile == 2
+                      selected: selectionProvider.selectedTile == 2,
+                      selectedTileColor: selectionProvider.selectedTile == 2
                           ? (themeProvider.getTheme().brightness ==
                                   Brightness.dark
                               ? const Color.fromARGB(255, 85, 98, 105)
                               : const Color.fromARGB(255, 188, 200, 207))
                           : null,
                       leading: CircleAvatar(
-                          backgroundImage:
-                              selectedTileProvider.selectedTile == 2
-                                  ? const AssetImage(MenuIcons.activeCompare)
-                                  : (themeProvider.getTheme().brightness ==
-                                          Brightness.dark
-                                      ? const AssetImage(MenuIcons.darkCompare)
-                                      : const AssetImage(MenuIcons.compare)),
+                          backgroundImage: selectionProvider.selectedTile == 2
+                              ? const AssetImage(MenuIcons.activeCompare)
+                              : (themeProvider.getTheme().brightness ==
+                                      Brightness.dark
+                                  ? const AssetImage(MenuIcons.darkCompare)
+                                  : const AssetImage(MenuIcons.compare)),
                           backgroundColor: Colors.transparent,
                           radius: 14),
                       title: Text(
@@ -118,22 +116,22 @@ class MenuDrawer extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       onTap: () {
-                        context.read<SelectedTile>().selectedTile = 2;
+                        context.read<SelectionProvider>().selectedTile = 2;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const ComparisonPage()));
                       }),
                   ListTile(
-                      selected: selectedTileProvider.selectedTile == 3,
-                      selectedTileColor: selectedTileProvider.selectedTile == 3
+                      selected: selectionProvider.selectedTile == 3,
+                      selectedTileColor: selectionProvider.selectedTile == 3
                           ? (themeProvider.getTheme().brightness ==
                                   Brightness.dark
                               ? const Color.fromARGB(255, 85, 98, 105)
                               : const Color.fromARGB(255, 188, 200, 207))
                           : null,
                       leading: CircleAvatar(
-                        backgroundImage: selectedTileProvider.selectedTile == 3
+                        backgroundImage: selectionProvider.selectedTile == 3
                             ? const AssetImage(MenuIcons.activeSettings)
                             : (themeProvider.getTheme().brightness ==
                                     Brightness.dark
@@ -148,22 +146,22 @@ class MenuDrawer extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       onTap: () {
-                        context.read<SelectedTile>().selectedTile = 3;
+                        context.read<SelectionProvider>().selectedTile = 3;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const SettingsPage()));
                       }),
                   ListTile(
-                      selected: selectedTileProvider.selectedTile == 4,
-                      selectedTileColor: selectedTileProvider.selectedTile == 4
+                      selected: selectionProvider.selectedTile == 4,
+                      selectedTileColor: selectionProvider.selectedTile == 4
                           ? (themeProvider.getTheme().brightness ==
                                   Brightness.dark
                               ? const Color.fromARGB(255, 85, 98, 105)
                               : const Color.fromARGB(255, 188, 200, 207))
                           : null,
                       leading: CircleAvatar(
-                        backgroundImage: selectedTileProvider.selectedTile == 4
+                        backgroundImage: selectionProvider.selectedTile == 4
                             ? const AssetImage(MenuIcons.activeAbout)
                             : (themeProvider.getTheme().brightness ==
                                     Brightness.dark
@@ -178,7 +176,7 @@ class MenuDrawer extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       onTap: () {
-                        context.read<SelectedTile>().selectedTile = 4;
+                        context.read<SelectionProvider>().selectedTile = 4;
                         Navigator.push(
                             context,
                             MaterialPageRoute(

@@ -14,7 +14,14 @@ final ThemeData lightTheme = ThemeData(
         bodySmall:
             TextStyle(fontFamily: 'Leto', fontSize: 16, color: Colors.black),
         bodyMedium:
+            TextStyle(fontFamily: 'Leto', fontSize: 18, color: Colors.black),
+        bodyLarge:
             TextStyle(fontFamily: 'Leto', fontSize: 20, color: Colors.black),
+        displaySmall: TextStyle(
+            fontFamily: 'BebasNeue',
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.black),
         displayMedium: TextStyle(
             fontFamily: 'BebasNeue',
             fontSize: 45,
@@ -47,10 +54,17 @@ final ThemeData darkTheme = ThemeData(
         bodySmall:
             TextStyle(fontFamily: 'Leto', fontSize: 16, color: Colors.white),
         bodyMedium:
+            TextStyle(fontFamily: 'Leto', fontSize: 18, color: Colors.white),
+        bodyLarge:
             TextStyle(fontFamily: 'Leto', fontSize: 20, color: Colors.white),
+        displaySmall: TextStyle(
+            fontFamily: 'BebasNeue',
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.white),
         displayMedium: TextStyle(
             fontFamily: 'BebasNeue',
-            fontSize: 50,
+            fontSize: 45,
             fontWeight: FontWeight.bold,
             color: Colors.white)),
     colorScheme: const ColorScheme(
