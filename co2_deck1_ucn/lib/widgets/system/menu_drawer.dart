@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../pages/menu_drawer_pages/about_page.dart';
-import '../../pages/menu_drawer_pages/comparison_page.dart';
 import '../../pages/menu_drawer_pages/glossary_page.dart';
 import '../../pages/menu_drawer_pages/home_page.dart';
 import '../../pages/menu_drawer_pages/settings_page.dart';
@@ -102,36 +101,7 @@ class MenuDrawer extends StatelessWidget {
                               : const Color.fromARGB(255, 188, 200, 207))
                           : null,
                       leading: CircleAvatar(
-                          backgroundImage: selectionProvider.selectedTile == 2
-                              ? const AssetImage(MenuIcons.activeCompare)
-                              : (themeProvider.getTheme().brightness ==
-                                      Brightness.dark
-                                  ? const AssetImage(MenuIcons.darkCompare)
-                                  : const AssetImage(MenuIcons.compare)),
-                          backgroundColor: Colors.transparent,
-                          radius: 14),
-                      title: Text(
-                        'Compare Plants',
-                        textAlign: TextAlign.left,
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      onTap: () {
-                        context.read<SelectionProvider>().selectedTile = 2;
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ComparisonPage()));
-                      }),
-                  ListTile(
-                      selected: selectionProvider.selectedTile == 3,
-                      selectedTileColor: selectionProvider.selectedTile == 3
-                          ? (themeProvider.getTheme().brightness ==
-                                  Brightness.dark
-                              ? const Color.fromARGB(255, 85, 98, 105)
-                              : const Color.fromARGB(255, 188, 200, 207))
-                          : null,
-                      leading: CircleAvatar(
-                        backgroundImage: selectionProvider.selectedTile == 3
+                        backgroundImage: selectionProvider.selectedTile == 2
                             ? const AssetImage(MenuIcons.activeSettings)
                             : (themeProvider.getTheme().brightness ==
                                     Brightness.dark
@@ -146,22 +116,22 @@ class MenuDrawer extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       onTap: () {
-                        context.read<SelectionProvider>().selectedTile = 3;
+                        context.read<SelectionProvider>().selectedTile = 2;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const SettingsPage()));
                       }),
                   ListTile(
-                      selected: selectionProvider.selectedTile == 4,
-                      selectedTileColor: selectionProvider.selectedTile == 4
+                      selected: selectionProvider.selectedTile == 3,
+                      selectedTileColor: selectionProvider.selectedTile == 3
                           ? (themeProvider.getTheme().brightness ==
                                   Brightness.dark
                               ? const Color.fromARGB(255, 85, 98, 105)
                               : const Color.fromARGB(255, 188, 200, 207))
                           : null,
                       leading: CircleAvatar(
-                        backgroundImage: selectionProvider.selectedTile == 4
+                        backgroundImage: selectionProvider.selectedTile == 3
                             ? const AssetImage(MenuIcons.activeAbout)
                             : (themeProvider.getTheme().brightness ==
                                     Brightness.dark
@@ -176,7 +146,7 @@ class MenuDrawer extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       onTap: () {
-                        context.read<SelectionProvider>().selectedTile = 4;
+                        context.read<SelectionProvider>().selectedTile = 3;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
