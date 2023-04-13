@@ -20,19 +20,17 @@ class MenuDrawer extends StatelessWidget {
         child: Builder(
             builder: (context) => ListView(padding: EdgeInsets.zero, children: [
                   Container(
-                    margin: const EdgeInsets.only(top: 40, bottom: 30),
-                    height: 130,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
+                      margin: const EdgeInsets.only(top: 40, bottom: 30),
+                      height: 130,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
                         image: themeProvider.getTheme().brightness ==
                                 Brightness.dark
                             ? const AssetImage(Images.darkLogo)
                             : const AssetImage(Images.logo),
                         fit: BoxFit.scaleDown,
-                      ),
-                    ),
-                  ),
+                      ))),
                   ListTile(
                       selected: selectionProvider.selectedTile == 0,
                       selectedTileColor: selectionProvider.selectedTile == 0
