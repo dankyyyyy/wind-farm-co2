@@ -17,11 +17,11 @@ class NavBarComparisons extends StatefulWidget {
 class NavBarComparisonsState extends State<NavBarComparisons> {
   final panelUtils = PanelUtils();
 
-  get co2COAL => Calculations().co2EmittedCoal(1, 27, 9.5, 0.65);
-  get co2LNG => Calculations().co2EmittedLNG(1, 27, 9.5, 0.65);
-  get totalEmissions =>
+  get coalEmissions => Calculations().co2EmittedCoal(1, 27, 9.5);
+  get lngEmissions => Calculations().co2EmittedLNG(1, 27, 9.5);
+  get totalEmissionsLNG =>
       Calculations().totalEmissionsLNG(1, 27, 9.5, 0.65, 50, 0);
-  get totalEmissionsC =>
+  get totalEmissionsCoal =>
       Calculations().totalEmissionsCoal(1, 27, 9.5, 0.65, 50, 0);
 
   @override
@@ -46,20 +46,16 @@ class NavBarComparisonsState extends State<NavBarComparisons> {
               ])
         : ListView(padding: EdgeInsets.zero, children: <Widget>[
             panelUtils.buildHeader(context, selectedWindfarm),
-            const Text(
-              "TBA: Comparisons",
-              textAlign: TextAlign.center,
-            ),
             AspectRatio(
                 aspectRatio: 16 / 9,
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                   height: 400,
                   child: ComparisonChart(
-                    co2LNG: co2LNG,
-                    co2COAL: co2COAL,
-                    totalEmissions: totalEmissions,
-                    totalEmissionsC: totalEmissionsC,
+                    lngEmissions: lngEmissions,
+                    coalEmissions: coalEmissions,
+                    totalEmissionsLNG: totalEmissionsLNG,
+                    totalEmissionsCoal: totalEmissionsCoal,
                   ),
                 )),
             Padding(
