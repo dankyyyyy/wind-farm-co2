@@ -55,30 +55,40 @@ class NavBarStatsState extends State<NavBarStats> {
           panelUtils.buildHeader(
               context, snapshot.getWindFarmById(snapshot.selectedWindfarmId)),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: themeProvider.getTheme().brightness == Brightness.dark
-                      ? const Color.fromRGBO(54, 80, 126, 1)
-                      : Colors.grey[300],
-                  borderRadius: const BorderRadius.all(Radius.circular(8))),
-              padding: const EdgeInsets.fromLTRB(70, 10, 70, 10),
-              margin: const EdgeInsets.fromLTRB(0, 0, 25, 0),
-              child: Text("Week ${_weekNumber(_pickedDate)}",
-                  style: Theme.of(context).textTheme.bodyMedium),
+            GestureDetector(
+              onTap: _showDatePicker,
+              child: CircleAvatar(
+                backgroundColor: Colors.grey[300],
+                child: const Icon(Icons.arrow_back, color: Colors.black),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
             ),
             GestureDetector(
-                onTap: _showDatePicker,
-                child: CircleAvatar(
-                  backgroundColor:
-                      themeProvider.getTheme().brightness == Brightness.dark
-                          ? const Color.fromRGBO(54, 80, 126, 1)
-                          : Colors.grey[300],
-                  child: Icon(Icons.calendar_month_outlined,
-                      color:
-                          themeProvider.getTheme().brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black),
-                )),
+              onTap: _showDatePicker,
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: const BorderRadius.all(Radius.circular(8))),
+                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                child: Text(
+                  DateFormat("MMMM yyyy").format(_pickedDate),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            GestureDetector(
+              onTap: _showDatePicker,
+              child: CircleAvatar(
+                backgroundColor: Colors.grey[300],
+                child: const Icon(Icons.arrow_forward, color: Colors.black),
+              ),
+            ),
           ]),
           AspectRatio(
               aspectRatio: 16 / 9,
