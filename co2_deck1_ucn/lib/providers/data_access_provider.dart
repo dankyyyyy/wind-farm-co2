@@ -1,14 +1,17 @@
 import 'dart:async';
 
+import 'package:co2_deck1_ucn/models/wind_farm_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:collection/collection.dart';
 
 import '../models/wind_farm.dart';
 import '../services/data_access.dart';
 
 class DataAccessProvider extends ChangeNotifier {
   List<WindFarm>? windFarms;
-  bool isLoading = false;
+  bool isLoading = true;
+  bool isLoadingAnalytics = true;
   final Completer _isLoadingDone = Completer();
   String _windfarmId = "";
 
@@ -18,9 +21,28 @@ class DataAccessProvider extends ChangeNotifier {
   }
 
   String get selectedWindfarmId => _windfarmId;
+  DateTime _startDate = DateTime.now().subtract(Duration(days: 7));
+  DateTime _endDate = DateTime.now();
+
+  WindFarm? getWindFarmById(String id) {
+    return windFarms!.singleWhereOrNull((e) => e.id == id);
+  }
+
+  DateTime get startDate => _startDate;
+
+  DateTime get endDate => _endDate;
+
+  set startDate(DateTime date) {
+    _startDate = date;
+    notifyListeners();
+  }
+
+  set endDate(DateTime date) {
+    _endDate = date;
+    notifyListeners();
+  }
 
   getWindFarms() async {
-    isLoading = true;
     windFarms = (await getAllWindFarms())!;
     if (kDebugMode) {
       print(windFarms.toString());
@@ -30,7 +52,7 @@ class DataAccessProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  WindFarm? getWindFarmById(String id) {
+  WindFarm? fetchWindFarmById(String id) {
     WindFarm? result;
     if (windFarms == null) {
       getWindFarms();
@@ -48,22 +70,30 @@ class DataAccessProvider extends ChangeNotifier {
     return result;
   }
 
-  Future<void> getAnalytics(String id, String startDate, String endDate) async {
-    isLoading = true;
-    if (_isLoadingDone.isCompleted == false) {
-      getAnalytics(id, startDate, endDate);
+  Future<void> getAnalytics(String id, {bool isInit = true}) async {
+    if (!isInit) {
+      isLoadingAnalytics = true;
+      notifyListeners();
     }
+
     if (windFarms == null) {
       getWindFarms();
     }
-    var analytics = await getWindFarmAnalytics(id, startDate, endDate);
-    print("analytics: ${analytics == null ? "0" : analytics.length.toString()}");
-    windFarms
-        ?.singleWhere((element) => element.id == id)
-        .analytics
-        ?.addAll(analytics!);
-    isLoading = false;
-    notifyListeners();
+    if (windFarms != null &&
+        windFarms?.singleWhere((element) => element.id == id) != null) {
+      var analytics = await getWindFarmAnalytics(
+          id,
+          DateFormat("yyyy-MM-dd").format(_startDate),
+          DateFormat("yyyy-MM-dd").format(_endDate));
+      List<WindFarmDailyAnalytics>? listOfAnalytics =
+          windFarms?.singleWhere((element) => element.id == id).analytics;
+      listOfAnalytics?.clear();
+      listOfAnalytics?.addAll(analytics!);
+      //if (!isInit) {
+        isLoadingAnalytics = false;
+        notifyListeners();
+      //}
+    }
   }
 
   Future<double> getYTD(String id) async {

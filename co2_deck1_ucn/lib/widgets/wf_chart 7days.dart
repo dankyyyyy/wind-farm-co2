@@ -113,7 +113,7 @@ class WindFarmChart extends StatelessWidget {
     String text;
     if (daysBetween() < 8) {
       switch (value.toInt()) {
-       case 1:
+        case 1:
           text = 'Mon';
           break;
         case 2:

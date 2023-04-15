@@ -56,13 +56,19 @@ Future<List<WindFarmDailyAnalytics>?> getWindFarmAnalytics(
   try {
     final response = await http.get(
       Uri.parse(
-          "https://api.deck1.com/analytics/site/$id?startDate=$startDate&endDate=$endDate&includeMeasurements=true"),
+          "https://api.deck1.com/analytics/site/$id?startDate=$startDate&endDate=$endDate&includeMeasurements=false"),
       headers: {"x-d1-apikey": "f5Bii7gYwvDZ"},
     );
     if (response.statusCode == 200) {
       final extractedData = json.decode(response.body);
-      for (int i = 0; i < extractedData.length; i++) {
-        result.add(WindFarmDailyAnalytics.fromJson(extractedData[i]));
+      if (extractedData.length == 0) {
+       /* result.add(WindFarmDailyAnalytics.fromJson(
+            <String, dynamic>{"siteId": id, "date": startDate}));*/
+      } else {
+        for (int i = 0; i < extractedData.length; i++) {
+          result.add(WindFarmDailyAnalytics.fromJson(extractedData[i]));
+          print(extractedData[i].toString());
+        }
       }
     } else {
       print(
