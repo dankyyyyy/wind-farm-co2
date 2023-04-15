@@ -12,6 +12,16 @@ class NavBarComparisons extends StatefulWidget {
 
   @override
   State<NavBarComparisons> createState() => NavBarComparisonsState();
+  /*late final DataAccessProvider windfarmData;
+  @override
+  void initState() {
+    super.initState();
+    DataAccessProvider tempWindfarmData =
+        Provider.of<DataAccessProvider>(context, listen: false);
+    if (tempWindfarmData.selectedWindfarmId.isNotEmpty) {
+      tempWindfarmData.getAnalytics(tempWindfarmData.selectedWindfarmId);
+    }
+  }*/
 }
 
 class NavBarComparisonsState extends State<NavBarComparisons> {

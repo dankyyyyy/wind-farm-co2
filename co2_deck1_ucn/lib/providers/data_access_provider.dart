@@ -21,7 +21,7 @@ class DataAccessProvider extends ChangeNotifier {
   }
 
   String get selectedWindfarmId => _windfarmId;
-  DateTime _startDate = DateTime.now().subtract(Duration(days: 7));
+  DateTime _startDate = DateTime.now().subtract(const Duration(days: 7));
   DateTime _endDate = DateTime.now();
 
   WindFarm? getWindFarmById(String id) {
@@ -44,9 +44,6 @@ class DataAccessProvider extends ChangeNotifier {
 
   getWindFarms() async {
     windFarms = (await getAllWindFarms())!;
-    if (kDebugMode) {
-      print(windFarms.toString());
-    }
     isLoading = false;
     _isLoadingDone.complete();
     notifyListeners();

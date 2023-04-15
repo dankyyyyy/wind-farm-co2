@@ -20,69 +20,81 @@ class NavBarStats extends StatefulWidget {
 
 class NavBarStatsState extends State<NavBarStats> {
   DateTime _pickedDate = DateTime.now().subtract(const Duration(days: 1));
+  late final DataAccessProvider windfarmData;
+  @override
+  void initState() {
+    super.initState();
+    DataAccessProvider tempWindfarmData =
+        Provider.of<DataAccessProvider>(context, listen: false);
+    if (tempWindfarmData.selectedWindfarmId.isNotEmpty) {
+      tempWindfarmData.getAnalytics(tempWindfarmData.selectedWindfarmId);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     final panelUtils = PanelUtils();
-    final windfarmData = Provider.of<DataAccessProvider>(context);
-    final selectedWindfarmId = windfarmData.selectedWindfarmId;
-    final selectedWindfarm = selectedWindfarmId.isNotEmpty
-        ? windfarmData.getWindFarmById(selectedWindfarmId)
-        : null;
 
-    return selectedWindfarmId.isEmpty
-        ? Row(
+    return Consumer<DataAccessProvider>(builder: (context, snapshot, child) {
+      if (snapshot.selectedWindfarmId.isEmpty) {
+        return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 28.0),
-                  child: Text(
-                    "No windfarm selected",
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(top: 28.0),
+                child: Text(
+                  "No windfarm selected",
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
-              ])
-        : ListView(padding: EdgeInsets.zero, children: <Widget>[
-            panelUtils.buildHeader(context, selectedWindfarm),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Container(
-                decoration: BoxDecoration(
-                    color:
-                        themeProvider.getTheme().brightness == Brightness.dark
-                            ? const Color.fromRGBO(54, 80, 126, 1)
-                            : Colors.grey[300],
-                    borderRadius: const BorderRadius.all(Radius.circular(8))),
-                padding: const EdgeInsets.fromLTRB(70, 10, 70, 10),
-                margin: const EdgeInsets.fromLTRB(0, 0, 25, 0),
-                child: Text("Week ${_weekNumber(_pickedDate)}",
-                    style: Theme.of(context).textTheme.bodyMedium),
               ),
-              GestureDetector(
-                  onTap: _showDatePicker,
-                  child: CircleAvatar(
-                    backgroundColor:
-                        themeProvider.getTheme().brightness == Brightness.dark
-                            ? const Color.fromRGBO(54, 80, 126, 1)
-                            : Colors.grey[300],
-                    child: Icon(Icons.calendar_month_outlined,
-                        color: themeProvider.getTheme().brightness ==
-                                Brightness.dark
-                            ? Colors.white
-                            : Colors.black),
-                  )),
-            ]),
-            AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                  height: 400,
-                  child: const WindFarmChart(),
+            ]);
+      } else {
+        return ListView(padding: EdgeInsets.zero, children: <Widget>[
+          panelUtils.buildHeader(
+              context, snapshot.getWindFarmById(snapshot.selectedWindfarmId)),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: themeProvider.getTheme().brightness == Brightness.dark
+                      ? const Color.fromRGBO(54, 80, 126, 1)
+                      : Colors.grey[300],
+                  borderRadius: const BorderRadius.all(Radius.circular(8))),
+              padding: const EdgeInsets.fromLTRB(70, 10, 70, 10),
+              margin: const EdgeInsets.fromLTRB(0, 0, 25, 0),
+              child: Text("Week ${_weekNumber(_pickedDate)}",
+                  style: Theme.of(context).textTheme.bodyMedium),
+            ),
+            GestureDetector(
+                onTap: _showDatePicker,
+                child: CircleAvatar(
+                  backgroundColor:
+                      themeProvider.getTheme().brightness == Brightness.dark
+                          ? const Color.fromRGBO(54, 80, 126, 1)
+                          : Colors.grey[300],
+                  child: Icon(Icons.calendar_month_outlined,
+                      color:
+                          themeProvider.getTheme().brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black),
                 )),
-            const SizedBox(height: 18),
-            buildLegend(),
-          ]);
+          ]),
+          AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                height: 400,
+                child: WindFarmChart(
+                    snapshot.getWindFarmById(snapshot.selectedWindfarmId),
+                    snapshot.startDate,
+                    snapshot.endDate),
+              )),
+          const SizedBox(height: 18),
+          buildLegend(),
+        ]);
+      }
+    });
   }
 
 //Additional options & methods
@@ -128,6 +140,12 @@ class NavBarStatsState extends State<NavBarStats> {
       if (pickedDate == null) {
         return;
       }
+      DataAccessProvider WindfarmData =
+          Provider.of<DataAccessProvider>(context, listen: false);
+      WindfarmData.startDate = pickedDate.subtract(Duration(days: 7));
+      WindfarmData.endDate = pickedDate;
+      WindfarmData.getAnalytics(WindfarmData.selectedWindfarmId, isInit: false);
+
       setState(() {
         _pickedDate = pickedDate;
       });

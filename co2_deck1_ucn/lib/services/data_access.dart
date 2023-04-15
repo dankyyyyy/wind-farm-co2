@@ -20,9 +20,7 @@ Future<List<WindFarm>?> getAllWindFarms() async {
           "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
     }
   } catch (e) {
-    if (kDebugMode) {
-      print("An error occured whiole retrieving windfarm data.");
-    }
+    print("An error occured whiole retrieving windfarm data.");
   }
   return result;
 }
@@ -42,9 +40,7 @@ Future<WindFarm?> getWindFarmById(String id) async {
           "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
     }
   } catch (e) {
-    if (kDebugMode) {
-      print("An error occured while retrieving windfarm with id:$id.");
-    }
+    print("An error occured while retrieving windfarm with id:$id.");
   }
   return result;
 }
@@ -62,7 +58,7 @@ Future<List<WindFarmDailyAnalytics>?> getWindFarmAnalytics(
     if (response.statusCode == 200) {
       final extractedData = json.decode(response.body);
       if (extractedData.length == 0) {
-       /* result.add(WindFarmDailyAnalytics.fromJson(
+        /* result.add(WindFarmDailyAnalytics.fromJson(
             <String, dynamic>{"siteId": id, "date": startDate}));*/
       } else {
         for (int i = 0; i < extractedData.length; i++) {

@@ -40,9 +40,14 @@ class _WindFarmMapState extends State<WindFarmMap> {
             children: [
           TileLayer(
             urlTemplate: themeProvider.getTheme().brightness == Brightness.dark
+                ? 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png'
+                : 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+            subdomains: const ['a', 'b', 'c'],
+
+            /*urlTemplate: themeProvider.getTheme().brightness == Brightness.dark
                 ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
                 : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            subdomains: const ['a', 'b', 'c'],
+            subdomains: const ['a', 'b', 'c'],*/
           ),
           Consumer<DataAccessProvider>(
               builder: (context, windfarm, child) => MarkerClusterLayerWidget(
