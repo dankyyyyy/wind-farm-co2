@@ -1,13 +1,17 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
+import 'package:co2_deck1_ucn/models/wind_farm_analytics.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:collection/collection.dart';
 
 import '../models/wind_farm.dart';
 import '../services/data_access.dart';
 
 class DataAccessProvider extends ChangeNotifier {
   List<WindFarm>? windFarms;
-  bool isLoading = false;
+  bool isLoading = true;
+  bool isLoadingAnalytics = true;
   final Completer _isLoadingDone = Completer();
   String _windfarmId = "";
 
@@ -17,19 +21,35 @@ class DataAccessProvider extends ChangeNotifier {
   }
 
   String get selectedWindfarmId => _windfarmId;
+  DateTime _startDate = DateTime.now().subtract(const Duration(days: 7));
+  DateTime _endDate = DateTime.now();
+
+  WindFarm? getWindFarmById(String id) {
+    return windFarms!.singleWhereOrNull((e) => e.id == id);
+  }
+
+  DateTime get startDate => _startDate;
+
+  DateTime get endDate => _endDate;
+
+  set startDate(DateTime date) {
+    _startDate = date;
+    notifyListeners();
+  }
+
+  set endDate(DateTime date) {
+    _endDate = date;
+    notifyListeners();
+  }
 
   getWindFarms() async {
-    isLoading = true;
     windFarms = (await getAllWindFarms())!;
-    if (kDebugMode) {
-      print(windFarms.toString());
-    }
     isLoading = false;
     _isLoadingDone.complete();
     notifyListeners();
   }
 
-  WindFarm? getWindFarmById(String id) {
+  WindFarm? fetchWindFarmById(String id) {
     WindFarm? result;
     if (windFarms == null) {
       getWindFarms();
@@ -47,34 +67,46 @@ class DataAccessProvider extends ChangeNotifier {
     return result;
   }
 
-  /*
-  List<WindFarm> get items {
-    return [..._items];
+  Future<void> getAnalytics(String id, {bool isInit = true}) async {
+    if (!isInit) {
+      isLoadingAnalytics = true;
+      notifyListeners();
+    }
+
+    if (windFarms == null) {
+      getWindFarms();
+    }
+    if (windFarms != null &&
+        windFarms?.singleWhere((element) => element.id == id) != null) {
+      var analytics = await getWindFarmAnalytics(
+          id,
+          DateFormat("yyyy-MM-dd").format(_startDate),
+          DateFormat("yyyy-MM-dd").format(_endDate));
+      List<WindFarmDailyAnalytics>? listOfAnalytics =
+          windFarms?.singleWhere((element) => element.id == id).analytics;
+      listOfAnalytics?.clear();
+      listOfAnalytics?.addAll(analytics!);
+      //if (!isInit) {
+        isLoadingAnalytics = false;
+        notifyListeners();
+      //}
+    }
   }
-  void addWindFarm(WindFarm windfarm) {
-    _items.add(windfarm);
+
+  Future<double> getYTD(String id) async {
+    isLoading = true;
+    if (!_isLoadingDone.isCompleted) {
+      getYTD(id);
+    }
+    if (windFarms == null) {
+      getWindFarms();
+    }
+    String startDate = DateFormat("yyyy-MM-dd").format(DateTime(
+        DateTime.now().year - 1, DateTime.now().month, DateTime.now().day));
+    String endDate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+    double analytics = await getYTDAnalytics(id, startDate, endDate);
+    isLoading = false;
     notifyListeners();
+    return analytics;
   }
-  Future<void> getWindFarms() async {
-    final url = Uri.parse("https://api.deck1.com/sites");
-    final response =
-        await http.get(url, headers: {"x-d1-apikey": "f5Bii7gYwvDZ"});
-    //String data = await rootBundle.loadString("assets/data/windfarms.json");
-    final extractedData = json.decode(response.body);
-    List<WindFarm> windfarms = [];
-    print(extractedData);
-    /*for (int i = 0; i < extractedData.length; i++) {
-      //if (!farms.any((farm) => farm.id == extractedData[i]["siteId"]["\$oid"])) {
-      windfarms.add(
-        WindFarm(
-          extractedData[i]?["_id"]?["\$oid"],
-          extractedData[i]["name"],
-          LatLng(extractedData[i]?["point"]?["coordinates"][0],
-              extractedData[i]?["point"]?["coordinates"][1]),
-        ),
-      );
-    }*/
-    _items = windfarms;
-    notifyListeners();
-  }*/
 }

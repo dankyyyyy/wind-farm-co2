@@ -35,16 +35,6 @@ class PanelUtils {
                 color: const Color.fromARGB(255, 124, 123, 123),
               ))));
 
-  buildQuickDetails() => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
-            Text('27 x MHI Vestas V174-9.5MW WTG'),
-            Text('19km from shore'),
-            Text('72t of CO2'),
-          ]));
-
   void showPanel() {
     panelController.show();
   }
