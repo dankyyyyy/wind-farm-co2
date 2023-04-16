@@ -4,6 +4,7 @@ import 'package:co2_deck1_ucn/pages/nav_bar_pages/navbar_home.dart';
 import 'package:co2_deck1_ucn/pages/nav_bar_pages/navbar_stats.dart';
 import 'package:co2_deck1_ucn/providers/data_access_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -22,6 +23,9 @@ class HomePanel extends StatefulWidget {
 class HomePanelState extends State<HomePanel> {
   final panelController = PanelController();
   final scrollController = ScrollController();
+  bool _isDragable = false;
+
+  //starting index for the nav bar
   int index = 0;
 
   @override
@@ -29,6 +33,7 @@ class HomePanelState extends State<HomePanel> {
     // size settings for the sliding up panel
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.095;
     final panelHeightOpen = MediaQuery.of(context).size.height * 0.7;
+    const snapPoint = 0.69;
 
     // providers
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
@@ -40,7 +45,9 @@ class HomePanelState extends State<HomePanel> {
           onWindFarmSelected: (windfarmId) => {
             setState(() {
               dataAccessProvider.selectedWindfarmId = windfarmId;
-              panelController.animatePanelToPosition(0.21,
+              _isDragable = true;
+              index = 0;
+              panelController.animatePanelToSnapPoint(
                   duration: const Duration(
                       milliseconds: 350)); // open the sliding panel
             })
@@ -57,6 +64,8 @@ class HomePanelState extends State<HomePanel> {
                       ? const Color.fromRGBO(46, 46, 46, 1)
                       : Colors.white,
                   controller: panelController,
+                  isDraggable: _isDragable,
+                  snapPoint: snapPoint,
                   minHeight: panelHeightClosed,
                   maxHeight: panelHeightOpen,
                   parallaxEnabled: true,
@@ -71,6 +80,7 @@ class HomePanelState extends State<HomePanel> {
                       : lightTheme.navigationBarTheme,
                   child: NavigationBar(
                       selectedIndex: index,
+                      elevation: 100,
                       labelBehavior:
                           NavigationDestinationLabelBehavior.onlyShowSelected,
                       animationDuration: const Duration(seconds: 1),
@@ -136,8 +146,8 @@ class HomePanelState extends State<HomePanel> {
   }) {
     return NavigationDestination(
       icon: Container(
-          height: 30,
-          width: 30,
+          height: 30.h,
+          width: 30.w,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
@@ -145,8 +155,8 @@ class HomePanelState extends State<HomePanel> {
                 image: icon,
               ))),
       selectedIcon: Container(
-          height: 30,
-          width: 30,
+          height: 30.h,
+          width: 30.w,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(

@@ -4,6 +4,7 @@ import 'package:co2_deck1_ucn/resources/menu_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
@@ -76,15 +77,15 @@ class _WindFarmMapState extends State<WindFarmMap> {
     if (windfarms != null) {
       for (var wf in windfarms) {
         markers.add(Marker(
-            width: 80.0,
-            height: 90.0,
+            width: 80.0.w,
+            height: 90.0.h,
             point: wf.locationLatLng!,
             builder: (ctx) => Column(children: [
                   GestureDetector(
                       onTap: () => onMarkerPressed(wf.id!),
                       child: Image(
-                        width: 25.0,
-                        height: 35.0,
+                        width: 25.0.w,
+                        height: 35.0.h,
                         image: wf.id == dataAccessProvider.selectedWindfarmId
                             ? const AssetImage(MenuIcons.activeMapMarker)
                             : (themeProvider.getTheme().brightness ==

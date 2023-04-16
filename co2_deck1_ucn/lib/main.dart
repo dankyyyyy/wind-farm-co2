@@ -3,6 +3,8 @@ import 'package:co2_deck1_ucn/providers/data_access_provider.dart';
 import 'package:co2_deck1_ucn/providers/selection_provider.dart';
 import 'package:co2_deck1_ucn/providers/theme_provider.dart';
 import 'package:co2_deck1_ucn/utils/themes.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,13 +28,20 @@ class Program extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    return MaterialApp(
-        title: 'DECK1 CO2',
-        theme: themeProvider.getTheme(),
-        debugShowCheckedModeBanner: false,
-        home: const WindFarmProvider());
+    return ScreenUtilInit(
+      designSize: const Size(411.42, 891.42), // size of pixel 6 pro
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'DECK1 CO2',
+          theme: themeProvider.getTheme(),
+          debugShowCheckedModeBanner: false,
+          home: const WindFarmProvider(),
+        );
+      },
+    );
   }
 }
 

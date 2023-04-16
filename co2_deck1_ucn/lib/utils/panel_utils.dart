@@ -25,7 +25,6 @@ class PanelUtils {
               ]));
 
   Widget buildDragHandle() => GestureDetector(
-      onTap: togglePanel,
       child: Center(
           child: Container(
               width: 60,
@@ -38,10 +37,6 @@ class PanelUtils {
   void showPanel() {
     panelController.show();
   }
-
-  void togglePanel() => panelController.isPanelOpen
-      ? panelController.close()
-      : panelController.open();
 
   void togglePanelVisibility() => panelController.isPanelShown
       ? panelController.hide()
