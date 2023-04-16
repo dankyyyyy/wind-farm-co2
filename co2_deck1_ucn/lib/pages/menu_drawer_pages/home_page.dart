@@ -21,11 +21,14 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
         body: Stack(
           children: [
-            windfarmData.isLoading
-                ? const CircularProgressIndicator(
-                    color: Colors.blue,
-                  )
-                : const HomePanel(),
+            Align(
+              alignment: Alignment.center,
+              child: windfarmData.isLoading
+                  ? const CircularProgressIndicator(
+                      color: Colors.blue,
+                    )
+                  : const HomePanel(),
+            )
           ],
         ),
         drawer: const MenuDrawer(),

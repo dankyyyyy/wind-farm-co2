@@ -43,6 +43,7 @@ dependencies:
   provider: ^6.0.5
   http: ^0.13.5
   collection: ^1.17.0
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_test:
@@ -66,13 +67,12 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
   assets:
   # web
       - web/manifest.json
+
+  # json
+      - assets/data/windfarm_data.json
 
   # splash screens
       - assets/images/splash_screens/splash_screen.png
@@ -91,11 +91,6 @@ flutter:
       - assets/images/menu_icons/classic/comparisons.png
       - assets/images/menu_icons/classic/map_marker.png
 
-  # miscellaneous
-      - assets/images/wf_details/notification_bell.png
-      - assets/images/wf_details/watch_plant.png
-      - assets/images/wf_details/watched_plant.png
-
   # dark mode
   # company logos
       - assets/images/logos/darkmode_deck1_logo.png
@@ -110,15 +105,6 @@ flutter:
       - assets/images/menu_icons/darkmode/comparisons.png
       - assets/images/menu_icons/darkmode/map_marker.png
 
-# WF logos
-      - assets/images/wf_details/wf/ao1_logo.png
-      - assets/images/wf_details/wf/ao1_logo_dark.png
-      - assets/images/wf_details/wf/butendiek_logo.png
-      - assets/images/wf_details/wf/meerwind_logo.png
-      - assets/images/wf_details/wf/rwe_logo.png
-      - assets/images/wf_details/wf/rwe_logo2.png
-      - assets/images/wf_details/wf/vattenfall_logo.png
-
 # menu icons (active)
       - assets/images/menu_icons/active/home.png
       - assets/images/menu_icons/active/glossary.png
@@ -127,6 +113,16 @@ flutter:
       - assets/images/menu_icons/active/about.png
       - assets/images/menu_icons/active/comparisons.png
       - assets/images/menu_icons/active/map_marker.png
+
+# WF logos
+      - assets/images/wf_details/logos/ao1_logo.png
+      - assets/images/wf_details/logos/butendiek_logo.png
+      - assets/images/wf_details/logos/meerwind_logo.png
+      - assets/images/wf_details/logos/rwe_logo.png
+      - assets/images/wf_details/logos/vattenfall_logo.png
+      - assets/images/wf_details/logos/equinor_logo.png
+      - assets/images/wf_details/logos/iberdrola_logo.png
+      - assets/images/wf_details/logos/orsted_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

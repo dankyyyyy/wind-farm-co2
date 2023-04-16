@@ -1,26 +1,49 @@
 import 'dart:convert';
 import "package:co2_deck1_ucn/models/wind_farm.dart";
 import 'package:co2_deck1_ucn/models/wind_farm_analytics.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart' as http;
 
 Future<List<WindFarm>?> getAllWindFarms() async {
   List<WindFarm>? result = [];
-  try {
-    final response = await http.get(
-      Uri.parse("https://api.deck1.com/sites"),
-      headers: {"x-d1-apikey": "f5Bii7gYwvDZ"},
-    );
-    if (response.statusCode == 200) {
-      final extractedData = json.decode(response.body);
-      for (int i = 0; i < extractedData.length; i++) {
-        result.add(WindFarm.fromJson(extractedData[i]));
+
+  final response = await http.get(
+    Uri.parse("https://api.deck1.com/sites"),
+    headers: {"x-d1-apikey": "f5Bii7gYwvDZ"},
+  );
+  if (response.statusCode == 200) {
+    final extractedData = json.decode(response.body);
+
+    final jsonString =
+        await rootBundle.loadString('assets/data/windfarm_data.json');
+    final List<dynamic> decodedJson = json.decode(jsonString);
+
+    for (int i = 0; i < (decodedJson.length); i++) {
+      if (i < extractedData.length) {
+        final apiData = WindFarm.fromJson(extractedData[i]);
+        final jsonData = WindFarm.fromJson(decodedJson[i]);
+
+        apiData.id ??= jsonData.id;
+        apiData.location ??= jsonData.location;
+        apiData.name ??= jsonData.name;
+        apiData.description = jsonData.description;
+        apiData.isActive ??= jsonData.isActive;
+        apiData.locationLatLng ??= jsonData.locationLatLng;
+        apiData.analytics ??= jsonData.analytics;
+        apiData.windTurbines ??= jsonData.windTurbines;
+        apiData.windTurbinesModel ??= jsonData.windTurbinesModel;
+        apiData.power ??= jsonData.power;
+        apiData.logo = jsonData.logo;
+
+        result.add(apiData);
+      } else if (i >= extractedData.length && i < decodedJson.length) {
+        final jsonData = WindFarm.fromJson(decodedJson[i]);
+        result.add(jsonData);
       }
-    } else {
-      print(
-          "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
     }
-  } catch (e) {
-    print("An error occured whiole retrieving windfarm data.");
+  } else {
+    print(
+        "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
   }
   return result;
 }
@@ -34,13 +57,34 @@ Future<WindFarm?> getWindFarmById(String id) async {
     );
     if (response.statusCode == 200) {
       final extractedData = json.decode(response.body);
-      result = WindFarm.fromJson(extractedData);
+      final apiData = WindFarm.fromJson(extractedData);
+
+      // Fetch data from JSON file
+      final jsonString =
+          await rootBundle.loadString('assets/data/windfarm_data.json');
+      final jsonToDecode = json.decode(jsonString);
+      final jsonData = WindFarm.fromJson(jsonToDecode);
+
+      // Merge data, giving priority to API data + JSON as back-up
+      apiData.id ??= jsonData.id;
+      apiData.location ??= jsonData.location;
+      apiData.name ??= jsonData.name;
+      apiData.description = jsonData.description;
+      apiData.isActive ??= jsonData.isActive;
+      apiData.locationLatLng ??= jsonData.locationLatLng;
+      apiData.analytics ??= jsonData.analytics;
+      apiData.windTurbines ??= jsonData.windTurbines;
+      apiData.windTurbinesModel ??= jsonData.windTurbinesModel;
+      apiData.power ??= jsonData.power;
+      apiData.logo = jsonData.logo;
+
+      result = apiData;
     } else {
       print(
           "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
     }
   } catch (e) {
-    print("An error occured while retrieving windfarm with id:$id.");
+    print("An error occurred while retrieving windfarm with id:$id.");
   }
   return result;
 }

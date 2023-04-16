@@ -1,6 +1,8 @@
 import 'package:co2_deck1_ucn/Widgets/system/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/gestures.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../Resources/images.dart';
 import '../../providers/theme_provider.dart';
@@ -16,6 +18,7 @@ class AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    Uri url = Uri.https('deck1.com', '/home');
 
     return Scaffold(
         appBar: AppBar(
@@ -28,9 +31,8 @@ class AboutPageState extends State<AboutPage> {
         ),
         drawer: const MenuDrawer(),
         body: Column(children: [
-          
           Padding(
-              padding: const EdgeInsets.fromLTRB(40, 20, 30, 5),
+              padding: const EdgeInsets.fromLTRB(35, 20, 30, 5),
               child: Column(children: [
                 Image(
                   image: themeProvider.getTheme().brightness == Brightness.dark
@@ -53,10 +55,29 @@ class AboutPageState extends State<AboutPage> {
                   "We do that by collecting and analysing great amounts of real time operations data and adding AI and predictive analysis to recommend, automate and provide new knowledge to both vessel operators, and wind turbine manufacturers.\n",
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 20),
+                RichText(
+                  text: TextSpan(
+                      text: "Click ",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      children: [
+                        TextSpan(
+                            text: "here",
+                            style: Theme.of(context).textTheme.labelLarge,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                launchUrl(url);
+                              }),
+                        TextSpan(
+                          text: " to learn more.",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ]),
                 )
               ])),
           Padding(
-            padding: const EdgeInsets.fromLTRB(40, 5, 30, 5),
+            padding: const EdgeInsets.fromLTRB(0, 40, 0, 5),
             child: Text("© 2023 DECK1. All Rights Reserved.",
                 style: Theme.of(context).textTheme.bodySmall,
                 textAlign: TextAlign.center),

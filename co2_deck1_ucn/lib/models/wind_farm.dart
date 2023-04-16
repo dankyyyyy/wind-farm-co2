@@ -12,6 +12,7 @@ class WindFarm {
   int? windTurbines;
   String? windTurbinesModel;
   double? power;
+  String? logo;
   /* String? type;
   String? owner;
   String? organisation;
@@ -27,7 +28,8 @@ class WindFarm {
       this.analytics,
       this.windTurbines,
       this.windTurbinesModel,
-      this.power
+      this.power,
+      this.logo
       /*this.type,
       this.owner,
       this.organisation,
@@ -43,10 +45,10 @@ class WindFarm {
     locationLatLng = LatLng(json['centroid']?['coordinates']?[1] as double,
         json['centroid']?['coordinates']?[0] as double);
     analytics = List.empty(growable: true);
-    /* HARDCODED VALUES for now! */
-    windTurbines = 10;
-    windTurbinesModel = "WTM-23";
-    power = 9.5;
+    windTurbines = json['windTurbines'];
+    windTurbinesModel = json['windTurbinesModel'];
+    power = json['power'];
+    logo = json['logo'];
     /*type = json['type'];
     owner = json['owner'];
     organisation = json['organisation'];

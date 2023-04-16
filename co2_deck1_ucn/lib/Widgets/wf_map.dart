@@ -39,11 +39,6 @@ class _WindFarmMapState extends State<WindFarmMap> {
             ),
             children: [
           TileLayer(
-            /*urlTemplate: themeProvider.getTheme().brightness == Brightness.dark
-                ? 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png'
-                : 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
-            subdomains: const ['a', 'b', 'c'],*/
-
             urlTemplate: themeProvider.getTheme().brightness == Brightness.dark
                 ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
                 : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -72,7 +67,11 @@ class _WindFarmMapState extends State<WindFarmMap> {
 
   List<Marker> createMarkers(List<WindFarm>? windfarms) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    final dataAccessProvider =
+        Provider.of<DataAccessProvider>(context, listen: false);
     List<Marker> markers = [];
+
+    print("createMarkers called");
 
     if (windfarms != null) {
       for (var wf in windfarms) {
@@ -81,34 +80,30 @@ class _WindFarmMapState extends State<WindFarmMap> {
             height: 90.0,
             point: wf.locationLatLng!,
             builder: (ctx) => Column(children: [
-                  Text(wf.name!),
                   GestureDetector(
                       onTap: () => onMarkerPressed(wf.id!),
                       child: Image(
                         width: 25.0,
                         height: 35.0,
-                        image: themeProvider.getTheme().brightness ==
-                                Brightness.dark
-                            ? const AssetImage(MenuIcons.darkMapMarker)
-                            : const AssetImage(MenuIcons.mapMarker),
-                      ))
-
-                  /*IconButton(
-                    icon: const Icon(
-                      Icons.location_on_outlined,
-                      semanticLabel: 'Windfarm',
-                    ),
-                    iconSize: 45.0,
-                    color: Colors.black,
-                    hoverColor: Colors.blue[800],
-                    highlightColor: Colors.blue,
-                    onPressed: () => onMarkerPressed(wf.id!),
-                    padding: const EdgeInsets.all(
-                        0), // call onMarkerPressed function with windfarm id
-                  )*/
+                        image: wf.id == dataAccessProvider.selectedWindfarmId
+                            ? const AssetImage(MenuIcons.activeMapMarker)
+                            : (themeProvider.getTheme().brightness ==
+                                    Brightness.dark
+                                ? const AssetImage(MenuIcons.darkMapMarker)
+                                : const AssetImage(MenuIcons.mapMarker)),
+                      )),
+                  const SizedBox(height: 10),
+                  Text(
+                    wf.name!,
+                    style: Theme.of(context).textTheme.bodySmall,
+                    textAlign: TextAlign.center,
+                  ),
                 ])));
       }
+    } else {
+      print("windfarms is null");
     }
+    print(markers);
     return markers;
   }
 

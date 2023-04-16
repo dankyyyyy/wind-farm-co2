@@ -17,6 +17,17 @@ final ThemeData lightTheme = ThemeData(
             TextStyle(fontFamily: 'Leto', fontSize: 18, color: Colors.black),
         bodyLarge:
             TextStyle(fontFamily: 'Leto', fontSize: 20, color: Colors.black),
+        labelMedium: TextStyle(
+            fontFamily: 'Leto',
+            fontSize: 18,
+            color: Color.fromARGB(255, 77, 119, 157),
+            decoration: TextDecoration.underline),
+        labelLarge: TextStyle(
+          fontFamily: 'Leto',
+          fontSize: 20,
+          color: Color.fromARGB(255, 77, 119, 157),
+          decoration: TextDecoration.underline,
+        ),
         displaySmall: TextStyle(
             fontFamily: 'BebasNeue',
             fontSize: 30,
@@ -57,6 +68,18 @@ final ThemeData darkTheme = ThemeData(
             TextStyle(fontFamily: 'Leto', fontSize: 18, color: Colors.white),
         bodyLarge:
             TextStyle(fontFamily: 'Leto', fontSize: 20, color: Colors.white),
+        labelMedium: TextStyle(
+          fontFamily: 'Leto',
+          fontSize: 18,
+          color: Color.fromARGB(255, 77, 119, 157),
+          decoration: TextDecoration.underline,
+        ),
+        labelLarge: TextStyle(
+          fontFamily: 'Leto',
+          fontSize: 20,
+          color: Color.fromARGB(255, 77, 119, 157),
+          decoration: TextDecoration.underline,
+        ),
         displaySmall: TextStyle(
             fontFamily: 'BebasNeue',
             fontSize: 30,
