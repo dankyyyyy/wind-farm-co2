@@ -45,6 +45,7 @@ class NavBarAboutState extends State<NavBarAbout> {
               padding: const EdgeInsets.fromLTRB(25, 0, 30, 0),
               child: Column(children: [
                 Image(image: AssetImage(logoPath!)),
+                const SizedBox(height: 20),
                 Text(
                   description!,
                   textAlign: TextAlign.center,

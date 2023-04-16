@@ -36,7 +36,7 @@ class _WindFarmMapState extends State<WindFarmMap> {
               center: LatLng(56.5, 9.5),
               interactiveFlags:
                   InteractiveFlag.pinchZoom | InteractiveFlag.drag,
-              zoom: 6,
+              zoom: 8,
             ),
             children: [
           TileLayer(
@@ -49,11 +49,13 @@ class _WindFarmMapState extends State<WindFarmMap> {
               builder: (context, windfarm, child) => MarkerClusterLayerWidget(
                   options: MarkerClusterLayerOptions(
                       maxClusterRadius: 120,
+                      disableClusteringAtZoom: 8,
                       fitBoundsOptions: const FitBoundsOptions(
                         padding: EdgeInsets.all(50),
                       ),
                       markers: createMarkers(windfarm.windFarms),
                       polygonOptions: const PolygonOptions(
+                          isDotted: true,
                           borderColor: Colors.blueAccent,
                           color: Colors.black12,
                           borderStrokeWidth: 3),

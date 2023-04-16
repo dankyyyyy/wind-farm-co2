@@ -72,7 +72,7 @@
 {  
   "_id": "DK37",
   "name": "Kriegers Flak",
-  "description": "Kriegers Flak is located in the Baltic Sea, 15-40 kilometres off the Danish coast. The offshore wind farm covers the annual energy consumption of approximately 600,000 households.\n\nDespite the logistical challenges that the Cov_id-19 pandemic brought, all 72 turbines were installed on schedule by summer 2021.",
+  "description": "Kriegers Flak is located in the Baltic Sea, 15-40 kilometres off the Danish coast. The offshore wind farm covers the annual energy consumption of approximately 600,000 households.\n\nDespite the logistical challenges that the Covid-19 pandemic brought, all 72 turbines were installed on schedule by summer 2021.",
   "isActive": false,
   "centroid": {
     "coordinates": [12.939, 55.027]
@@ -100,7 +100,7 @@
 {  
   "_id": "DK11",
   "name": "Rødsand 2",
-  "description": "Rødsand 2 was commissioned in October 2010 and is situated approximately ten kilometres southeast of Rødbyhavn. With an installed capacity of 207 MW, this offshore wind farm supplies 146,600 Danish households with green energy.\n\nThe 90 wind turbines with a capacity of 2.3 MW each are la_id out in 18 units in five rows, and cover an area of 34 km². The annual CO2 emission savings amount to 296,296 tonnes.",
+  "description": "Rødsand 2 was commissioned in October 2010 and is situated approximately ten kilometres southeast of Rødbyhavn. With an installed capacity of 207 MW, this offshore wind farm supplies 146,600 Danish households with green energy.\n\nThe 90 wind turbines with a capacity of 2.3 MW each are laid out in 18 units in five rows, and cover an area of 34 km². The annual CO2 emission savings amount to 296,296 tonnes.",
   "isActive": false,
   "centroid": {
     "coordinates": [11.549, 54.555]
@@ -114,7 +114,7 @@
 {  
   "_id": "DE12",
   "name": "Sandbank",
-  "description": "Sandbank is the second major wind power project in the German North Sea by Vattenfall. It extends over an area of 60 square kilometres and its construction has been finalized in 2017.\n\nThe farm comprises 72 Siemens wind turbines in the 4-megawatt class. With an overall capacity of 288 megawatts, the wind farm prov_ides green power to supply up to 400,000 households.",
+  "description": "Sandbank is the second major wind power project in the German North Sea by Vattenfall. It extends over an area of 60 square kilometres and its construction has been finalized in 2017.\n\nThe farm comprises 72 Siemens wind turbines in the 4-megawatt class. With an overall capacity of 288 megawatts, the wind farm provides green power to supply up to 400,000 households.",
   "isActive": false,
   "centroid": {
     "coordinates": [6.852, 55.2]
@@ -128,7 +128,7 @@
 {  
   "_id": "DE47",
   "name": "Wikinger",
-  "description": "At the end of 2017, Iberdrola successfully connected the offshore wind farm to the national gr_id and, since then, prov_ides efficient renewable energy to 350,000 homes.\n\nThis flow of clean energy will have a positive environmental impact since it displaces the emission of nearly 600,000 tons of CO2 per year.",
+  "description": "At the end of 2017, Iberdrola successfully connected the offshore wind farm to the national grid and, since then, provides efficient renewable energy to 350,000 homes.\n\nThis flow of clean energy will have a positive environmental impact since it displaces the emission of nearly 600,000 tons of CO2 per year.",
   "isActive": false,
   "centroid": {
     "coordinates": [14.068, 54.836]

@@ -12,7 +12,10 @@ class NavBarComparisons extends StatefulWidget {
 
   @override
   State<NavBarComparisons> createState() => NavBarComparisonsState();
-  /*late final DataAccessProvider windfarmData;
+}
+
+class NavBarComparisonsState extends State<NavBarComparisons> {
+  late final DataAccessProvider windfarmData;
   @override
   void initState() {
     super.initState();
@@ -21,62 +24,66 @@ class NavBarComparisons extends StatefulWidget {
     if (tempWindfarmData.selectedWindfarmId.isNotEmpty) {
       tempWindfarmData.getAnalytics(tempWindfarmData.selectedWindfarmId);
     }
-  }*/
-}
+  }
 
-class NavBarComparisonsState extends State<NavBarComparisons> {
   final panelUtils = PanelUtils();
-
-  get coalEmissions => Calculations().co2EmittedCoal(1, 27, 9.5);
-  get lngEmissions => Calculations().co2EmittedLNG(1, 27, 9.5);
-  get totalEmissionsLNG =>
-      Calculations().totalEmissionsLNG(1, 27, 9.5, 0.65, 50, 0);
-  get totalEmissionsCoal =>
-      Calculations().totalEmissionsCoal(1, 27, 9.5, 0.65, 50, 0);
 
   @override
   Widget build(BuildContext context) {
-    final windfarmData = Provider.of<DataAccessProvider>(context);
-    final String selectedWindfarmId = windfarmData.selectedWindfarmId;
-    final selectedWindfarm = selectedWindfarmId.isNotEmpty
-        ? windfarmData.getWindFarmById(selectedWindfarmId)
-        : null;
-    return selectedWindfarmId.isEmpty
-        ? Row(
+    return Consumer<DataAccessProvider>(builder: (context, snapshot, child) {
+      int? turbines =
+          snapshot.getWindFarmById(snapshot.selectedWindfarmId)?.windTurbines;
+      double? power =
+          snapshot.getWindFarmById(snapshot.selectedWindfarmId)?.power;
+
+      double coalEmissions =
+          Calculations().co2EmittedCoal(1, turbines!, power!);
+      double lngEmissions = Calculations().co2EmittedLNG(1, turbines, power);
+      double totalEmissionsLNG =
+          Calculations().totalEmissionsLNG(1, turbines, power, 0.65, 50, 0);
+      double totalEmissionsCoal =
+          Calculations().totalEmissionsCoal(1, turbines, power, 0.65, 50, 0);
+
+      if (snapshot.selectedWindfarmId.isEmpty) {
+        return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 28.0),
-                  child: Text(
-                    "No windfarm selected",
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(top: 28.0),
+                child: Text(
+                  "No windfarm selected",
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
-              ])
-        : ListView(padding: EdgeInsets.zero, children: <Widget>[
-            panelUtils.buildHeader(context, selectedWindfarm),
-            AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                  height: 400,
-                  child: ComparisonChart(
-                    lngEmissions: lngEmissions,
-                    coalEmissions: coalEmissions,
-                    totalEmissionsLNG: totalEmissionsLNG,
-                    totalEmissionsCoal: totalEmissionsCoal,
-                  ),
-                )),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-              child: buildLegend(),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-              child: buildLegend2(),
-            )
-          ]);
+              ),
+            ]);
+      } else {
+        return ListView(padding: EdgeInsets.zero, children: <Widget>[
+          panelUtils.buildHeader(
+              context, snapshot.getWindFarmById(snapshot.selectedWindfarmId)),
+          AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                height: 400,
+                child: ComparisonChart(
+                  lngEmissions: lngEmissions,
+                  coalEmissions: coalEmissions,
+                  totalEmissionsLNG: totalEmissionsLNG,
+                  totalEmissionsCoal: totalEmissionsCoal,
+                ),
+              )),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+            child: buildLegend(),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: buildLegend2(),
+          )
+        ]);
+      }
+    });
   }
 
   Widget buildLegend() => AspectRatio(
