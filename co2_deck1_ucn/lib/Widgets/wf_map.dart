@@ -72,8 +72,6 @@ class _WindFarmMapState extends State<WindFarmMap> {
         Provider.of<DataAccessProvider>(context, listen: false);
     List<Marker> markers = [];
 
-    print("createMarkers called");
-
     if (windfarms != null) {
       for (var wf in windfarms) {
         markers.add(Marker(
@@ -101,10 +99,7 @@ class _WindFarmMapState extends State<WindFarmMap> {
                   ),
                 ])));
       }
-    } else {
-      print("windfarms is null");
     }
-    print(markers);
     return markers;
   }
 
