@@ -1,142 +1,172 @@
-[{  
-  "_id": "64359162d1b9ec4db513670d",
-  "location": "Germany",
-  "name": "Arcadis Ost",
-  "description": "Arcadis Ost 1 is a 257 MW offshore wind farm developed by Parkwind Ost GmbH. The wind farm will be located in the Baltic Sea, northeast of the island of Rügen in Germany.\n\nScheduled for completion in late 2023, the project is committed to the highest standards and will be using state of the art construction methods for the installation of some of the world’s biggest wind turbines.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [13.644, 54.823]
-},
-  "windTurbines": 27,
-  "windTurbinesModel": "V174-9.5 MW",
-  "power": 9.5,
-  "logo": "assets/images/wf_details/logos/ao1_logo.png"
-},
-{  
-  "_id": "6435917ad1b9ec4db513688a",
-  "name": "Kaskasi",
-  "description": "Kaskasi consists of 38 turbines (Siemens Gamesa 9MW) and has an installed capacity of 342MW\n\nSince its commissioning end of 2022, Kaskasi offshore wind farm is capable to supply the equivalent of approximately 400,000 households with green electricity.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [7.695, 54.489]
+[
+  {
+    "_id": "64359162d1b9ec4db513670d",
+    "location": "Germany",
+    "name": "Arcadis Ost",
+    "description": "Arcadis Ost 1 is a 257 MW offshore wind farm developed by Parkwind Ost GmbH. The wind farm will be located in the Baltic Sea, northeast of the island of Rügen in Germany.\n\nScheduled for completion in late 2023, the project is committed to the highest standards and will be using state of the art construction methods for the installation of some of the world’s biggest wind turbines.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        13.644,
+        54.823
+      ]
+    },
+    "windTurbines": 27,
+    "windTurbinesModel": "V174-9.5 MW",
+    "power": 9.5,
+    "logo": "assets/images/wf_details/logos/ao1_logo.png"
   },
-  "location": "Germany",
-  "windTurbines": 38,
-  "windTurbinesModel": "SG 8.0-167 DD",
-  "power": 8.0,
-  "logo": "assets/images/wf_details/logos/rwe_logo.png"
-},
-{  
-  "_id": "DE05",
-  "name": "Amrumbank West",
-  "description": "The offshore wind farm consists of 80 Siemens SWT-3.6-120 wind turbines with an installed capacity of 3.6 MW each, 288 MW in total.\n\nThis is enough power to supply around 300,000 households with renewable energy, saving 432,278 tonnes of CO2 emissions annually.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [7.706, 54.523]
+  {
+    "_id": "6435917ad1b9ec4db513688a",
+    "name": "Kaskasi",
+    "description": "Kaskasi consists of 38 turbines (Siemens Gamesa 9MW) and has an installed capacity of 342MW\n\nSince its commissioning end of 2022, Kaskasi offshore wind farm is capable to supply the equivalent of approximately 400,000 households with green electricity.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        7.695,
+        54.489
+      ]
+    },
+    "location": "Germany",
+    "windTurbines": 38,
+    "windTurbinesModel": "SG 8.0-167 DD",
+    "power": 8.0,
+    "logo": "assets/images/wf_details/logos/rwe_logo.png"
   },
-  "location": "Germany",
-  "windTurbines": 80,
-  "windTurbinesModel": "SWT-3.6-120",
-  "power": 3.6,
-  "logo": "assets/images/wf_details/logos/rwe_logo.png"
-  
-},
-{  
-  "_id": "DE46",
-  "name": "Arkona",
-  "description": "The 385 MW project, operated by E.ON in partnership with Equinor, can when completed, deliver power to approximately 400.000 German households.\n\nArkona saves up to 1.2 million tons of CO2 annually compared to conventionally generated electricity.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [14.121, 54.783]
+  {
+    "_id": "DE05",
+    "name": "Amrumbank West",
+    "description": "The offshore wind farm consists of 80 Siemens SWT-3.6-120 wind turbines with an installed capacity of 3.6 MW each, 288 MW in total.\n\nThis is enough power to supply around 300,000 households with renewable energy, saving 432,278 tonnes of CO2 emissions annually.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        7.706,
+        54.523
+      ]
+    },
+    "location": "Germany",
+    "windTurbines": 80,
+    "windTurbinesModel": "SWT-3.6-120",
+    "power": 3.6,
+    "logo": "assets/images/wf_details/logos/rwe_logo.png"
   },
-  "location": "Germany",
-  "windTurbines": 60,
-  "windTurbinesModel": "SWT-6.0-154",
-  "power": 6.0,
-  "logo": "assets/images/wf_details/logos/equinor_logo.png"  
-},
-{  
-  "_id": "DE02",
-  "name": "DanTysk",
-  "description": "Offshore wind farm DanTysk - climate-friendly electricity from the North SeaThe offshore wind farm DanTysk, west of the island of Sylt and directly on the border with Denmark, is one of the first large offshore wind farms to be built in the German North Sea.\n\nA total of 80 wind turbines from Siemens in the 3.6 MW class generate renewable electricity for up to 400,000 households with a total output of 288 megawatts.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [7.201, 55.138]
+  {
+    "_id": "DE46",
+    "name": "Arkona",
+    "description": "The 385 MW project, operated by E.ON in partnership with Equinor, can when completed, deliver power to approximately 400.000 German households.\n\nArkona saves up to 1.2 million tons of CO2 annually compared to conventionally generated electricity.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        14.121,
+        54.783
+      ]
+    },
+    "location": "Germany",
+    "windTurbines": 60,
+    "windTurbinesModel": "SWT-6.0-154",
+    "power": 6.0,
+    "logo": "assets/images/wf_details/logos/equinor_logo.png"
   },
-  "location": "Germany",
-  "windTurbines": 80,
-  "windTurbinesModel": "SWT-3.6-120",
-  "power": 3.6,
-  "logo": "assets/images/wf_details/logos/vattenfall_logo.png"  
-},
-{  
-  "_id": "DK37",
-  "name": "Kriegers Flak",
-  "description": "Kriegers Flak is located in the Baltic Sea, 15-40 kilometres off the Danish coast. The offshore wind farm covers the annual energy consumption of approximately 600,000 households.\n\nDespite the logistical challenges that the Covid-19 pandemic brought, all 72 turbines were installed on schedule by summer 2021.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [12.939, 55.027]
+  {
+    "_id": "DE02",
+    "name": "DanTysk",
+    "description": "Offshore wind farm DanTysk - climate-friendly electricity from the North SeaThe offshore wind farm DanTysk, west of the island of Sylt and directly on the border with Denmark, is one of the first large offshore wind farms to be built in the German North Sea.\n\nA total of 80 wind turbines from Siemens in the 3.6 MW class generate renewable electricity for up to 400,000 households with a total output of 288 megawatts.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        7.201,
+        55.138
+      ]
+    },
+    "location": "Germany",
+    "windTurbines": 80,
+    "windTurbinesModel": "SWT-3.6-120",
+    "power": 3.6,
+    "logo": "assets/images/wf_details/logos/vattenfall_logo.png"
   },
-  "location": "Denmark",
-  "windTurbines": 72,
-  "windTurbinesModel": "SG 8.0-167 DD",
-  "power": 8.0,
-  "logo": "assets/images/wf_details/logos/vattenfall_logo.png"  
-},
-{  
-  "_id": "DK07",
-  "name": "Nysted",
-  "description": "Nysted, combined with the other five wind farms fully or partially owned by Ørsted, can supply electricity equivalent to the consumption of over 900,000 households in Denmark.\n\nEach turbine can generate 2.3 MW. The total output thus reaches 165.6 MW, which made Nysted one of the world's largest windfarms when it was completed in 2003.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [11.715, 54.55]
+  {
+    "_id": "DK37",
+    "name": "Kriegers Flak",
+    "description": "Kriegers Flak is located in the Baltic Sea, 15-40 kilometres off the Danish coast. The offshore wind farm covers the annual energy consumption of approximately 600,000 households.\n\nDespite the logistical challenges that the Covid-19 pandemic brought, all 72 turbines were installed on schedule by summer 2021.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        12.939,
+        55.027
+      ]
+    },
+    "location": "Denmark",
+    "windTurbines": 72,
+    "windTurbinesModel": "SG 8.0-167 DD",
+    "power": 8.0,
+    "logo": "assets/images/wf_details/logos/vattenfall_logo.png"
   },
-  "location": "Denmark",
-  "windTurbines": 72,
-  "windTurbinesModel": "SWT-2.3-82",
-  "power": 2.3,
-  "logo": "assets/images/wf_details/logos/orsted_logo.png"  
-},
-{  
-  "_id": "DK11",
-  "name": "Rødsand 2",
-  "description": "Rødsand 2 was commissioned in October 2010 and is situated approximately ten kilometres southeast of Rødbyhavn. With an installed capacity of 207 MW, this offshore wind farm supplies 146,600 Danish households with green energy.\n\nThe 90 wind turbines with a capacity of 2.3 MW each are laid out in 18 units in five rows, and cover an area of 34 km². The annual CO2 emission savings amount to 296,296 tonnes.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [11.549, 54.555]
+  {
+    "_id": "DK07",
+    "name": "Nysted",
+    "description": "Nysted, combined with the other five wind farms fully or partially owned by Ørsted, can supply electricity equivalent to the consumption of over 900,000 households in Denmark.\n\nEach turbine can generate 2.3 MW. The total output thus reaches 165.6 MW, which made Nysted one of the world's largest windfarms when it was completed in 2003.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        11.715,
+        54.55
+      ]
+    },
+    "location": "Denmark",
+    "windTurbines": 72,
+    "windTurbinesModel": "SWT-2.3-82",
+    "power": 2.3,
+    "logo": "assets/images/wf_details/logos/orsted_logo.png"
   },
-  "location": "Denmark",
-  "windTurbines": 90,
-  "windTurbinesModel": "SWT-2.3-93",
-  "power": 2.3,
-  "logo": "assets/images/wf_details/logos/rwe_logo.png"  
-},
-{  
-  "_id": "DE12",
-  "name": "Sandbank",
-  "description": "Sandbank is the second major wind power project in the German North Sea by Vattenfall. It extends over an area of 60 square kilometres and its construction has been finalized in 2017.\n\nThe farm comprises 72 Siemens wind turbines in the 4-megawatt class. With an overall capacity of 288 megawatts, the wind farm provides green power to supply up to 400,000 households.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [6.852, 55.2]
+  {
+    "_id": "DK11",
+    "name": "Rødsand 2",
+    "description": "Rødsand 2 was commissioned in October 2010 and is situated approximately ten kilometres southeast of Rødbyhavn. With an installed capacity of 207 MW, this offshore wind farm supplies 146,600 Danish households with green energy.\n\nThe 90 wind turbines with a capacity of 2.3 MW each are laid out in 18 units in five rows, and cover an area of 34 km². The annual CO2 emission savings amount to 296,296 tonnes.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        11.549,
+        54.555
+      ]
+    },
+    "location": "Denmark",
+    "windTurbines": 90,
+    "windTurbinesModel": "SWT-2.3-93",
+    "power": 2.3,
+    "logo": "assets/images/wf_details/logos/rwe_logo.png"
   },
-  "location": "Germany",
-  "windTurbines": 72,
-  "windTurbinesModel": "SWT-4.0-130",
-  "power": 4.0,
-  "logo": "assets/images/wf_details/logos/vattenfall_logo.png"
-},
-{  
-  "_id": "DE47",
-  "name": "Wikinger",
-  "description": "At the end of 2017, Iberdrola successfully connected the offshore wind farm to the national grid and, since then, provides efficient renewable energy to 350,000 homes.\n\nThis flow of clean energy will have a positive environmental impact since it displaces the emission of nearly 600,000 tons of CO2 per year.",
-  "isActive": false,
-  "centroid": {
-    "coordinates": [14.068, 54.836]
+  {
+    "_id": "DE12",
+    "name": "Sandbank",
+    "description": "Sandbank is the second major wind power project in the German North Sea by Vattenfall. It extends over an area of 60 square kilometres and its construction has been finalized in 2017.\n\nThe farm comprises 72 Siemens wind turbines in the 4-megawatt class. With an overall capacity of 288 megawatts, the wind farm provides green power to supply up to 400,000 households.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        6.852,
+        55.2
+      ]
+    },
+    "location": "Germany",
+    "windTurbines": 72,
+    "windTurbinesModel": "SWT-4.0-130",
+    "power": 4.0,
+    "logo": "assets/images/wf_details/logos/vattenfall_logo.png"
   },
-  "location": "Germany",
-  "windTurbines": 70,
-  "windTurbinesModel": "AD 5-135",
-  "power": 5.05,
-  "logo": "assets/images/wf_details/logos/iberdrola_logo.png"
-}
+  {
+    "_id": "DE47",
+    "name": "Wikinger",
+    "description": "At the end of 2017, Iberdrola successfully connected the offshore wind farm to the national grid and, since then, provides efficient renewable energy to 350,000 homes.\n\nThis flow of clean energy will have a positive environmental impact since it displaces the emission of nearly 600,000 tons of CO2 per year.",
+    "isActive": false,
+    "centroid": {
+      "coordinates": [
+        14.068,
+        54.836
+      ]
+    },
+    "location": "Germany",
+    "windTurbines": 70,
+    "windTurbinesModel": "AD 5-135",
+    "power": 5.05,
+    "logo": "assets/images/wf_details/logos/iberdrola_logo.png"
+  }
 ]
