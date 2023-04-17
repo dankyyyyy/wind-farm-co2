@@ -22,9 +22,11 @@ class HomePageState extends State<HomePage> {
         body: Stack(
           children: [
             windfarmData.isLoading
-                ? const CircularProgressIndicator(
-                    color: Colors.blue,
-                  )
+                ? const Center(
+                  child:  CircularProgressIndicator(
+                      color: Colors.red,
+                    ),
+                )
                 : const HomePanel(),
           ],
         ),

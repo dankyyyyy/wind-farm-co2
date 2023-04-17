@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:month_year_picker/month_year_picker.dart';
 
 import '../../providers/data_access_provider.dart';
 import '../../providers/theme_provider.dart';
@@ -54,54 +55,105 @@ class NavBarStatsState extends State<NavBarStats> {
         return ListView(padding: EdgeInsets.zero, children: <Widget>[
           panelUtils.buildHeader(
               context, snapshot.getWindFarmById(snapshot.selectedWindfarmId)),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            GestureDetector(
-              onTap: _showDatePicker,
-              child: CircleAvatar(
-                backgroundColor: Colors.grey[300],
-                child: const Icon(Icons.arrow_back, color: Colors.black),
+          Card(
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(15, 20, 10, 20),
+              child: Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "CO₂ emissions in tons",
+                      style:
+                          TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(height: 18),
+                  Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0),
+                    ),
+                    margin: const EdgeInsets.fromLTRB(12, 5, 12, 10),
+                    color: Colors.grey[400],
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: _monthBack,
+                            child: const Icon(Icons.arrow_back_ios,
+                                color: Colors.black),
+                          ),
+                          const SizedBox(width: 10),
+                          GestureDetector(
+                            onTap: _showDatePicker,
+                            child: Text(
+                              DateFormat("MMMM yyyy").format(_pickedDate),
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GestureDetector(
+                            onTap: _monthForward,
+                            child: const Icon(Icons.arrow_forward_ios,
+                                color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                        height: 400,
+                        child: WindFarmChart(
+                            snapshot
+                                .getWindFarmById(snapshot.selectedWindfarmId),
+                            snapshot.startDate,
+                            snapshot.endDate),
+                      )),
+                  const SizedBox(height: 18),
+                  buildLegend(),
+                ],
               ),
             ),
-            const SizedBox(
-              width: 10,
+          ),
+          Card(
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
             ),
-            GestureDetector(
-              onTap: _showDatePicker,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: const BorderRadius.all(Radius.circular(8))),
-                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-                child: Text(
-                  DateFormat("MMMM yyyy").format(_pickedDate),
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w500),
-                ),
+            margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
+              child: Row(
+                children: const [
+                  Icon(Icons.info_outline),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Flexible(
+                    child: Text(
+                      "Metric tons of CO₂ emitted by helicopters and vessels during maintainance of the windfarm. The windfarm itself is not emitting any CO₂.",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            GestureDetector(
-              onTap: _showDatePicker,
-              child: CircleAvatar(
-                backgroundColor: Colors.grey[300],
-                child: const Icon(Icons.arrow_forward, color: Colors.black),
-              ),
-            ),
-          ]),
-          AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                height: 400,
-                child: WindFarmChart(
-                    snapshot.getWindFarmById(snapshot.selectedWindfarmId),
-                    snapshot.startDate,
-                    snapshot.endDate),
-              )),
-          const SizedBox(height: 18),
-          buildLegend(),
+          )
         ]);
       }
     });
@@ -114,69 +166,80 @@ class NavBarStatsState extends State<NavBarStats> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const <Widget>[]));
 
-  Widget buildLegend() => AspectRatio(
-      aspectRatio: 16,
-      child: Row(children: [
-        const Padding(
-            padding: EdgeInsets.fromLTRB(90, 5, 5, 2),
-            child: CircleAvatar(
-              backgroundColor: Color.fromRGBO(15, 158, 227, 1),
-              radius: 8.0,
-            )),
-        Text(
-          'Vessels',
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-        const Padding(
-            padding: EdgeInsets.fromLTRB(70, 5, 5, 2),
-            child: CircleAvatar(
-              backgroundColor: Color.fromRGBO(62, 201, 247, 1),
-              radius: 8.0,
-            )),
-        Text(
-          'Helicopters',
-          style: Theme.of(context).textTheme.bodySmall,
-        )
-      ]));
+  Widget buildLegend() =>
+      Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Row(children: [
+          const CircleAvatar(
+            backgroundColor: Color.fromRGBO(15, 158, 227, 1),
+            radius: 8.0,
+          ),
+          const SizedBox(width: 8),
+          Text('Vessels', style: Theme.of(context).textTheme.bodySmall)
+        ]),
+        Row(children: [
+          const CircleAvatar(
+              backgroundColor: Color.fromRGBO(62, 201, 247, 1), radius: 8.0),
+          const SizedBox(width: 8),
+          Text('Helicopters', style: Theme.of(context).textTheme.bodySmall)
+        ]),
+      ]);
 
   // date picker and date help methods
   void _showDatePicker() {
-    showDatePicker(
+    showMonthYearPicker(
       context: context,
-      initialDate: DateTime.now().subtract(const Duration(days: 1)),
-      firstDate: DateTime(2022, 1, 1),
+      initialDate: _pickedDate,
+      firstDate: DateTime(2022, 5),
       lastDate: DateTime.now().subtract(const Duration(days: 1)),
     ).then((pickedDate) {
       if (pickedDate == null) {
         return;
       }
-      DataAccessProvider WindfarmData =
-          Provider.of<DataAccessProvider>(context, listen: false);
-      WindfarmData.startDate = pickedDate.subtract(Duration(days: 7));
-      WindfarmData.endDate = pickedDate;
-      WindfarmData.getAnalytics(WindfarmData.selectedWindfarmId, isInit: false);
-
       setState(() {
         _pickedDate = pickedDate;
       });
     });
   }
 
-  int _numOfWeeks(int year) {
-    DateTime dec28 = DateTime(year, 12, 28);
-    int dayOfDec28 = int.parse(DateFormat("D").format(dec28));
-    return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
+  void _monthForward() {
+    if (_pickedDate
+        .isBefore(DateTime(DateTime.now().year, DateTime.now().month))) {
+      DateTime startDate = DateTime(
+          _pickedDate.month == 12 ? _pickedDate.year + 1 : _pickedDate.year,
+          _pickedDate.month == 12 ? 1 : _pickedDate.month + 1,
+          1);
+      updateProvider(
+          startDate,
+          DateTime(startDate.year, startDate.month,
+              DateUtils.getDaysInMonth(startDate.year, startDate.month)));
+      setState(() {
+        _pickedDate = startDate;
+      });
+    }
   }
 
-  /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
-  int _weekNumber(DateTime date) {
-    int dayOfYear = int.parse(DateFormat("D").format(date));
-    int woy = ((dayOfYear - date.weekday + 10) / 7).floor();
-    if (woy < 1) {
-      woy = _numOfWeeks(date.year - 1);
-    } else if (woy > _numOfWeeks(date.year)) {
-      woy = 1;
+  void _monthBack() {
+    if (_pickedDate.isAfter(DateTime(2022, 4))) {
+      DateTime startDate = DateTime(
+          _pickedDate.month == 1 ? _pickedDate.year - 1 : _pickedDate.year,
+          _pickedDate.month == 1 ? 12 : _pickedDate.month - 1,
+          1);
+      updateProvider(
+          startDate,
+          DateTime(startDate.year, startDate.month,
+              DateUtils.getDaysInMonth(startDate.year, startDate.month)));
+      setState(() {
+        _pickedDate = startDate;
+      });
     }
-    return woy;
+  }
+
+  updateProvider(DateTime startDate, DateTime endDate) {
+    DataAccessProvider windFarmProvider =
+        Provider.of<DataAccessProvider>(context, listen: false);
+    windFarmProvider.startDate = startDate;
+    windFarmProvider.endDate = endDate;
+    windFarmProvider.getAnalytics(windFarmProvider.selectedWindfarmId,
+        isInit: false);
   }
 }
