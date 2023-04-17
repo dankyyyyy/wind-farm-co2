@@ -62,19 +62,19 @@ class WindFarmChart extends StatelessWidget {
     List<BarChartGroupData> barChartData = List.empty(growable: true);
     double vessels = 0;
     double helicopters = 0;
-    for (var i = 1; i < daysBetween(); i++) {
+    var days = daysBetween();
+    for (var i = 1; i < days; i++) {
       if (windFarm!.analytics != null || windFarm!.analytics!.isNotEmpty) {
         var analytic = dailyAnalytic(startDate.add(Duration(days: i)));
-        if (analytic != null) {
-          if (i % 7 != 0) {
-            vessels += analytic.vesselsTotal;
-            helicopters += analytic.helicoptersTotal;
-          } else {
-            print("week n. : " + (i ~/ 7).toString());
-            barChartData.add(generateGroupData(i ~/ 7, vessels, helicopters));
-            vessels = 0;
-            helicopters = 0;
-          }
+
+        if (i % 7 != 0 && i != days - 1) {
+          vessels += analytic?.vesselsTotal ?? 0;
+          helicopters += analytic?.helicoptersTotal ?? 0;
+        } else {
+          barChartData
+              .add(generateGroupData((i / 7).ceil(), vessels, helicopters));
+          vessels = 0;
+          helicopters = 0;
         }
       }
     }
