@@ -8,6 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:month_year_picker/month_year_picker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +40,10 @@ class Program extends StatelessWidget {
           title: 'DECK1 CO2',
           theme: themeProvider.getTheme(),
           debugShowCheckedModeBanner: false,
+		  localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          MonthYearPickerLocalizations.delegate,
+        ],
           home: const WindFarmProvider(),
         );
       },

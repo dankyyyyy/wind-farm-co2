@@ -24,8 +24,10 @@ class HomePageState extends State<HomePage> {
             Align(
               alignment: Alignment.center,
               child: windfarmData.isLoading
-                  ? const CircularProgressIndicator(
-                      color: Colors.blue,
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.blue,
+                      ),
                     )
                   : const HomePanel(),
             )

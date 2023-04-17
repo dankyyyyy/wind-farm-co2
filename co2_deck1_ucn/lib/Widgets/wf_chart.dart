@@ -24,7 +24,7 @@ class WindFarmChart extends StatelessWidget {
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
-              reservedSize: 40,
+              reservedSize: 45,
               getTitlesWidget: leftTitles,
             ),
           ),
@@ -47,7 +47,7 @@ class WindFarmChart extends StatelessWidget {
           getDrawingHorizontalLine: (value) => FlLine(
             color: Colors.grey[350],
             strokeWidth: 1,
-            dashArray: [12, 8],
+            dashArray: [8, 6],
           ),
           drawVerticalLine: false,
         ),
@@ -60,19 +60,21 @@ class WindFarmChart extends StatelessWidget {
 
   List<BarChartGroupData> generateData() {
     List<BarChartGroupData> barChartData = List.empty(growable: true);
+    double vessels = 0;
+    double helicopters = 0;
     for (var i = 1; i < daysBetween(); i++) {
-      if (windFarm!.analytics == null || windFarm!.analytics!.isEmpty) {
-        barChartData.add(generateGroupData(i, 0, 0));
-      } else {
-        var analytic = dailyAnalitic(startDate.add(Duration(days: i)));
-
-        if (analytic == null) {
-          barChartData.add(generateGroupData(i, 0, 0));
-        } else {
-          barChartData.add(generateGroupData(
-              daysBetween() < 8 ? analytic.date!.weekday : analytic.date!.day,
-              analytic.vesselsTotal,
-              analytic.helicoptersTotal));
+      if (windFarm!.analytics != null || windFarm!.analytics!.isNotEmpty) {
+        var analytic = dailyAnalytic(startDate.add(Duration(days: i)));
+        if (analytic != null) {
+          if (i % 7 != 0) {
+            vessels += analytic.vesselsTotal;
+            helicopters += analytic.helicoptersTotal;
+          } else {
+            print("week n. : " + (i ~/ 7).toString());
+            barChartData.add(generateGroupData(i ~/ 7, vessels, helicopters));
+            vessels = 0;
+            helicopters = 0;
+          }
         }
       }
     }
@@ -92,7 +94,7 @@ class WindFarmChart extends StatelessWidget {
           fromY: 0,
           toY: vessels,
           color: vesselsColor,
-          width: 25,
+          width: daysBetween() % 7 == 0 ? 25 : 20,
           borderRadius: helicopters == 0
               ? const BorderRadius.vertical(top: Radius.circular(5))
               : BorderRadius.zero,
@@ -101,7 +103,7 @@ class WindFarmChart extends StatelessWidget {
           fromY: vessels,
           toY: vessels + helicopters,
           color: heliColor,
-          width: 25,
+          width: daysBetween() % 7 == 0 ? 25 : 20,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(5)),
         ),
       ],
@@ -111,34 +113,25 @@ class WindFarmChart extends StatelessWidget {
   Widget bottomTitles(double value, TitleMeta meta) {
     const style = TextStyle(fontSize: 12);
     String text;
-    if (daysBetween() < 8) {
-      switch (value.toInt()) {
-       case 1:
-          text = 'Mon';
-          break;
-        case 2:
-          text = 'Tue';
-          break;
-        case 3:
-          text = 'Wed';
-          break;
-        case 4:
-          text = 'Thu';
-          break;
-        case 5:
-          text = 'Fri';
-          break;
-        case 6:
-          text = 'Sat';
-          break;
-        case 7:
-          text = 'Sun';
-          break;
-        default:
-          text = '';
-      }
-    } else {
-      text = value.toString();
+
+    switch (value.toInt()) {
+      case 1:
+        text = 'Week 1';
+        break;
+      case 2:
+        text = 'Week 2';
+        break;
+      case 3:
+        text = 'Week 3';
+        break;
+      case 4:
+        text = 'Week 4';
+        break;
+      case 5:
+        text = 'Week 5';
+        break;
+      default:
+        text = '';
     }
 
     return SideTitleWidget(
@@ -155,7 +148,7 @@ class WindFarmChart extends StatelessWidget {
       return Container();
     }
     const style = TextStyle(
-      fontSize: 12,
+      fontSize: 13,
     );
     return SideTitleWidget(
       axisSide: meta.axisSide,
@@ -179,7 +172,7 @@ class WindFarmChart extends StatelessWidget {
     }
   }
 
-  WindFarmDailyAnalytics? dailyAnalitic(DateTime date) {
+  WindFarmDailyAnalytics? dailyAnalytic(DateTime date) {
     WindFarmDailyAnalytics? analytic = windFarm!.analytics!
         .cast<WindFarmDailyAnalytics?>()
         .singleWhereOrNull((element) {
@@ -191,23 +184,24 @@ class WindFarmChart extends StatelessWidget {
 
   double maxy() {
     double max = 0;
+    double weekly = 0;
     for (int i = 0; i < daysBetween(); i++) {
       WindFarmDailyAnalytics? analytic =
-          dailyAnalitic(startDate.add(Duration(days: i)));
+          dailyAnalytic(startDate.add(Duration(days: i)));
       if (analytic != null) {
-        double total = analytic.helicoptersTotal + analytic.vesselsTotal;
-        print("max y: total $total vs max $max");
-        max = total > max ? total : max;
+        if (i % 7 != 0) {
+          weekly += analytic.helicoptersTotal + analytic.vesselsTotal;
+        } else {
+          max = weekly > max ? weekly : max;
+          weekly = 0;
+        }
       }
     }
-    print("Max is $max and chart max is ${max * 1.2}");
     return max * 1.2;
   }
 
   int daysBetween() {
     int days = endDate.difference(startDate).inDays;
-    print(
-        "Days between ${DateFormat('EEEE, dd.MM.yyyy').format(startDate)} and ${DateFormat('EEEE, dd.MM.yyyy').format(endDate)} is $days days.");
     return days;
   }
 }
