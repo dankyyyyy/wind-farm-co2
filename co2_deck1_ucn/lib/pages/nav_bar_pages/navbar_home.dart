@@ -1,4 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:co2_deck1_ucn/Widgets/system/home_panel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -20,6 +23,17 @@ class NavBarHomeState extends State<NavBarHome> {
   final panelUtils = PanelUtils();
   final panelController = PanelController();
 
+  late final DataAccessProvider windfarmData;
+  @override
+  void initState() {
+    super.initState();
+    DataAccessProvider tempWindfarmData =
+        Provider.of<DataAccessProvider>(context, listen: false);
+    if (tempWindfarmData.selectedWindfarmId.isNotEmpty) {
+      tempWindfarmData.getAnalytics(tempWindfarmData.selectedWindfarmId);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<DataAccessProvider>(builder: (context, snapshot, child) {
@@ -37,90 +51,105 @@ class NavBarHomeState extends State<NavBarHome> {
               ),
             ]);
       } else {
-        return ListView(padding: EdgeInsets.zero, children: <Widget>[
+        return Column(children: [
           panelUtils.buildHeader(
-              context, snapshot.getWindFarmById(snapshot.selectedWindfarmId)),
-          Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
-                  child: Row(children: [
-                    Flexible(
-                      child: buildQuickDetails(
-                          snapshot.getWindFarmById(snapshot.selectedWindfarmId),
-                          0),
-                    )
-                  ]))),
-          Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(15, 20, 10, 20),
-                  child: Column(children: [
-                    const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Maintenance CO₂ emissions",
-                          style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
-                        )),
-                    const SizedBox(height: 18),
-                    Card(
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        margin: const EdgeInsets.fromLTRB(12, 0, 12, 30),
-                        color: Colors.grey[400],
-                        child: Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 5, 40, 5),
+            context,
+            snapshot.getWindFarmById(snapshot.selectedWindfarmId),
+          ),
+          Expanded(
+              child: ListView(
+            controller: HomePanelState().scrollController,
+            // shrinkWrap: true,
+            // physics: const NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
+                      child: Row(children: [
+                        Flexible(
+                          child: buildQuickDetails(
+                              snapshot
+                                  .getWindFarmById(snapshot.selectedWindfarmId),
+                              0),
+                        )
+                      ]))),
+              Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(15, 20, 10, 20),
+                      child: Column(children: [
+                        const Align(
+                            alignment: Alignment.center,
                             child: Text(
-                              "7 Day Summary",
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ))),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      SizedBox(
-                          height: 200,
-                          child: AspectRatio(
-                              aspectRatio: 16 / 9,
-                              child: Container(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                                  height: 400,
-                                  child: snapshot.isLoading
-                                      ? const CircularProgressIndicator()
-                                      : HomeChart(snapshot.getWindFarmById(
-                                          snapshot.selectedWindfarmId))))),
-                    ]),
-                    const SizedBox(height: 18),
-                    buildLegend(),
-                  ]))),
-          Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
-                  child: Row(children: const [
-                    Icon(Icons.info_outline),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Flexible(
-                        child: Text(
-                      "This chart depicts values in metric tons of CO₂ emitted by helicopters and vessels during maintainance of the windfarm. The windfarm itself is not emitting any CO₂.",
-                      style: TextStyle(fontSize: 16),
-                    ))
-                  ])))
+                              "Maintenance CO₂ emissions",
+                              style: TextStyle(
+                                  fontSize: 23, fontWeight: FontWeight.bold),
+                            )),
+                        const SizedBox(height: 18),
+                        Card(
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40.0),
+                            ),
+                            margin: const EdgeInsets.fromLTRB(12, 0, 12, 30),
+                            color: Colors.grey[400],
+                            child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(40, 5, 40, 5),
+                                child: Text(
+                                  "7 Day Summary",
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ))),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                  height: 200,
+                                  child: AspectRatio(
+                                      aspectRatio: 16 / 9,
+                                      child: Container(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 0, 20, 0),
+                                          height: 400,
+                                          child: snapshot.isLoading
+                                              ? const CircularProgressIndicator()
+                                              : HomeChart(snapshot
+                                                  .getWindFarmById(snapshot
+                                                      .selectedWindfarmId))))),
+                            ]),
+                        const SizedBox(height: 18),
+                        buildLegend(),
+                      ]))),
+              Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
+                      child: Row(children: const [
+                        Icon(Icons.info_outline),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Flexible(
+                            child: Text(
+                          "Metric tons of CO₂ emitted by helicopters and vessels during maintainance of the windfarm. The windfarm itself is not emitting any CO₂.",
+                          style: TextStyle(fontSize: 16),
+                        ))
+                      ])))
+            ],
+          ))
         ]);
       }
     });

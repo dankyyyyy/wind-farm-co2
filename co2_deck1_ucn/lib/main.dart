@@ -31,7 +31,7 @@ class Program extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return ScreenUtilInit(

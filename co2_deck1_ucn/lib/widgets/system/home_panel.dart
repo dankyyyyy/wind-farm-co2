@@ -36,8 +36,10 @@ class HomePanelState extends State<HomePanel> {
   Widget build(BuildContext context) {
     // size settings for the sliding up panel
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.095;
-    final panelHeightOpen = MediaQuery.of(context).size.height * 0.7;
-    const snapPoint = 0.69;
+    final panelHeightOpen = MediaQuery.of(context).size.height * 0.865;
+    const tapAnimPoint = 0.865;
+    const maxSnapPoint = 0.865;
+    //const maxSnapPoint = 0.69;
 
     // providers
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
@@ -51,7 +53,7 @@ class HomePanelState extends State<HomePanel> {
               dataAccessProvider.selectedWindfarmId = windfarmId;
               _isDragable = true;
               index = 0;
-              panelController.animatePanelToSnapPoint(
+              panelController.animatePanelToPosition(tapAnimPoint,
                   duration: const Duration(
                       milliseconds: 350)); // open the sliding panel
             })
@@ -69,14 +71,14 @@ class HomePanelState extends State<HomePanel> {
                       : Colors.white,
                   controller: panelController,
                   isDraggable: _isDragable,
-                  snapPoint: snapPoint,
+                  snapPoint: maxSnapPoint,
                   minHeight: panelHeightClosed,
                   maxHeight: panelHeightOpen,
                   parallaxEnabled: true,
                   parallaxOffset: 0.5,
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(24)),
-                  panelBuilder: (controller) => (navbarPages[index]),
+                  panelBuilder: (scrollController) => (navbarPages[index]),
                 ),
                 NavigationBarTheme(
                   data: themeProvider.getTheme().brightness == Brightness.dark
@@ -142,7 +144,6 @@ class HomePanelState extends State<HomePanel> {
   ];
 
   //Additional options & methods
-
   Widget _buildNavigationDestination({
     required ImageProvider<Object> icon,
     required ImageProvider<Object> selectedIcon,
