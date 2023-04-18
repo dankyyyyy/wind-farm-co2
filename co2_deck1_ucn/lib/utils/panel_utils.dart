@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../models/wind_farm.dart';
@@ -9,14 +10,14 @@ class PanelUtils {
 
   Widget buildHeader(BuildContext context, WindFarm? selectedWindfarm) =>
       SizedBox(
-          height: 120,
+          height: 120.h,
           child: ListView(
               padding: EdgeInsets.zero,
               controller: scrollController,
               children: <Widget>[
-                const SizedBox(height: 12),
+                SizedBox(height: 12.h),
                 buildDragHandle(),
-                const SizedBox(height: 18),
+                SizedBox(height: 18.h),
                 Center(
                     child: Text(
                   selectedWindfarm?.name ?? "",

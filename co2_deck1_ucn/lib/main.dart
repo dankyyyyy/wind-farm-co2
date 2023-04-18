@@ -30,7 +30,7 @@ class Program extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return ScreenUtilInit(
@@ -40,10 +40,10 @@ class Program extends StatelessWidget {
           title: 'DECK1 CO2',
           theme: themeProvider.getTheme(),
           debugShowCheckedModeBanner: false,
-		  localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          MonthYearPickerLocalizations.delegate,
-        ],
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            MonthYearPickerLocalizations.delegate,
+          ],
           home: const WindFarmProvider(),
         );
       },

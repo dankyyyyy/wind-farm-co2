@@ -12,6 +12,8 @@ class MenuIcons {
       'assets/images/menu_icons/classic/comparisons.png';
   static const String mapMarker =
       'assets/images/menu_icons/classic/map_marker.png';
+  static const String glossaryWF =
+      'assets/images/menu_icons/classic/windfarm.png';
 
   /* Dark mode */
   static const String darkHome = 'assets/images/menu_icons/darkmode/home.png';
@@ -26,6 +28,8 @@ class MenuIcons {
       'assets/images/menu_icons/darkmode/comparisons.png';
   static const String darkMapMarker =
       'assets/images/menu_icons/darkmode/map_marker.png';
+  static const String darkGlossaryWF =
+      'assets/images/menu_icons/darkmode/windfarm.png';
 
   /* Active */
   static const String activeHome = 'assets/images/menu_icons/active/home.png';

@@ -1,49 +1,62 @@
+import 'dart:async';
 import 'dart:convert';
+import 'package:co2_deck1_ucn/exceptions/data_access_exception_messages.dart';
+import 'package:co2_deck1_ucn/exceptions/retrieval_exception.dart';
 import "package:co2_deck1_ucn/models/wind_farm.dart";
 import 'package:co2_deck1_ucn/models/wind_farm_analytics.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart' as http;
 
+import '../utils/api_connection_utils.dart';
+
+// ERROR INTERCEPTION AND HANDLING
+
+// DATA ACCESS AND HANDLING
+
 Future<List<WindFarm>?> getAllWindFarms() async {
   List<WindFarm>? result = [];
+  try {
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {apikeyname: apikey},
+    );
+    if (response.statusCode == 200) {
+      final extractedData = json.decode(response.body);
 
-  final response = await http.get(
-    Uri.parse("https://api.deck1.com/sites"),
-    headers: {"x-d1-apikey": "f5Bii7gYwvDZ"},
-  );
-  if (response.statusCode == 200) {
-    final extractedData = json.decode(response.body);
+      final jsonString =
+          await rootBundle.loadString('assets/data/windfarm_data.json');
+      final List<dynamic> decodedJson = json.decode(jsonString);
 
-    final jsonString =
-        await rootBundle.loadString('assets/data/windfarm_data.json');
-    final List<dynamic> decodedJson = json.decode(jsonString);
+      for (int i = 0; i < (decodedJson.length); i++) {
+        if (i < extractedData.length) {
+          final apiData = WindFarm.fromJson(extractedData[i]);
+          final jsonData = WindFarm.fromJson(decodedJson[i]);
 
-    for (int i = 0; i < (decodedJson.length); i++) {
-      if (i < extractedData.length) {
-        final apiData = WindFarm.fromJson(extractedData[i]);
-        final jsonData = WindFarm.fromJson(decodedJson[i]);
+          apiData.id ??= jsonData.id;
+          apiData.location ??= jsonData.location;
+          apiData.name ??= jsonData.name;
+          apiData.description = jsonData.description;
+          apiData.isActive ??= jsonData.isActive;
+          apiData.locationLatLng ??= jsonData.locationLatLng;
+          apiData.analytics ??= jsonData.analytics;
+          apiData.windTurbines ??= jsonData.windTurbines;
+          apiData.windTurbinesModel ??= jsonData.windTurbinesModel;
+          apiData.power ??= jsonData.power;
+          apiData.logo = jsonData.logo;
 
-        apiData.id ??= jsonData.id;
-        apiData.location ??= jsonData.location;
-        apiData.name ??= jsonData.name;
-        apiData.description = jsonData.description;
-        apiData.isActive ??= jsonData.isActive;
-        apiData.locationLatLng ??= jsonData.locationLatLng;
-        apiData.analytics ??= jsonData.analytics;
-        apiData.windTurbines ??= jsonData.windTurbines;
-        apiData.windTurbinesModel ??= jsonData.windTurbinesModel;
-        apiData.power ??= jsonData.power;
-        apiData.logo = jsonData.logo;
-
-        result.add(apiData);
-      } else if (i >= extractedData.length && i < decodedJson.length) {
-        final jsonData = WindFarm.fromJson(decodedJson[i]);
-        result.add(jsonData);
+          result.add(apiData);
+        } else if (i >= extractedData.length && i < decodedJson.length) {
+          final jsonData = WindFarm.fromJson(decodedJson[i]);
+          result.add(jsonData);
+        }
       }
+    } else {
+      print(
+          "${DataAccessExceptionMessages.CouldNotRetrieveWFs} Status: ${response.statusCode} ${response.reasonPhrase}");
     }
-  } else {
-    print(
-        "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
+  } catch (e) {
+    throw RetreivalFailedException(
+        DataAccessExceptionMessages.CouldNotRetrieveWFs);
   }
   return result;
 }
@@ -52,8 +65,8 @@ Future<WindFarm?> getWindFarmById(String id) async {
   WindFarm? result;
   try {
     final response = await http.get(
-      Uri.parse("https://api.deck1.com/sites/$id"),
-      headers: {"x-d1-apikey": "f5Bii7gYwvDZ"},
+      Uri.parse("$url/$id"),
+      headers: {apikeyname: apikey},
     );
     if (response.statusCode == 200) {
       final extractedData = json.decode(response.body);
@@ -96,8 +109,8 @@ Future<List<WindFarmDailyAnalytics>?> getWindFarmAnalytics(
   try {
     final response = await http.get(
       Uri.parse(
-          "https://api.deck1.com/analytics/site/$id?startDate=$startDate&endDate=$endDate&includeMeasurements=false"),
-      headers: {"x-d1-apikey": "f5Bii7gYwvDZ"},
+          "$analyticsurl/$id?startDate=$startDate&endDate=$endDate&includeMeasurements=false"),
+      headers: {apikeyname: apikey},
     );
     if (response.statusCode == 200) {
       final extractedData = json.decode(response.body);

@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
+import '../Pages/nav_bar_pages/navbar_home.dart';
 import '../providers/theme_provider.dart';
 
 // ignore: camel_case_types
@@ -36,7 +37,7 @@ class _WindFarmMapState extends State<WindFarmMap> {
               center: LatLng(56.5, 9.5),
               interactiveFlags:
                   InteractiveFlag.pinchZoom | InteractiveFlag.drag,
-              zoom: 8,
+              zoom: 6,
             ),
             children: [
           TileLayer(
@@ -61,6 +62,7 @@ class _WindFarmMapState extends State<WindFarmMap> {
                           borderStrokeWidth: 3),
                       builder: (context, markers) {
                         return FloatingActionButton(
+                          heroTag: null,
                           onPressed: null,
                           child: Text(markers.length.toString()),
                         );
@@ -77,29 +79,31 @@ class _WindFarmMapState extends State<WindFarmMap> {
     if (windfarms != null) {
       for (var wf in windfarms) {
         markers.add(Marker(
-            width: 80.0.w,
+            width: 90.0.w,
             height: 90.0.h,
             point: wf.locationLatLng!,
-            builder: (ctx) => Column(children: [
-                  GestureDetector(
-                      onTap: () => onMarkerPressed(wf.id!),
-                      child: Image(
-                        width: 25.0.w,
-                        height: 35.0.h,
-                        image: wf.id == dataAccessProvider.selectedWindfarmId
-                            ? const AssetImage(MenuIcons.activeMapMarker)
-                            : (themeProvider.getTheme().brightness ==
-                                    Brightness.dark
-                                ? const AssetImage(MenuIcons.darkMapMarker)
-                                : const AssetImage(MenuIcons.mapMarker)),
-                      )),
-                  const SizedBox(height: 10),
-                  Text(
-                    wf.name!,
-                    style: Theme.of(context).textTheme.bodySmall,
-                    textAlign: TextAlign.center,
-                  ),
-                ])));
+            builder: (ctx) => GestureDetector(
+                onTap: () => onMarkerPressed(wf.id!),
+                child: Column(
+                  children: [
+                    Image(
+                      width: 25.0.w,
+                      height: 35.0.h,
+                      image: wf.id == dataAccessProvider.selectedWindfarmId
+                          ? const AssetImage(MenuIcons.activeMapMarker)
+                          : (themeProvider.getTheme().brightness ==
+                                  Brightness.dark
+                              ? const AssetImage(MenuIcons.darkMapMarker)
+                              : const AssetImage(MenuIcons.mapMarker)),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      wf.name!.replaceAll(' ', '\n'),
+                      style: Theme.of(context).textTheme.bodySmall,
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ))));
       }
     }
     return markers;
@@ -107,5 +111,6 @@ class _WindFarmMapState extends State<WindFarmMap> {
 
   void onMarkerPressed(String windfarmId) {
     widget.onWindFarmSelected(windfarmId);
+    const NavBarHome();
   }
 }

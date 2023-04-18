@@ -79,3 +79,56 @@ class Calculations {
     return totalEmissions;
   }
 }
+
+/////////////////////////////////////////////////////////////////////
+
+int wfMWhHome =
+    3; // months 1 MWh of energy from a windfarm can supply a single family home for
+double coalMWhHome = wfMWhHome /
+    2; // months of time 1MWh of energy from a coal plant can supply a single family home for
+int wfMWhCar =
+    3500; // km 1 MWh of energy from a wind farm can be driven with in a Tesla Model S
+double coalMWhCar = wfMWhCar /
+    100; // km 1 MWh of energy from a coal plant can be driven with in a diesel car
+
+int earthCircumference = 40075; //km
+int engineEfficiency = 17; // km/l
+double dieselEmissionsPerLiter = 0.00268; // t of CO2/l
+double wfEmissionsperMWh = 0.01; // t of CO2/MWh (in transport + maintenance)
+
+double coalMWhHomeInYears(double totalEnergy) {
+  double time = (totalEnergy * coalMWhHome) / 12;
+  return time;
+}
+
+double wfMwhHomeInYears(double totalEnergy) {
+  double time = (totalEnergy * wfMWhHome) / 12;
+  return time;
+}
+
+double coalMwhCarInKm(double totalEnergy) {
+  double distance = (totalEnergy * coalMWhCar);
+  return distance;
+}
+
+double wfMwhCarInKm(double totalEnergy) {
+  double distance = (totalEnergy * wfMWhCar);
+  return distance;
+}
+
+int dieselAroundGlobeInTons(double totalEnergy) {
+  int emissions = (dieselTimesAroundGlobe(totalEnergy) *
+          ((earthCircumference / engineEfficiency) * dieselEmissionsPerLiter))
+      .round();
+  return emissions;
+}
+
+int dieselTimesAroundGlobe(double totalEnergy) {
+  int times = ((coalMwhCarInKm(totalEnergy)) / earthCircumference).round();
+  return times;
+}
+
+int electricTimesAroundGlobe(double totalEnergy) {
+  int times = ((wfMwhCarInKm(totalEnergy)) / earthCircumference).round();
+  return times;
+}
