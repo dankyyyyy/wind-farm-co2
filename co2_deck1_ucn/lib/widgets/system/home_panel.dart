@@ -29,6 +29,10 @@ class HomePanelState extends State<HomePanel> {
   int index = 0;
 
   @override
+  void initState() {
+    super.initState();}
+
+  @override
   Widget build(BuildContext context) {
     // size settings for the sliding up panel
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.095;

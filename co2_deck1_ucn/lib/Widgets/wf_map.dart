@@ -62,6 +62,7 @@ class _WindFarmMapState extends State<WindFarmMap> {
                           borderStrokeWidth: 3),
                       builder: (context, markers) {
                         return FloatingActionButton(
+                          heroTag: null,
                           onPressed: null,
                           child: Text(markers.length.toString()),
                         );

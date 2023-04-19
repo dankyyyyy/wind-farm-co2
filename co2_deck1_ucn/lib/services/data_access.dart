@@ -1,6 +1,7 @@
 import 'dart:convert';
 import "package:co2_deck1_ucn/models/wind_farm.dart";
 import 'package:co2_deck1_ucn/models/wind_farm_analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart' as http;
 
@@ -42,8 +43,10 @@ Future<List<WindFarm>?> getAllWindFarms() async {
       }
     }
   } else {
-    print(
+    if (kDebugMode) {
+      print(
         "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
+    }
   }
   return result;
 }
@@ -80,11 +83,15 @@ Future<WindFarm?> getWindFarmById(String id) async {
 
       result = apiData;
     } else {
-      print(
+      if (kDebugMode) {
+        print(
           "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
+      }
     }
   } catch (e) {
-    print("An error occurred while retrieving windfarm with id:$id.");
+    if (kDebugMode) {
+      print("An error occurred while retrieving windfarm with id:$id.");
+    }
   }
   return result;
 }
@@ -107,15 +114,21 @@ Future<List<WindFarmDailyAnalytics>?> getWindFarmAnalytics(
       } else {
         for (int i = 0; i < extractedData.length; i++) {
           result.add(WindFarmDailyAnalytics.fromJson(extractedData[i]));
-          print(extractedData[i].toString());
+          if (kDebugMode) {
+            print(extractedData[i].toString());
+          }
         }
       }
     } else {
-      print(
+      if (kDebugMode) {
+        print(
           "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
+      }
     }
   } catch (e) {
-    print("An error occurred while retrieving windfarm with id: $id.");
+    if (kDebugMode) {
+      print("An error occurred while retrieving windfarm with id: $id.");
+    }
   }
   return result;
 }
@@ -129,7 +142,9 @@ Future<double> getYTDAnalytics(
               result += element.helicoptersTotal + element.vesselsTotal;
             }));
   } catch (e) {
-    print('An error occurred while retrieving YTD wind farm analytics: $e');
+    if (kDebugMode) {
+      print('An error occurred while retrieving YTD wind farm analytics: $e');
+    }
   }
   return result;
 }

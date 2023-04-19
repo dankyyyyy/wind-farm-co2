@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -195,18 +196,24 @@ class HomeChart extends StatelessWidget {
           dailyAnalytic(startDate.add(Duration(days: i)));
       if (analytic != null) {
         double total = analytic.helicoptersTotal + analytic.vesselsTotal;
-        print("max y: total $total vs max $max");
+        if (kDebugMode) {
+          print("max y: total $total vs max $max");
+        }
         max = total > max ? total : max;
       }
     }
-    print("Max is $max and chart max is ${max * 1.2}");
+    if (kDebugMode) {
+      print("Max is $max and chart max is ${max * 1.2}");
+    }
     return max * 1.2;
   }
 
   int daysBetween() {
     int days = endDate.difference(startDate).inDays + 1;
-    print(
+    if (kDebugMode) {
+      print(
         "Days between ${DateFormat('EEEE, dd.MM.yyyy').format(startDate)} and ${DateFormat('EEEE, dd.MM.yyyy').format(endDate)} is $days days.");
+    }
     return days;
   }
 }

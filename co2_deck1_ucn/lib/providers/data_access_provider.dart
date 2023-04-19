@@ -87,8 +87,8 @@ class DataAccessProvider extends ChangeNotifier {
       listOfAnalytics?.clear();
       listOfAnalytics?.addAll(analytics!);
       //if (!isInit) {
-        isLoadingAnalytics = false;
-        notifyListeners();
+      isLoadingAnalytics = false;
+      notifyListeners();
       //}
     }
   }
@@ -108,5 +108,10 @@ class DataAccessProvider extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
     return analytics;
+  }
+
+  void clearData() {
+    _windfarmId = "";
+    notifyListeners();
   }
 }

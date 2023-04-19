@@ -6,20 +6,19 @@ class WindFarmDailyAnalytics {
   late double vesselsTotal;
   bool empty = false;
 
-  WindFarmDailyAnalytics({
-    this.id,
-    this.date,
-    this.dateString,
-    this.helicoptersTotal = 0,
-    this.vesselsTotal = 0,
-    this.empty = false
-  });
+  WindFarmDailyAnalytics(
+      {this.id,
+      this.date,
+      this.dateString,
+      this.helicoptersTotal = 0,
+      this.vesselsTotal = 0,
+      this.empty = false});
 
   WindFarmDailyAnalytics.fromJson(Map<String, dynamic> json) {
     id = json['siteId'];
     date = DateTime.parse(json['date']);
     dateString = json['date'].toString().substring(0, 10);
-   
+
     helicoptersTotal = 0;
     if (json['helicopters'] != null) {
       json['helicopters'].forEach((h) {
@@ -33,14 +32,13 @@ class WindFarmDailyAnalytics {
       });
     }
 
-    if(json['helicopters'] == null && json['vessels'] == null) {
+    if (json['helicopters'] == null && json['vessels'] == null) {
       empty = true;
     }
   }
 
   @override
   String toString() {
-    // TODO: implement toString
     return "$dateString: $helicoptersTotal, $vesselsTotal";
   }
 }

@@ -20,17 +20,6 @@ class NavBarHomeState extends State<NavBarHome> {
   final panelUtils = PanelUtils();
   final panelController = PanelController();
 
-  late final DataAccessProvider windfarmData;
-  @override
-  void initState() {
-    super.initState();
-    DataAccessProvider tempWindfarmData =
-        Provider.of<DataAccessProvider>(context, listen: false);
-    if (tempWindfarmData.selectedWindfarmId.isNotEmpty) {
-      tempWindfarmData.getAnalytics(tempWindfarmData.selectedWindfarmId);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<DataAccessProvider>(builder: (context, snapshot, child) {

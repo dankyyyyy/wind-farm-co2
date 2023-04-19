@@ -6,6 +6,7 @@ import '../../pages/menu_drawer_pages/home_page.dart';
 import '../../pages/menu_drawer_pages/settings_page.dart';
 import '../../Resources/images.dart';
 import '../../Resources/menu_icons.dart';
+import '../../providers/data_access_provider.dart';
 import '../../providers/selection_provider.dart';
 import '../../providers/theme_provider.dart';
 
@@ -16,6 +17,8 @@ class MenuDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     final selectionProvider = context.watch<SelectionProvider>();
+    final dataAccessProvider =
+        Provider.of<DataAccessProvider>(context, listen: false);
     return Drawer(
         child: Builder(
             builder: (context) => ListView(padding: EdgeInsets.zero, children: [
@@ -55,6 +58,7 @@ class MenuDrawer extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       onTap: () {
+                        dataAccessProvider.clearData();
                         context.read<SelectionProvider>().selectedTile = 0;
                         Navigator.push(
                             context,
