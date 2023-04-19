@@ -75,6 +75,12 @@ flutter:
 
   # json
       - assets/data/windfarm_data.json
+  
+  # glossary .txts
+      - assets/data/glossary_texts/green_traditional.txt
+      - assets/data/glossary_texts/onshore_offshore.txt
+      - assets/data/glossary_texts/taxes.txt
+      - assets/data/glossary_texts/helicopters_vessels.txt
 
   # splash screens
       - assets/images/splash_screens/splash_screen.png
@@ -92,6 +98,7 @@ flutter:
       - assets/images/menu_icons/classic/about.png
       - assets/images/menu_icons/classic/comparisons.png
       - assets/images/menu_icons/classic/map_marker.png
+      - assets/images/menu_icons/classic/windfarm.png
 
   # dark mode
   # company logos
@@ -106,7 +113,8 @@ flutter:
       - assets/images/menu_icons/darkmode/about.png
       - assets/images/menu_icons/darkmode/comparisons.png
       - assets/images/menu_icons/darkmode/map_marker.png
-
+      - assets/images/menu_icons/darkmode/windfarm.png
+      
 # menu icons (active)
       - assets/images/menu_icons/active/home.png
       - assets/images/menu_icons/active/glossary.png

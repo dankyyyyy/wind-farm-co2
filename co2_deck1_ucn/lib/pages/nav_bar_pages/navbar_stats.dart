@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
 import '../../providers/data_access_provider.dart';
-import 'package:co2_deck1_ucn/widgets/wf_chart.dart';
+import 'package:co2_deck1_ucn/widgets/charts/wf_chart.dart';
 
 import '../../utils/panel_utils.dart';
 

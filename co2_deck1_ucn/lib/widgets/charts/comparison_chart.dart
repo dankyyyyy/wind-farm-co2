@@ -5,8 +5,8 @@ import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../models/wind_farm_analytics.dart';
-import '../utils/comparison_calculations.dart';
+import '../../models/wind_farm_analytics.dart';
+import '../../utils/comparison_calculations.dart';
 
 class ComparisonChart extends StatelessWidget {
   final WindFarm? windFarm;

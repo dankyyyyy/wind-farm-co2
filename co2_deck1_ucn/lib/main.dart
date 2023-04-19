@@ -40,10 +40,10 @@ class Program extends StatelessWidget {
           title: 'DECK1 CO2',
           theme: themeProvider.getTheme(),
           debugShowCheckedModeBanner: false,
-		  localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          MonthYearPickerLocalizations.delegate,
-        ],
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            MonthYearPickerLocalizations.delegate,
+          ],
           home: const WindFarmProvider(),
         );
       },

@@ -1,0 +1,15 @@
+While wind farms are a major contributor to the production of clean and renewable energy, it would be incorrect to say that the production of wind generated energy does not emit carbon dioxide into the atmosphere.
+
+The maintenance and operation of these farms require frequent transport of personnel and equipment via helicopters and vessels. The emissions from these transportation methods have become a topic of concern and have led to the recent implementation of regulations such as the Energy Efficiency Existing Ship Index (EEXI) and the Carbon Intensity Indicator (CII) to reduce carbon emissions. 
+
+According to an article by PESWind, using a hybrid CTV (Crew Transfer Vessel) rather than a conventional one can reduce CO2 emissions by 41% during a 12-hour trip to a wind farm situated 40 nautical miles offshore. If a helicopter is used instead of a CTV, CO2 emissions can be reduced by 73%, as the use of helicopters is more efficient in terms of time and accessibility.
+
+Helicopters  can extend the operational window by providing stable access to the wind farm during the fall and winter months, which is not possible with CTVs due to their limited maneuverability. However, helicopters have a higher cost compared to CTVs, and they are not suitable for transporting large quantities of equipment and personnel.
+
+Although these figures may suggest that the use of helicopters is a more environmentally friendly option, it is important to note that they emit more carbon than CTVs. However, the reduction in transport time and increased accessibility can offset the environmental impact of using helicopters, which is why it is important to consider the context of each trip to figure out which option is more suitable.
+
+Additionally, the implementation of the EEXI and CII regulations have put pressure on the industry to reduce emissions from both CTVs and helicopters. The EEXI is a regulation introduced by the International Maritime Organization (IMO) to reduce the carbon emissions of existing ships. It requires ships to meet a certain energy efficiency rating, which will be determined based on the ship's age, size, and type.
+
+The CII, on the other hand, is a rating system that ranks ships according to their carbon emissions per unit of transport work done. The CII rating system is currently being developed by the IMO and will be used to identify and monitor ships that emit excessive amounts of carbon. The implementation of these regulations will encourage the industry to adopt more environmentally friendly technologies, such as hybrid and electric vessels, and will force the retirement of old and inefficient vessels. The regulations will also lead to a reduction in transport costs as newer, more efficient vessels will be more cost-effective to operate.
+
+Ultimately, the industry will need to adopt more environmentally friendly technologies to reduce emissions and minimize the environmental impact of the transport of personnel and equipment to wind farms. This means that the green energy will become even greener in the upcoming years, as the industry will be pushed to evolve to adhere to these regulations.
