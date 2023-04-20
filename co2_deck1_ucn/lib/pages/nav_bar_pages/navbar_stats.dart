@@ -144,7 +144,7 @@ class NavBarStatsState extends State<NavBarStats> {
                   ),
                   Flexible(
                     child: Text(
-                      "Metric tons of CO₂ emitted by helicopters and vessels during maintainance of the windfarm. The windfarm itself is not emitting any CO₂.",
+                      "This chart depicts values in metric tons of CO₂ emitted by helicopters and vessels during maintainance of the windfarm. The windfarm itself is not emitting any CO₂.",
                       style: TextStyle(fontSize: 16),
                     ),
                   ),

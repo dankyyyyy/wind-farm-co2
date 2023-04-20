@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 import 'package:provider/provider.dart';
 import '../../providers/data_access_provider.dart';
+import '../../utils/comparison_calculations.dart';
 import '../../utils/panel_utils.dart';
 
 class NavBarComparisons extends StatefulWidget {
@@ -29,6 +30,7 @@ class NavBarComparisonsState extends State<NavBarComparisons> {
   }
 
   final panelUtils = PanelUtils();
+  final calculations = Calculations();
 
   @override
   Widget build(BuildContext context) {
@@ -127,15 +129,172 @@ class NavBarComparisonsState extends State<NavBarComparisons> {
               margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
-                  child: Row(children: const [
-                    Icon(Icons.info_outline),
-                    SizedBox(
+                  child: Row(children: [
+                    const Icon(Icons.info_outline),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                        child: RichText(
+                            text: TextSpan(children: [
+                      TextSpan(
+                        text:
+                            "This chart depicts the CO₂ emissions in metric tons, which would get produced if these different sources generated the same amount of energy as the wind farm.",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      TextSpan(
+                          text: "\n\nThe total energy here is ",
+                          style: Theme.of(context).textTheme.bodySmall),
+                      TextSpan(
+                          // ignore: unnecessary_string_interpolations
+                          text: "${totalEnergy()}",
+                          style: Theme.of(context).textTheme.labelSmall),
+                      TextSpan(
+                          text: " generated in ",
+                          style: Theme.of(context).textTheme.bodySmall),
+                      TextSpan(
+                          text: "${daysBetween()}",
+                          style: Theme.of(context).textTheme.labelSmall),
+                      TextSpan(
+                          text: " days.",
+                          style: Theme.of(context).textTheme.bodySmall)
+                    ])))
+                  ]))),
+          Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
+                  child: Column(children: [
+                    Text(
+                      "With this amount of energy, you could:",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      textAlign: TextAlign.left,
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(width: 10),
+                          const Icon(Icons.circle, size: 10),
+                          const SizedBox(width: 10),
+                          Expanded(
+                              child: RichText(
+                                  textAlign: TextAlign.left,
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                      text:
+                                          "If driving an electric car using wind energy, cover a distance of approximately ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                    TextSpan(
+                                      text: "${electricDistance()}km",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
+                                    ),
+                                    TextSpan(
+                                      text: " , which is equivalent to ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                    TextSpan(
+                                      text: electricAroundGlobe(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          " trips around the earth.\nThis would emit no additional CO₂.",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                  ])))
+                        ]),
+                    const SizedBox(height: 20),
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(width: 10),
+                          const Icon(Icons.circle, size: 10),
+                          const SizedBox(width: 10),
+                          Expanded(
+                              child: RichText(
+                                  textAlign: TextAlign.left,
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                      text:
+                                          "If driving a diesel car, cover a distance of approximately ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                    TextSpan(
+                                      text: "${dieselDistance()}km",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
+                                    ),
+                                    TextSpan(
+                                      text: " , which is equivalent to ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                    TextSpan(
+                                      text: dieselAroundGlobe(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          " trips around the earth. The combustion of fuel would emit ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                    TextSpan(
+                                      text: dieselAroundGlobeEmissions(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
+                                    ),
+                                    TextSpan(
+                                      text: " additional tons of CO₂.",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                  ])))
+                        ]),
+                  ]))),
+          Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
+                  child: Row(children: [
+                    const Icon(Icons.info_outline),
+                    const SizedBox(
                       width: 10,
                     ),
                     Flexible(
                         child: Text(
-                      "Text about the comparison!",
-                      style: TextStyle(fontSize: 16),
+                      "Please note that these results are approximations based on information obtained from publicly accessible sources.",
+                      style: Theme.of(context).textTheme.bodySmall,
+                      textAlign: TextAlign.center,
                     ))
                   ])))
         ]);
@@ -236,5 +395,66 @@ class NavBarComparisonsState extends State<NavBarComparisons> {
     windFarmProvider.endDate = endDate;
     windFarmProvider.getAnalytics(windFarmProvider.selectedWindfarmId,
         isInit: false);
+  }
+
+  int daysBetween() {
+    DataAccessProvider windFarmProvider =
+        Provider.of<DataAccessProvider>(context, listen: false);
+    DateTime startDate = windFarmProvider.startDate;
+    DateTime endDate = windFarmProvider.endDate;
+    int days = endDate.difference(startDate).inDays;
+    return days;
+  }
+
+  double totalEnergyCalc() {
+    double totalEnergy;
+    DataAccessProvider windFarmProvider =
+        Provider.of<DataAccessProvider>(context, listen: false);
+    int? turbines = windFarmProvider
+        .getWindFarmById(windFarmProvider.selectedWindfarmId)
+        ?.windTurbines;
+    double? capacity = windFarmProvider
+        .getWindFarmById(windFarmProvider.selectedWindfarmId)
+        ?.power;
+    totalEnergy = calculations.calculateEnergyInDays(
+        daysBetween(), turbines!, capacity!, calculations.expectation);
+    return totalEnergy;
+  }
+
+  String totalEnergy() {
+    String result;
+    double totalEnergy = totalEnergyCalc();
+
+    if (daysBetween() >= 7) {
+      result = "${(totalEnergy / 1000).round()}GWh";
+    } else {
+      result = "${totalEnergy.round()}MWh";
+    }
+    return result;
+  }
+
+  String electricDistance() {
+    String distance = wfMwhCarInKm(totalEnergyCalc()).round().toString();
+    return distance;
+  }
+
+  String dieselDistance() {
+    String distance = coalMwhCarInKm(totalEnergyCalc()).round().toString();
+    return distance;
+  }
+
+  String electricAroundGlobe() {
+    String times = electricTimesAroundGlobe(totalEnergyCalc()).toString();
+    return times;
+  }
+
+  String dieselAroundGlobe() {
+    String times = dieselTimesAroundGlobe(totalEnergyCalc()).toString();
+    return times;
+  }
+
+  String dieselAroundGlobeEmissions() {
+    String tons = dieselAroundGlobeInTons(totalEnergyCalc()).toString();
+    return tons;
   }
 }

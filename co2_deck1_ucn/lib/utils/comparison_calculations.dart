@@ -94,17 +94,6 @@ double coalMWhCar = wfMWhCar /
 int earthCircumference = 40075; //km
 int engineEfficiency = 17; // km/l
 double dieselEmissionsPerLiter = 0.00268; // t of CO2/l
-double wfEmissionsperMWh = 0.01; // t of CO2/MWh (in transport + maintenance)
-
-double coalMWhHomeInYears(double totalEnergy) {
-  double time = (totalEnergy * coalMWhHome) / 12;
-  return time;
-}
-
-double wfMwhHomeInYears(double totalEnergy) {
-  double time = (totalEnergy * wfMWhHome) / 12;
-  return time;
-}
 
 double coalMwhCarInKm(double totalEnergy) {
   double distance = (totalEnergy * coalMWhCar);

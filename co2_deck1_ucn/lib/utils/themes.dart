@@ -17,16 +17,21 @@ final ThemeData lightTheme = ThemeData(
             TextStyle(fontFamily: 'Leto', fontSize: 18, color: Colors.black),
         bodyLarge:
             TextStyle(fontFamily: 'Leto', fontSize: 20, color: Colors.black),
+        labelSmall: TextStyle(
+            fontFamily: 'Leto',
+            fontSize: 16,
+            color: Color.fromARGB(255, 77, 119, 157),
+            fontWeight: FontWeight.bold),
         labelMedium: TextStyle(
             fontFamily: 'Leto',
             fontSize: 18,
             color: Color.fromARGB(255, 77, 119, 157),
-            decoration: TextDecoration.underline),
+            fontWeight: FontWeight.bold),
         labelLarge: TextStyle(
           fontFamily: 'Leto',
           fontSize: 20,
           color: Color.fromARGB(255, 77, 119, 157),
-          decoration: TextDecoration.underline,
+          fontWeight: FontWeight.bold,
         ),
         displaySmall: TextStyle(
             fontFamily: 'BebasNeue',
@@ -68,17 +73,23 @@ final ThemeData darkTheme = ThemeData(
             TextStyle(fontFamily: 'Leto', fontSize: 18, color: Colors.white),
         bodyLarge:
             TextStyle(fontFamily: 'Leto', fontSize: 20, color: Colors.white),
+        labelSmall: TextStyle(
+          fontFamily: 'Leto',
+          fontSize: 16,
+          color: Color.fromARGB(255, 77, 119, 157),
+          fontWeight: FontWeight.bold,
+        ),
         labelMedium: TextStyle(
           fontFamily: 'Leto',
           fontSize: 18,
           color: Color.fromARGB(255, 77, 119, 157),
-          decoration: TextDecoration.underline,
+          fontWeight: FontWeight.bold,
         ),
         labelLarge: TextStyle(
           fontFamily: 'Leto',
           fontSize: 20,
           color: Color.fromARGB(255, 77, 119, 157),
-          decoration: TextDecoration.underline,
+          fontWeight: FontWeight.bold,
         ),
         displaySmall: TextStyle(
             fontFamily: 'BebasNeue',

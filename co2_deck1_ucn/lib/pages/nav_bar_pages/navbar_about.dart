@@ -42,14 +42,25 @@ class NavBarAboutState extends State<NavBarAbout> {
           panelUtils.buildHeader(
               context, snapshot.getWindFarmById(snapshot.selectedWindfarmId)),
           Padding(
-              padding: const EdgeInsets.fromLTRB(25, 0, 30, 0),
+              padding: const EdgeInsets.fromLTRB(25, 0, 30, 25),
               child: Column(children: [
                 Image(image: AssetImage(logoPath!)),
                 const SizedBox(height: 20),
-                Text(
-                  description!,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodySmall,
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  child: Flexible(
+                      child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 15, 15, 20),
+                    child: Text(
+                      description!,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  )),
                 ),
               ])),
           Container(
