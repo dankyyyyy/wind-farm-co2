@@ -445,12 +445,16 @@ class NavBarComparisonsState extends State<NavBarComparisons> {
   }
 
   String electricDistance() {
-    String distance = wfMwhCarInKm(totalEnergyCalc()).round().toString();
+    final formatter = NumberFormat('#,##0', 'en_US');
+    int unformattedDistance = wfMwhCarInKm(totalEnergyCalc()).round();
+    String distance = formatter.format(unformattedDistance).toString();
     return distance;
   }
 
   String dieselDistance() {
-    String distance = coalMwhCarInKm(totalEnergyCalc()).round().toString();
+    final formatter = NumberFormat('#,##0', 'en_US');
+    int unformattedDistance = coalMwhCarInKm(totalEnergyCalc()).round();
+    String distance = formatter.format(unformattedDistance).toString();
     return distance;
   }
 

@@ -45,8 +45,6 @@ class NavBarAboutState extends State<NavBarAbout> {
           ),
           Expanded(
               child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-            panelUtils.buildHeader(
-                context, snapshot.getWindFarmById(snapshot.selectedWindfarmId)),
             Padding(
                 padding: const EdgeInsets.fromLTRB(25, 0, 30, 25),
                 child: Column(children: [
