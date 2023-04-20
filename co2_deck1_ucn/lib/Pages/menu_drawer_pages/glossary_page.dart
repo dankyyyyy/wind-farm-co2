@@ -89,46 +89,49 @@ class GlossaryPageState extends State<GlossaryPage> {
                         MaterialPageRoute(
                             builder: (context) => GlossaryDetails(title)));
                   }),
-            Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                margin: const EdgeInsets.all(12),
-                child: Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 25, 15, 15),
-                    child: Row(children: [
-                      const Icon(
-                        Icons.info_outline,
-                        size: 40,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Align(
-                                alignment: Alignment.center,
-                                child: Text("Fun Fact",
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall)),
-                            const SizedBox(height: 5),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                textAlign: TextAlign.left,
-                                funfacts[generateRandomFunFact()],
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            )
-                          ],
+            SizedBox(
+              height: 240.h,
+              child: Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  margin: const EdgeInsets.all(12),
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(15, 25, 15, 15),
+                      child: Row(children: [
+                        const Icon(
+                          Icons.info_outline,
+                          size: 40,
                         ),
-                      )
-                    ]))),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: Text("Fun Fact",
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displaySmall)),
+                              const SizedBox(height: 5),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  textAlign: TextAlign.left,
+                                  funfacts[generateRandomFunFact()],
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ]))),
+            ),
           ],
         ));
   }
@@ -147,7 +150,7 @@ class GlossaryPageState extends State<GlossaryPage> {
   }
 
   static List<String> funfacts = <String>[
-    "Windmills have been in use since 2000BCE, first developed in Persia and China. Ancient mariners used wind power to sail to different lands, while farmers used it to pump water and for grinding grains.",
+    "Windmills have been in use since 2000BCE, first developed in Persia and China.",
     "The first wind turbine was built in Scotland in 1887 by Professor James Blyth.",
     "The world's largest offshore wind farm is Hornsea 1, off the coast of England, with a capacity of 1.2 GW.",
     "The world's largest onshore wind farm is the Gansu wind farm in China, with a capacity of over 7 GW.",

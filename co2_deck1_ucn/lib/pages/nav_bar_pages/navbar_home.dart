@@ -113,6 +113,7 @@ class NavBarHomeState extends State<NavBarHome> {
                             children: [
                               SizedBox(
                                   height: 200,
+                                  width: 350.w,
                                   child: AspectRatio(
                                       aspectRatio: 16 / 9,
                                       child: Container(

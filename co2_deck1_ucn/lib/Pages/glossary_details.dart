@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../Widgets/system/menu_drawer.dart';
@@ -73,8 +74,8 @@ class GlossaryDetails extends StatelessWidget {
             ),
           )),
           SizedBox(
-              height: 90,
-              width: 400,
+              height: 90.h,
+              width: 400.w,
               child: Card(
                 elevation: 2,
                 shape: RoundedRectangleBorder(
