@@ -1,8 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../Widgets/system/menu_drawer.dart';
+import '../../providers/theme_provider.dart';
+import '../../utils/glossary_utils.dart';
 import '../glossary_details.dart';
 
 class GlossaryPage extends StatefulWidget {
@@ -13,8 +17,12 @@ class GlossaryPage extends StatefulWidget {
 }
 
 class GlossaryPageState extends State<GlossaryPage> {
+  final glossaryUtils = GlossaryUtils();
+
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Glossary'),
@@ -41,10 +49,27 @@ class GlossaryPageState extends State<GlossaryPage> {
                         child: Padding(
                             padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
                             child: Row(children: [
-                              const Icon(
-                                Icons.info_outline,
-                                size: 40,
-                              ),
+                              CircleAvatar(
+                                  radius: 40.w.h,
+                                  backgroundColor: Colors.transparent,
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: AssetImage(
+                                              themeProvider
+                                                          .getTheme()
+                                                          .brightness ==
+                                                      Brightness.dark
+                                                  ? glossaryUtils
+                                                      .determineIconDark(title)
+                                                  : glossaryUtils
+                                                      .determineIconLight(
+                                                          title),
+                                            ),
+                                          )))),
                               const SizedBox(
                                 width: 10,
                               ),

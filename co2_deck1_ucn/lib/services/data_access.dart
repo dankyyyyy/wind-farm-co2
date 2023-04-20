@@ -52,8 +52,10 @@ Future<List<WindFarm>?> getAllWindFarms() async {
         }
       }
     } else {
-      print(
+      if (kDebugMode) {
+        print(
           "${DataAccessExceptionMessages.CouldNotRetrieveWFs} Status: ${response.statusCode} ${response.reasonPhrase}");
+      }
     }
   } catch (e) {
     throw RetreivalFailedException(

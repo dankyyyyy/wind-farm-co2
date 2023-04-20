@@ -1,6 +1,44 @@
 import 'package:flutter/services.dart';
 
+import '../resources/glossary_icons.dart';
+
 class GlossaryUtils {
+  String determineIconLight(String title) {
+    String path = "";
+    if (title.contains("Green Energy")) {
+      String path = GlossaryIcons.greenVsTraditional;
+      return path;
+    } else if (title.contains("Onshore")) {
+      String path = GlossaryIcons.onshoreOffshore;
+      return path;
+    } else if (title.contains("Rundown")) {
+      String path = GlossaryIcons.taxes;
+      return path;
+    } else if (title.contains("Helicopters")) {
+      String path = GlossaryIcons.helicoptersVsVessels;
+      return path;
+    }
+    return path;
+  }
+
+  String determineIconDark(String title) {
+    String path = "";
+    if (title.contains("Green Energy")) {
+      String path = GlossaryIcons.darkGreenVsTraditional;
+      return path;
+    } else if (title.contains("Onshore")) {
+      String path = GlossaryIcons.darkOnshoreOffshore;
+      return path;
+    } else if (title.contains("Rundown")) {
+      String path = GlossaryIcons.darkTaxes;
+      return path;
+    } else if (title.contains("Helicopters")) {
+      String path = GlossaryIcons.darkHelicoptersVsVessels;
+      return path;
+    }
+    return path;
+  }
+
   String? determineContent(String title) {
     if (title.contains("Green Energy")) {
       String content = "assets/data/glossary_texts/green_traditional.txt";
@@ -13,6 +51,27 @@ class GlossaryUtils {
       return content;
     } else if (title.contains("Helicopters")) {
       String content = "assets/data/glossary_texts/helicopters_vessels.txt";
+      return content;
+    }
+    return null;
+  }
+
+  Future<String?> loadContent(String title) async {
+    if (title.contains("Green Energy")) {
+      final content = await rootBundle
+          .loadString('assets/data/glossary_texts/green_traditional.txt');
+      return content;
+    } else if (title.contains("Onshore")) {
+      final content = await rootBundle
+          .loadString('assets/data/glossary_texts/onshore_offshore.txt');
+      return content;
+    } else if (title.contains("Rundown")) {
+      final content =
+          await rootBundle.loadString('assets/data/glossary_texts/taxes.txt');
+      return content;
+    } else if (title.contains("Helicopters")) {
+      final content = await rootBundle
+          .loadString('assets/data/glossary_texts/helicopters_vessels.txt');
       return content;
     }
     return null;
@@ -49,27 +108,6 @@ class GlossaryUtils {
             'imo.org', '/en/MediaCentre/HotTopics/Pages/EEXI-CII-FAQ.aspx')
       ];
       return sources;
-    }
-    return null;
-  }
-
-  Future<String?> loadContent(String title) async {
-    if (title.contains("Green Energy")) {
-      final content = await rootBundle
-          .loadString('assets/data/glossary_texts/green_traditional.txt');
-      return content;
-    } else if (title.contains("Onshore")) {
-      final content = await rootBundle
-          .loadString('assets/data/glossary_texts/onshore_offshore.txt');
-      return content;
-    } else if (title.contains("Rundown")) {
-      final content =
-          await rootBundle.loadString('assets/data/glossary_texts/taxes.txt');
-      return content;
-    } else if (title.contains("Helicopters")) {
-      final content = await rootBundle
-          .loadString('assets/data/glossary_texts/helicopters_vessels.txt');
-      return content;
     }
     return null;
   }

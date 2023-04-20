@@ -98,7 +98,15 @@ flutter:
       - assets/images/menu_icons/classic/about.png
       - assets/images/menu_icons/classic/comparisons.png
       - assets/images/menu_icons/classic/map_marker.png
-      - assets/images/menu_icons/classic/windfarm.png
+      - assets/images/menu_icons/classic/energy.png
+  
+  # glossary icons
+      - assets/images/glossary_icons/classic/green_traditional.png
+      - assets/images/glossary_icons/classic/helicopters_vessels.png
+      - assets/images/glossary_icons/classic/taxes.png
+      - assets/images/glossary_icons/classic/windfarm.png
+
+
 
   # dark mode
   # company logos
@@ -113,7 +121,7 @@ flutter:
       - assets/images/menu_icons/darkmode/about.png
       - assets/images/menu_icons/darkmode/comparisons.png
       - assets/images/menu_icons/darkmode/map_marker.png
-      - assets/images/menu_icons/darkmode/windfarm.png
+      - assets/images/menu_icons/darkmode/energy.png
       
 # menu icons (active)
       - assets/images/menu_icons/active/home.png
@@ -123,6 +131,13 @@ flutter:
       - assets/images/menu_icons/active/about.png
       - assets/images/menu_icons/active/comparisons.png
       - assets/images/menu_icons/active/map_marker.png
+
+# glossary icons
+      - assets/images/glossary_icons/darkmode/green_traditional.png
+      - assets/images/glossary_icons/darkmode/helicopters_vessels.png
+      - assets/images/glossary_icons/darkmode/taxes.png
+      - assets/images/glossary_icons/darkmode/windfarm.png
+
 
 # WF logos
       - assets/images/wf_details/logos/ao1_logo.png

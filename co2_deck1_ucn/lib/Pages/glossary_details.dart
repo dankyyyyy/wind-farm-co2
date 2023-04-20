@@ -73,7 +73,7 @@ class GlossaryDetails extends StatelessWidget {
             ),
           )),
           SizedBox(
-              height: 100,
+              height: 90,
               width: 400,
               child: Card(
                 elevation: 2,
@@ -82,7 +82,7 @@ class GlossaryDetails extends StatelessWidget {
                 ),
                 margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
                 child: Padding(
-                  padding: const EdgeInsets.all(30),
+                  padding: const EdgeInsets.all(20),
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(

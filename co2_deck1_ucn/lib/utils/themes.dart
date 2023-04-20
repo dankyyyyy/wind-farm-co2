@@ -76,19 +76,19 @@ final ThemeData darkTheme = ThemeData(
         labelSmall: TextStyle(
           fontFamily: 'Leto',
           fontSize: 16,
-          color: Color.fromARGB(255, 77, 119, 157),
+          color: Color.fromARGB(255, 121, 175, 225),
           fontWeight: FontWeight.bold,
         ),
         labelMedium: TextStyle(
           fontFamily: 'Leto',
           fontSize: 18,
-          color: Color.fromARGB(255, 77, 119, 157),
+          color: Color.fromARGB(255, 121, 175, 225),
           fontWeight: FontWeight.bold,
         ),
         labelLarge: TextStyle(
           fontFamily: 'Leto',
           fontSize: 20,
-          color: Color.fromARGB(255, 77, 119, 157),
+          color: Color.fromARGB(255, 121, 175, 225),
           fontWeight: FontWeight.bold,
         ),
         displaySmall: TextStyle(

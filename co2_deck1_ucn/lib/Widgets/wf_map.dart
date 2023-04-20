@@ -79,16 +79,16 @@ class _WindFarmMapState extends State<WindFarmMap> {
     if (windfarms != null) {
       for (var wf in windfarms) {
         markers.add(Marker(
-            width: 90.0.w,
-            height: 90.0.h,
+            width: 90.0,
+            height: 90.0,
             point: wf.locationLatLng!,
             builder: (ctx) => GestureDetector(
                 onTap: () => onMarkerPressed(wf.id!),
                 child: Column(
                   children: [
                     Image(
-                      width: 25.0.w,
-                      height: 35.0.h,
+                      width: 25.0,
+                      height: 35.0,
                       image: wf.id == dataAccessProvider.selectedWindfarmId
                           ? const AssetImage(MenuIcons.activeMapMarker)
                           : (themeProvider.getTheme().brightness ==

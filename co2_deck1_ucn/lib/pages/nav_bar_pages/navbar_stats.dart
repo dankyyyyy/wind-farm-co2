@@ -50,108 +50,113 @@ class NavBarStatsState extends State<NavBarStats> {
               ),
             ]);
       } else {
-        return ListView(padding: EdgeInsets.zero, children: <Widget>[
+        return Column(children: [
           panelUtils.buildHeader(
-              context, snapshot.getWindFarmById(snapshot.selectedWindfarmId)),
-          Card(
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 20, 10, 20),
-              child: Column(
-                children: [
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "CO₂ emissions in tons",
-                      style:
-                          TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const SizedBox(height: 18),
-                  Card(
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40.0),
-                    ),
-                    margin: const EdgeInsets.fromLTRB(12, 5, 12, 10),
-                    color: Colors.grey[400],
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: _monthBack,
-                            child: const Icon(Icons.arrow_back_ios,
-                                color: Colors.black),
-                          ),
-                          const SizedBox(width: 10),
-                          GestureDetector(
-                            onTap: _showDatePicker,
-                            child: Text(
-                              DateFormat("MMMM yyyy").format(_pickedDate),
-                              style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: _monthForward,
-                            child: const Icon(Icons.arrow_forward_ios,
-                                color: Colors.black),
-                          ),
-                        ],
+            context,
+            snapshot.getWindFarmById(snapshot.selectedWindfarmId),
+          ),
+          Expanded(
+              child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(15, 20, 10, 20),
+                child: Column(
+                  children: [
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "CO₂ emissions in tons",
+                        style: TextStyle(
+                            fontSize: 23, fontWeight: FontWeight.bold),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: Container(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                        height: 400,
-                        child: WindFarmChart(
-                            snapshot
-                                .getWindFarmById(snapshot.selectedWindfarmId),
-                            snapshot.startDate,
-                            snapshot.endDate),
-                      )),
-                  const SizedBox(height: 18),
-                  buildLegend(),
-                ],
-              ),
-            ),
-          ),
-          Card(
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
-              child: Row(
-                children: const [
-                  Icon(Icons.info_outline),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Flexible(
-                    child: Text(
-                      "This chart depicts values in metric tons of CO₂ emitted by helicopters and vessels during maintainance of the windfarm. The windfarm itself is not emitting any CO₂.",
-                      style: TextStyle(fontSize: 16),
+                    const SizedBox(height: 18),
+                    Card(
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                      margin: const EdgeInsets.fromLTRB(12, 5, 12, 10),
+                      color: Colors.grey[400],
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: _monthBack,
+                              child: const Icon(Icons.arrow_back_ios,
+                                  color: Colors.black),
+                            ),
+                            const SizedBox(width: 10),
+                            GestureDetector(
+                              onTap: _showDatePicker,
+                              child: Text(
+                                DateFormat("MMMM yyyy").format(_pickedDate),
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            GestureDetector(
+                              onTap: _monthForward,
+                              child: const Icon(Icons.arrow_forward_ios,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 10),
+                    AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: Container(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                          height: 400,
+                          child: WindFarmChart(
+                              snapshot
+                                  .getWindFarmById(snapshot.selectedWindfarmId),
+                              snapshot.startDate,
+                              snapshot.endDate),
+                        )),
+                    const SizedBox(height: 18),
+                    buildLegend(),
+                  ],
+                ),
               ),
             ),
-          )
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
+                child: Row(
+                  children: const [
+                    Icon(Icons.info_outline),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      child: Text(
+                        "This chart depicts values in metric tons of CO₂ emitted by helicopters and vessels during maintainance of the windfarm. The windfarm itself is not emitting any CO₂.",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ]))
         ]);
       }
     });
