@@ -72,7 +72,7 @@ class NavBarStatsState extends State<NavBarStats> {
                       child: Text(
                         "CO₂ emissions in tons",
                         style: TextStyle(
-                            fontSize: 23, fontWeight: FontWeight.bold),
+                            fontSize: 22, fontWeight: FontWeight.bold),
                       ),
                     ),
                     const SizedBox(height: 18),
@@ -163,12 +163,6 @@ class NavBarStatsState extends State<NavBarStats> {
   }
 
 //Additional options & methods
-  Widget buildInfographics() => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[]));
-
   Widget buildLegend() =>
       Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Row(children: [
@@ -198,13 +192,12 @@ class NavBarStatsState extends State<NavBarStats> {
       if (pickedDate == null) {
         return;
       }
-
       DataAccessProvider windfarmData =
           Provider.of<DataAccessProvider>(context, listen: false);
-      windfarmData.startDate = pickedDate.subtract(const Duration(days: 7));
-      windfarmData.endDate = pickedDate;
+      windfarmData.startDate = DateTime(pickedDate.year, pickedDate.month, 1);
+      windfarmData.endDate = DateTime(pickedDate.year, pickedDate.month,
+          DateUtils.getDaysInMonth(pickedDate.year, pickedDate.month));
       windfarmData.getAnalytics(windfarmData.selectedWindfarmId, isInit: false);
-
       setState(() {
         _pickedDate = pickedDate;
       });

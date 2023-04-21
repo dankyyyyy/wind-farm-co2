@@ -21,8 +21,8 @@ class DataAccessProvider extends ChangeNotifier {
   }
 
   String get selectedWindfarmId => _windfarmId;
-  DateTime _startDate = DateTime.now().subtract(const Duration(days: 7));
-  DateTime _endDate = DateTime.now();
+  DateTime _startDate = DateTime.now().subtract(const Duration(days: 8));
+  DateTime _endDate = DateTime.now().subtract(const Duration(days: 1));
 
   WindFarm? getWindFarmById(String id) {
     return windFarms!.singleWhereOrNull((e) => e.id == id);

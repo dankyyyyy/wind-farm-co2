@@ -30,7 +30,8 @@ class HomePanelState extends State<HomePanel> {
 
   @override
   void initState() {
-    super.initState();}
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +52,10 @@ class HomePanelState extends State<HomePanel> {
           onWindFarmSelected: (windfarmId) => {
             setState(() {
               dataAccessProvider.selectedWindfarmId = windfarmId;
+              dataAccessProvider.startDate =
+                  DateTime.now().subtract(const Duration(days: 8));
+              dataAccessProvider.endDate =
+                  DateTime.now().subtract(const Duration(days: 1));
               _isDragable = true;
               index = 0;
               panelController.animatePanelToPosition(tapAnimPoint,
@@ -90,8 +95,22 @@ class HomePanelState extends State<HomePanel> {
                       labelBehavior:
                           NavigationDestinationLabelBehavior.onlyShowSelected,
                       animationDuration: const Duration(seconds: 1),
-                      onDestinationSelected: (index) =>
-                          setState(() => this.index = index),
+                      onDestinationSelected: (index) => setState(() {
+                            if (index == 1 || index == 2) {
+                              DataAccessProvider tempWindfarmData =
+                                  Provider.of<DataAccessProvider>(context,
+                                      listen: false);
+                              DateTime now = DateTime.now();
+                              tempWindfarmData.startDate =
+                                  DateTime(now.year, now.month, 1);
+                              tempWindfarmData.endDate = DateTime(
+                                  now.year,
+                                  now.month,
+                                  DateUtils.getDaysInMonth(
+                                      now.year, now.month));
+                            }
+                            this.index = index;
+                          }),
                       destinations: [
                         _buildNavigationDestination(
                           icon: themeProvider.getTheme().brightness ==
@@ -170,11 +189,5 @@ class HomePanelState extends State<HomePanel> {
               ))),
       label: label,
     );
-  }
-
-  void updateWindFarmData(String windFarmId) {
-    setState(() {
-      DataAccessProvider().selectedWindfarmId = windFarmId;
-    });
   }
 }

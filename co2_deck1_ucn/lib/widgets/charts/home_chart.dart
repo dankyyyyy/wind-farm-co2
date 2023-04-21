@@ -26,7 +26,7 @@ class HomeChart extends StatelessWidget {
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
-              reservedSize: 40,
+              reservedSize: 20,
               getTitlesWidget: leftTitles,
             ),
           ),
@@ -92,7 +92,7 @@ class HomeChart extends StatelessWidget {
           fromY: 0,
           toY: vessels,
           color: vesselsColor,
-          width: 25,
+          width: 20,
           borderRadius: helicopters == 0
               ? const BorderRadius.vertical(top: Radius.circular(5))
               : BorderRadius.zero,
@@ -101,7 +101,7 @@ class HomeChart extends StatelessWidget {
           fromY: vessels,
           toY: vessels + helicopters,
           color: heliColor,
-          width: 25,
+          width: 20,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(5)),
         ),
       ],
@@ -196,24 +196,14 @@ class HomeChart extends StatelessWidget {
           dailyAnalytic(startDate.add(Duration(days: i)));
       if (analytic != null) {
         double total = analytic.helicoptersTotal + analytic.vesselsTotal;
-        if (kDebugMode) {
-          print("max y: total $total vs max $max");
-        }
         max = total > max ? total : max;
       }
-    }
-    if (kDebugMode) {
-      print("Max is $max and chart max is ${max * 1.2}");
     }
     return max * 1.2;
   }
 
   int daysBetween() {
     int days = endDate.difference(startDate).inDays + 1;
-    if (kDebugMode) {
-      print(
-        "Days between ${DateFormat('EEEE, dd.MM.yyyy').format(startDate)} and ${DateFormat('EEEE, dd.MM.yyyy').format(endDate)} is $days days.");
-    }
     return days;
   }
 }
