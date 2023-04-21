@@ -34,20 +34,20 @@ class Program extends StatelessWidget {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    return ScreenUtilInit(
-      designSize: const Size(411.42, 891.42), // size of pixel 6 pro
-      builder: (context, child) {
-        return MaterialApp(
-          title: 'DECK1 CO2',
-          theme: themeProvider.getTheme(),
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            MonthYearPickerLocalizations.delegate,
-          ],
-          home: const WindFarmProvider(),
-        );
-      },
+    return MaterialApp(
+      title: 'DECK1 CO2',
+      theme: themeProvider.getTheme(),
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        MonthYearPickerLocalizations.delegate,
+      ],
+      home: ScreenUtilInit(
+        designSize: const Size(411.42, 891.42), // size of pixel 6 pro
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => const WindFarmProvider(),
+      ),
     );
   }
 }

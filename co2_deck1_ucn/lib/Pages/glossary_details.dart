@@ -37,7 +37,7 @@ class GlossaryDetails extends StatelessWidget {
         ),
         drawer: const MenuDrawer(),
         body: Column(children: [
-          !title.contains("\n") ? SizedBox(height: 30) : SizedBox(height: 20),
+          !title.contains("\n") ? const SizedBox(height: 30) : const SizedBox(height: 20),
           Align(
               alignment: Alignment.center,
               child: Text(
@@ -45,7 +45,7 @@ class GlossaryDetails extends StatelessWidget {
                 style: Theme.of(context).textTheme.displayMedium,
                 textAlign: TextAlign.center,
               )),
-          !title.contains("\n") ? SizedBox(height: 20) : SizedBox(height: 0),
+          !title.contains("\n") ? const SizedBox(height: 20) : const SizedBox(height: 0),
           Center(
               child: SizedBox(
             height: 550,

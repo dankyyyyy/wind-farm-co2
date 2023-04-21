@@ -90,7 +90,6 @@ class GlossaryPageState extends State<GlossaryPage> {
                             builder: (context) => GlossaryDetails(title)));
                   }),
             SizedBox(
-              height: 240.h,
               child: Card(
                   elevation: 2,
                   shape: RoundedRectangleBorder(
@@ -100,9 +99,9 @@ class GlossaryPageState extends State<GlossaryPage> {
                   child: Padding(
                       padding: const EdgeInsets.fromLTRB(15, 25, 15, 15),
                       child: Row(children: [
-                        const Icon(
+                        Icon(
                           Icons.info_outline,
-                          size: 40,
+                          size: 40.sp,
                         ),
                         const SizedBox(
                           width: 10,
