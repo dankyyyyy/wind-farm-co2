@@ -61,22 +61,9 @@ class NavBarHomeState extends State<NavBarHome> {
               child: ListView(
             controller: HomePanelState().scrollController,
             children: <Widget>[
-              Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  margin: const EdgeInsets.fromLTRB(12, 5, 12, 12),
-                  child: Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 15, 15, 15),
-                      child: Row(children: [
-                        Flexible(
-                          child: buildQuickDetails(
-                              snapshot
-                                  .getWindFarmById(snapshot.selectedWindfarmId),
-                              0),
-                        )
-                      ]))),
+              buildQuickDetailsOnCards(
+                snapshot.getWindFarmById(snapshot.selectedWindfarmId),
+              ),
               Card(
                   elevation: 2,
                   shape: RoundedRectangleBorder(
@@ -113,7 +100,6 @@ class NavBarHomeState extends State<NavBarHome> {
                             children: [
                               SizedBox(
                                   height: 200,
-                                  width: getProportionateScreenWidth(350),
                                   child: AspectRatio(
                                       aspectRatio: 16 / 9,
                                       child: Container(
@@ -156,54 +142,6 @@ class NavBarHomeState extends State<NavBarHome> {
   }
 
 // Additional Methods
-  buildQuickDetails(WindFarm? windFarm, double ytd) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: windFarm == null
-            ? const Text(
-                "wind farm is null",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                    Row(children: [
-                      Text(
-                        "${windFarm.windTurbines}x ${windFarm.windTurbinesModel}",
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      const Text(
-                        " windturbines",
-                        style: TextStyle(fontSize: 16),
-                      )
-                    ]),
-                    const SizedBox(height: 6),
-                    Row(children: [
-                      Text(
-                        "${windFarm.power} MW",
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      const Text(
-                        " power output",
-                        style: TextStyle(fontSize: 16),
-                      )
-                    ]),
-                    const SizedBox(height: 6),
-                    Row(children: [
-                      Text(
-                        '$ytd tons ',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      const Text(
-                        "CO₂ emitted",
-                        style: TextStyle(fontSize: 16),
-                      )
-                    ])
-                  ]),
-      );
-
   Widget buildLegend() =>
       Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Row(children: [
@@ -219,6 +157,52 @@ class NavBarHomeState extends State<NavBarHome> {
               backgroundColor: Color.fromRGBO(62, 201, 247, 1), radius: 8.0),
           const SizedBox(width: 8),
           Text('Helicopters', style: Theme.of(context).textTheme.bodySmall)
-        ]),
+        ])
       ]);
+
+  buildQuickDetailsOnCards(WindFarm? windFarm) => Container(
+      padding: const EdgeInsets.all(10),
+      child: windFarm == null
+          ? const Text(
+              "wind farm is null",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            )
+          : Column(children: <Widget>[
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    smallCard("${windFarm.windTurbines}", "windturbines"),
+                    smallCard(
+                        "${(windFarm.power! % 1) == 0 ? windFarm.power?.toInt() : windFarm.power} MW",
+                        "power output")
+                  ])
+            ]));
+
+  Widget smallCard(String upperText, String lowerText) {
+    return SizedBox(
+      width: 0.45.sw,
+      height: 0.3.sw,
+      child: Card(
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              upperText,
+              style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              lowerText,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
