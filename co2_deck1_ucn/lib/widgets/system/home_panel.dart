@@ -4,7 +4,6 @@ import 'package:co2_deck1_ucn/pages/nav_bar_pages/navbar_home.dart';
 import 'package:co2_deck1_ucn/pages/nav_bar_pages/navbar_stats.dart';
 import 'package:co2_deck1_ucn/providers/data_access_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 

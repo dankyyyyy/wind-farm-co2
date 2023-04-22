@@ -10,8 +10,6 @@ import 'package:http/http.dart' as http;
 
 import '../utils/api_connection_utils.dart';
 
-// ERROR INTERCEPTION AND HANDLING
-
 // DATA ACCESS AND HANDLING
 
 Future<List<WindFarm>?> getAllWindFarms() async {
@@ -135,8 +133,6 @@ Future<List<WindFarmDailyAnalytics>?> getWindFarmAnalytics(
           .loadString('assets/data/windfarm_analytics/$id.json');
       final List<dynamic> decodedJson = json.decode(jsonString);
       if (decodedJson.length == 0) {
-        /* result.add(WindFarmDailyAnalytics.fromJson(
-            <String, dynamic>{"siteId": id, "date": startDate}));*/
       } else {
         for (int i = 0; i < decodedJson.length; i++) {
           if (i < decodedJson.length) {

@@ -55,22 +55,6 @@ class NavBarAboutState extends State<NavBarAbout> {
                   Text(description!,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium)
-                  // Card(
-                  //   elevation: 2,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(20.0),
-                  //   ),
-                  //   margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                  //   child: Flexible(
-                  //       child: Padding(
-                  //     padding: const EdgeInsets.fromLTRB(20, 15, 15, 20),
-                  //     child: Text(
-                  //       description!,
-                  //       textAlign: TextAlign.center,
-                  //       style: Theme.of(context).textTheme.bodyMedium,
-                  //     ),
-                  //   )),
-                  // ),
                 ])),
             Container(
               decoration: BoxDecoration(

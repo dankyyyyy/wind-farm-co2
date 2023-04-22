@@ -1,6 +1,5 @@
 import 'package:co2_deck1_ucn/Widgets/system/home_panel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -189,18 +188,6 @@ class NavBarHomeState extends State<NavBarHome> {
                         style: TextStyle(fontSize: 16),
                       )
                     ]),
-                    const SizedBox(height: 6),
-                    Row(children: [
-                      Text(
-                        '$ytd tons ',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      const Text(
-                        "CO₂ emitted",
-                        style: TextStyle(fontSize: 16),
-                      )
-                    ])
                   ]),
       );
 

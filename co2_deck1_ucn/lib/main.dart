@@ -4,7 +4,6 @@ import 'package:co2_deck1_ucn/providers/selection_provider.dart';
 import 'package:co2_deck1_ucn/providers/theme_provider.dart';
 import 'package:co2_deck1_ucn/utils/themes.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,11 +33,6 @@ class Program extends StatelessWidget {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    // return ScreenUtilInit(
-    //     designSize: const Size(411.42, 891.42), // size of pixel 6 pro
-    //     minTextAdapt: minTextAdaptConst,
-    //     splitScreenMode: true,
-    //     builder: (context, child) {
     return MaterialApp(
       title: 'DECK1 CO2',
       theme: themeProvider.getTheme(),

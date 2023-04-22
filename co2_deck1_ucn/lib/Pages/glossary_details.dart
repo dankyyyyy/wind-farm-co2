@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../Widgets/system/menu_drawer.dart';
@@ -12,13 +11,6 @@ class GlossaryDetails extends StatelessWidget {
   final glossaryUtils = GlossaryUtils();
 
   GlossaryDetails(this.title, {super.key});
-
-  /*static List<String> titles = <String>[
-    "Green Energy vs\n Traditional Sources",
-    "Onshore vs Offshore\n Windfarms",
-    "A Rundown on CO2\n Taxes",
-    "Helicopters vs Vessels"
-  ];*/
 
   @override
   Widget build(BuildContext context) {

@@ -38,7 +38,6 @@ class NavBarStatsState extends State<NavBarStats> {
     final panelUtils = PanelUtils();
 
     return Consumer<DataAccessProvider>(builder: (context, snapshot, child) {
-      print(snapshot.startDate);
       if (snapshot.selectedWindfarmId.isEmpty) {
         return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
