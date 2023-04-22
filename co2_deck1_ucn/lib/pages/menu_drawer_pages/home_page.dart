@@ -1,6 +1,7 @@
 import 'package:co2_deck1_ucn/Widgets/system/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../exceptions/size_config.dart';
 import '../../providers/data_access_provider.dart';
 import '../../widgets/system/home_panel.dart';
 import '../../Widgets/system/menu_button.dart';
@@ -17,6 +18,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     final windfarmData = Provider.of<DataAccessProvider>(context);
     return Scaffold(
         body: Stack(

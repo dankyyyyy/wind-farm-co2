@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../exceptions/size_config.dart';
+
+const minTextAdaptConst = true;
+
 final ThemeData lightTheme = ThemeData(
     appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFF1F2937), foregroundColor: Colors.white),
     navigationBarTheme: NavigationBarThemeData(
+        iconTheme: MaterialStateProperty.all(const IconThemeData(size: 35)),
         height: 65,
         backgroundColor: Colors.white,
         indicatorColor: Colors.blue.shade100,
@@ -11,38 +16,39 @@ final ThemeData lightTheme = ThemeData(
           const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
         )),
     textTheme: const TextTheme(
-        bodySmall:
-            TextStyle(fontFamily: 'Leto', fontSize: 16, color: Colors.black),
-        bodyMedium:
-            TextStyle(fontFamily: 'Leto', fontSize: 18, color: Colors.black),
-        bodyLarge:
-            TextStyle(fontFamily: 'Leto', fontSize: 20, color: Colors.black),
-        labelSmall: TextStyle(
-            fontFamily: 'Leto',
-            fontSize: 16,
-            color: Color.fromARGB(255, 77, 119, 157),
-            fontWeight: FontWeight.bold),
-        labelMedium: TextStyle(
-            fontFamily: 'Leto',
-            fontSize: 18,
-            color: Color.fromARGB(255, 77, 119, 157),
-            fontWeight: FontWeight.bold),
-        labelLarge: TextStyle(
+      bodySmall:
+          TextStyle(fontFamily: 'Leto', fontSize: 16, color: Colors.black),
+      bodyMedium:
+          TextStyle(fontFamily: 'Leto', fontSize: 18, color: Colors.black),
+      bodyLarge:
+          TextStyle(fontFamily: 'Leto', fontSize: 20, color: Colors.black),
+      labelSmall: TextStyle(
           fontFamily: 'Leto',
-          fontSize: 20,
+          fontSize: 16,
           color: Color.fromARGB(255, 77, 119, 157),
+          fontWeight: FontWeight.bold),
+      labelMedium: TextStyle(
+          fontFamily: 'Leto',
+          fontSize: 18,
+          color: Color.fromARGB(255, 77, 119, 157),
+          fontWeight: FontWeight.bold),
+      labelLarge: TextStyle(
+        fontFamily: 'Leto',
+        fontSize: 20,
+        color: Color.fromARGB(255, 77, 119, 157),
+        fontWeight: FontWeight.bold,
+      ),
+      displaySmall: TextStyle(
+          fontFamily: 'BebasNeue',
+          fontSize: 30,
           fontWeight: FontWeight.bold,
-        ),
-        displaySmall: TextStyle(
-            fontFamily: 'BebasNeue',
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: Colors.black),
-        displayMedium: TextStyle(
-            fontFamily: 'BebasNeue',
-            fontSize: 45,
-            fontWeight: FontWeight.bold,
-            color: Colors.black)),
+          color: Colors.black),
+      displayMedium: TextStyle(
+          fontFamily: 'BebasNeue',
+          fontSize: 45,
+          fontWeight: FontWeight.bold,
+          color: Colors.black),
+    ),
     colorScheme: const ColorScheme(
         brightness: Brightness.light,
         primary: Color(0xFF09A6D7),
