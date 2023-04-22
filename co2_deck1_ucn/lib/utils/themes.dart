@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../exceptions/size_config.dart';
-
 const minTextAdaptConst = true;
 
 final ThemeData lightTheme = ThemeData(

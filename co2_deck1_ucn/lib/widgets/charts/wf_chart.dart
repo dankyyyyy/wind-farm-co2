@@ -77,6 +77,7 @@ class WindFarmChart extends StatelessWidget {
         }
       }
     }
+    print(barChartData);
     return barChartData;
   }
 

@@ -54,7 +54,7 @@ Future<List<WindFarm>?> getAllWindFarms() async {
     } else {
       if (kDebugMode) {
         print(
-          "${DataAccessExceptionMessages.CouldNotRetrieveWFs} Status: ${response.statusCode} ${response.reasonPhrase}");
+            "${DataAccessExceptionMessages.CouldNotRetrieveWFs} Status: ${response.statusCode} ${response.reasonPhrase}");
       }
     }
   } catch (e) {
@@ -98,7 +98,7 @@ Future<WindFarm?> getWindFarmById(String id) async {
     } else {
       if (kDebugMode) {
         print(
-          "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
+            "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
       }
     }
   } catch (e) {
@@ -121,29 +121,48 @@ Future<List<WindFarmDailyAnalytics>?> getWindFarmAnalytics(
     );
     if (response.statusCode == 200) {
       final extractedData = json.decode(response.body);
-      if (extractedData.length == 0) {
+
+      for (int i = 0; i < extractedData.length; i++) {
+        result.add(WindFarmDailyAnalytics.fromJson(extractedData[i]));
+        if (kDebugMode) {
+          print(extractedData[i].toString());
+        }
+      }
+    } else if (response.statusCode >= 400 &&
+        response.statusCode != 404 &&
+        response.statusCode < 500) {
+      final jsonString = await rootBundle
+          .loadString('assets/data/windfarm_analytics/$id.json');
+      final List<dynamic> decodedJson = json.decode(jsonString);
+      if (decodedJson.length == 0) {
         /* result.add(WindFarmDailyAnalytics.fromJson(
             <String, dynamic>{"siteId": id, "date": startDate}));*/
       } else {
-        for (int i = 0; i < extractedData.length; i++) {
-          result.add(WindFarmDailyAnalytics.fromJson(extractedData[i]));
-          if (kDebugMode) {
-            print(extractedData[i].toString());
+        for (int i = 0; i < decodedJson.length; i++) {
+          if (i < decodedJson.length) {
+            final jsonData = WindFarmDailyAnalytics.fromJson(decodedJson[i]);
+
+            result.add(WindFarmDailyAnalytics.fromJson(decodedJson[i]));
+            if (kDebugMode) {
+              print(decodedJson[i].toString());
+            }
           }
         }
       }
-    } else {
-      if (kDebugMode) {
-        print(
-          "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
-      }
+    } else if (response.statusCode == 404 ||
+        response.statusCode == 500 ||
+        response.statusCode == 503) {
+      //return if the api is out
+      print(RetreivalFailedException(
+          DataAccessExceptionMessages.CouldNotRetrieveStatistics));
     }
+
+    //return if there are no errors
+    return result;
   } catch (e) {
-    if (kDebugMode) {
-      print("An error occurred while retrieving windfarm with id: $id.");
-    }
+    print(RetreivalFailedException(
+        DataAccessExceptionMessages.CouldNotRetrieveStatistics));
   }
-  return result;
 }
 
 Future<double> getYTDAnalytics(

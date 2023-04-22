@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../exceptions/size_config.dart';
 import '../../providers/data_access_provider.dart';
 import '../../utils/panel_utils.dart';
+import '../../utils/size_config.dart';
 
 class NavBarAbout extends StatefulWidget {
   const NavBarAbout({

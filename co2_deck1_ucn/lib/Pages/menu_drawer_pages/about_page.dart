@@ -5,8 +5,9 @@ import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../Resources/images.dart';
-import '../../exceptions/size_config.dart';
+
 import '../../providers/theme_provider.dart';
+import '../../utils/size_config.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});

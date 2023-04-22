@@ -5,9 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../Widgets/system/menu_drawer.dart';
-import '../../exceptions/size_config.dart';
+
 import '../../providers/theme_provider.dart';
 import '../../utils/glossary_utils.dart';
+import '../../utils/size_config.dart';
 import '../glossary_details.dart';
 
 class GlossaryPage extends StatefulWidget {

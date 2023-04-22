@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
-import '../../exceptions/size_config.dart';
 import '../../providers/data_access_provider.dart';
 import 'package:co2_deck1_ucn/widgets/charts/wf_chart.dart';
 
 import '../../utils/panel_utils.dart';
+import '../../utils/size_config.dart';
 
 class NavBarStats extends StatefulWidget {
   NavBarStats({
@@ -38,6 +38,7 @@ class NavBarStatsState extends State<NavBarStats> {
     final panelUtils = PanelUtils();
 
     return Consumer<DataAccessProvider>(builder: (context, snapshot, child) {
+      print(snapshot.startDate);
       if (snapshot.selectedWindfarmId.isEmpty) {
         return Row(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../../exceptions/size_config.dart';
 import '../../models/wind_farm.dart';
 import '../../providers/data_access_provider.dart';
 import '../../utils/panel_utils.dart';
+import '../../utils/size_config.dart';
 import '../../widgets/charts/home_chart.dart';
 
 class NavBarHome extends StatefulWidget {

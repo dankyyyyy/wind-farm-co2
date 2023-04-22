@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 import 'package:provider/provider.dart';
-import '../../exceptions/size_config.dart';
+
 import '../../providers/data_access_provider.dart';
 import '../../utils/comparison_calculations.dart';
 import '../../utils/panel_utils.dart';
+import '../../utils/size_config.dart';
 
 class NavBarComparisons extends StatefulWidget {
   const NavBarComparisons({
