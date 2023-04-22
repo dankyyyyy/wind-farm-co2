@@ -170,8 +170,8 @@ class HomePanelState extends State<HomePanel> {
   }) {
     return NavigationDestination(
       icon: Container(
-          height: 30.h,
-          width: 30.w,
+          height: 30,
+          width: 30,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
@@ -179,8 +179,8 @@ class HomePanelState extends State<HomePanel> {
                 image: icon,
               ))),
       selectedIcon: Container(
-          height: 30.h,
-          width: 30.w,
+          height: 30,
+          width: 30,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(

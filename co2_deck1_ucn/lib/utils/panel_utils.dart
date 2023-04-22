@@ -10,14 +10,14 @@ class PanelUtils {
 
   Widget buildHeader(BuildContext context, WindFarm? selectedWindfarm) =>
       SizedBox(
-          height: 120.h,
+          height: 120,
           child: ListView(
               padding: EdgeInsets.zero,
               controller: scrollController,
               children: <Widget>[
-                SizedBox(height: 12.h),
+                SizedBox(height: 12),
                 buildDragHandle(),
-                SizedBox(height: 18.h),
+                SizedBox(height: 18),
                 Center(
                     child: Text(
                   selectedWindfarm?.name ?? "",

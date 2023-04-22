@@ -12,6 +12,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
+import 'exceptions/size_config.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -34,6 +36,11 @@ class Program extends StatelessWidget {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     final themeProvider = Provider.of<ThemeProvider>(context);
 
+    // return ScreenUtilInit(
+    //     designSize: const Size(411.42, 891.42), // size of pixel 6 pro
+    //     minTextAdapt: minTextAdaptConst,
+    //     splitScreenMode: true,
+    //     builder: (context, child) {
     return MaterialApp(
       title: 'DECK1 CO2',
       theme: themeProvider.getTheme(),
@@ -42,15 +49,12 @@ class Program extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         MonthYearPickerLocalizations.delegate,
       ],
-      home: ScreenUtilInit(
-        designSize: const Size(411.42, 891.42), // size of pixel 6 pro
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) => const WindFarmProvider(),
-      ),
+      home: const WindFarmProvider(),
     );
   }
+  // );
 }
+// }
 
 class WindFarmProvider extends StatefulWidget {
   const WindFarmProvider({super.key});

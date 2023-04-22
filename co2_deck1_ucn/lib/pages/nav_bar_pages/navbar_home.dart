@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+import '../../exceptions/size_config.dart';
 import '../../models/wind_farm.dart';
 import '../../providers/data_access_provider.dart';
 import '../../utils/panel_utils.dart';
@@ -35,6 +36,7 @@ class NavBarHomeState extends State<NavBarHome> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Consumer<DataAccessProvider>(builder: (context, snapshot, child) {
       if (snapshot.selectedWindfarmId.isEmpty) {
         return Row(
@@ -58,8 +60,6 @@ class NavBarHomeState extends State<NavBarHome> {
           Expanded(
               child: ListView(
             controller: HomePanelState().scrollController,
-            // shrinkWrap: true,
-            // physics: const NeverScrollableScrollPhysics(),
             children: <Widget>[
               Card(
                   elevation: 2,
@@ -112,8 +112,6 @@ class NavBarHomeState extends State<NavBarHome> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
-                                  height: 200,
-                                  width: 350.w,
                                   child: AspectRatio(
                                       aspectRatio: 16 / 9,
                                       child: Container(

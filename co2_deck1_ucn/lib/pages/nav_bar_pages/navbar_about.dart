@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../exceptions/size_config.dart';
 import '../../providers/data_access_provider.dart';
 import '../../utils/panel_utils.dart';
 
@@ -18,6 +19,7 @@ class NavBarAboutState extends State<NavBarAbout> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Consumer<DataAccessProvider>(builder: (context, snapshot, child) {
       if (snapshot.selectedWindfarmId.isEmpty) {
         return Row(

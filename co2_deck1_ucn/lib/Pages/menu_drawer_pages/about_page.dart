@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../Resources/images.dart';
+import '../../exceptions/size_config.dart';
 import '../../providers/theme_provider.dart';
 
 class AboutPage extends StatefulWidget {
@@ -17,6 +18,7 @@ class AboutPage extends StatefulWidget {
 class AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     Uri url = Uri.https('deck1.com', '/home');
 

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
+import '../../exceptions/size_config.dart';
 import '../../providers/data_access_provider.dart';
 import 'package:co2_deck1_ucn/widgets/charts/wf_chart.dart';
 
@@ -33,6 +34,7 @@ class NavBarStatsState extends State<NavBarStats> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     final panelUtils = PanelUtils();
 
     return Consumer<DataAccessProvider>(builder: (context, snapshot, child) {

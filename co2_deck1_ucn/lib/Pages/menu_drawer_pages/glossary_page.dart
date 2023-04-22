@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../Widgets/system/menu_drawer.dart';
+import '../../exceptions/size_config.dart';
 import '../../providers/theme_provider.dart';
 import '../../utils/glossary_utils.dart';
 import '../glossary_details.dart';
@@ -21,6 +22,7 @@ class GlossaryPageState extends State<GlossaryPage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
 
     return Scaffold(
@@ -50,7 +52,7 @@ class GlossaryPageState extends State<GlossaryPage> {
                             padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
                             child: Row(children: [
                               CircleAvatar(
-                                  radius: 40.w.h,
+                                  radius: 40,
                                   backgroundColor: Colors.transparent,
                                   child: Container(
                                       decoration: BoxDecoration(
@@ -101,7 +103,7 @@ class GlossaryPageState extends State<GlossaryPage> {
                       child: Row(children: [
                         Icon(
                           Icons.info_outline,
-                          size: 40.sp,
+                          size: 40,
                         ),
                         const SizedBox(
                           width: 10,
