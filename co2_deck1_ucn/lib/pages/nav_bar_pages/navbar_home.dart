@@ -112,6 +112,8 @@ class NavBarHomeState extends State<NavBarHome> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
+                                  height: 200,
+                                  width: getProportionateScreenWidth(350),
                                   child: AspectRatio(
                                       aspectRatio: 16 / 9,
                                       child: Container(

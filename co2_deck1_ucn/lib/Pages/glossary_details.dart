@@ -1,3 +1,4 @@
+import 'package:co2_deck1_ucn/exceptions/size_config.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,8 +53,8 @@ class GlossaryDetails extends StatelessWidget {
               : const SizedBox(height: 0),
           Center(
               child: SizedBox(
-            height: 550,
-            width: 400,
+            height: getProportionateScreenHeight(530),
+            width: getProportionateScreenWidth(400),
             child: Card(
               elevation: 2,
               shape: RoundedRectangleBorder(
@@ -79,7 +80,7 @@ class GlossaryDetails extends StatelessWidget {
           )),
           SizedBox(
               height: 90,
-              width: 400,
+              width: getProportionateScreenWidth(400),
               child: Card(
                 elevation: 2,
                 shape: RoundedRectangleBorder(
