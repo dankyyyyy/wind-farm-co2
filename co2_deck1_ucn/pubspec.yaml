@@ -75,7 +75,14 @@ flutter:
 
   # json
       - assets/data/windfarm_data.json
+      - assets/data/windfarm_analytics/DE02.json
       - assets/data/windfarm_analytics/DE05.json
+      - assets/data/windfarm_analytics/DE12.json
+      - assets/data/windfarm_analytics/DE46.json
+      - assets/data/windfarm_analytics/DE47.json
+      - assets/data/windfarm_analytics/DK07.json
+      - assets/data/windfarm_analytics/DK11.json
+      - assets/data/windfarm_analytics/DK37.json
   
   # glossary .txts
       - assets/data/glossary_texts/green_traditional.txt
