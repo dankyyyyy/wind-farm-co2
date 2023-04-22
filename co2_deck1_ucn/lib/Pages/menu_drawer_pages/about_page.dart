@@ -42,7 +42,7 @@ class AboutPageState extends State<AboutPage> {
                       : const AssetImage(Images.logoNotext),
                   fit: BoxFit.fitHeight,
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: getProportionateScreenHeight(10)),
                 Text(
                   "DECK1 is a software development company working in the offshore renewable energy industry.\n",
                   textAlign: TextAlign.left,
@@ -58,7 +58,7 @@ class AboutPageState extends State<AboutPage> {
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: getProportionateScreenHeight(5)),
                 RichText(
                   text: TextSpan(
                       text: "Click ",
