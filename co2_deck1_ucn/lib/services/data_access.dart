@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:co2_deck1_ucn/resources/exceptions/data_access_exception_messages.dart';
-import 'package:co2_deck1_ucn/resources/exceptions/retrieval_exception.dart';
-import "package:co2_deck1_ucn/model/wind_farm.dart";
-import 'package:co2_deck1_ucn/model/wind_farm_analytics.dart';
+import 'package:co2_deck1_ucn/exceptions/data_access_exception_messages.dart';
+import 'package:co2_deck1_ucn/exceptions/retrieval_exception.dart';
+import "package:co2_deck1_ucn/models/wind_farm.dart";
+import 'package:co2_deck1_ucn/models/wind_farm_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart' as http;
 
-import 'package:co2_deck1_ucn/controller/utils/api_connection_utils.dart';
+import '../utils/api_connection_utils.dart';
 
 // ERROR INTERCEPTION AND HANDLING
 
@@ -54,7 +54,7 @@ Future<List<WindFarm>?> getAllWindFarms() async {
     } else {
       if (kDebugMode) {
         print(
-            "${DataAccessExceptionMessages.CouldNotRetrieveWFs} Status: ${response.statusCode} ${response.reasonPhrase}");
+          "${DataAccessExceptionMessages.CouldNotRetrieveWFs} Status: ${response.statusCode} ${response.reasonPhrase}");
       }
     }
   } catch (e) {
@@ -98,7 +98,7 @@ Future<WindFarm?> getWindFarmById(String id) async {
     } else {
       if (kDebugMode) {
         print(
-            "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
+          "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
       }
     }
   } catch (e) {
@@ -135,7 +135,7 @@ Future<List<WindFarmDailyAnalytics>?> getWindFarmAnalytics(
     } else {
       if (kDebugMode) {
         print(
-            "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
+          "Incorrect response. Status: ${response.statusCode} ${response.reasonPhrase}");
       }
     }
   } catch (e) {
