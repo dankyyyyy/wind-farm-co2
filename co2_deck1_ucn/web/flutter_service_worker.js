@@ -32,3 +32,4 @@ workbox.routing.setDefaultHandler(new workbox.strategies.CacheFirst({
     }),
   ],
 }));
+

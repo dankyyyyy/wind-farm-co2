@@ -1,18 +1,15 @@
-import 'package:co2_deck1_ucn/pages/menu_drawer_pages/home_page.dart';
-import 'package:co2_deck1_ucn/providers/data_access_provider.dart';
-import 'package:co2_deck1_ucn/providers/selection_provider.dart';
-import 'package:co2_deck1_ucn/providers/theme_provider.dart';
-import 'package:co2_deck1_ucn/utils/themes.dart';
+import 'package:co2_deck1_ucn/view/pages/menu_drawer_pages/home_page.dart';
+import 'package:co2_deck1_ucn/controller/providers/data_access_provider.dart';
+import 'package:co2_deck1_ucn/controller/providers/selection_provider.dart';
+import 'package:co2_deck1_ucn/controller/providers/theme_provider.dart';
+import 'package:co2_deck1_ucn/resources/themes.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:month_year_picker/month_year_picker.dart';
-
-import 'exceptions/size_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
